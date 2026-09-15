@@ -1,0 +1,9 @@
+{
+  "name": "@3d/blender",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": { ".": "./src/index.ts" },
+  "dependencies": { "@3d/core": "workspace:*", "@3d/schema": "workspace:*", "@3d/render": "workspace:*", "three": "^0.186.0" },
+  "devDependencies": { "@types/three": "^0.186.0" }
+}

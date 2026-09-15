@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "name": "desk-lamp-held-out",
+  "environment": {
+    "preset": "studio-soft",
+    "background": "#f7f5f2"
+  },
+  "materials": {
+    "paint": {
+      "color": "#65748c",
+      "roughness": 0.3
+    }
+  },
+  "nodes": [
+    {
+      "type": "asset",
+      "name": "lamp",
+      "builder": "../assets/builders/desk_lamp.py",
+      "parameters": {
+        "shade_radius": 0.055
+      },
+      "material": "paint"
+    }
+  ]
+}

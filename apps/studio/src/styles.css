@@ -1,0 +1,261 @@
+/*
+ * Dark, borderless, floating-panel UI. Separation comes from fill and shadow
+ * rather than strokes — a 1px line at this contrast reads as clutter and is the
+ * main thing that made the earlier pass look busy.
+ */
+:root {
+  color-scheme: dark;
+
+  --bg: #0d0d0f;
+  --panel: rgba(24, 24, 27, 0.92);
+  --panel-strong: rgba(255, 255, 255, 0.08);
+  --panel-hover: rgba(255, 255, 255, 0.12);
+  --shadow: 0 8px 28px rgba(0, 0, 0, 0.5), 0 1px 2px rgba(0, 0, 0, 0.6);
+
+  --text: #ededf0;
+  --muted: #86868f;
+  --accent: #e8e8ec;
+  --danger: #ff6b5e;
+
+  --radius-panel: 16px;
+  --radius-control: 10px;
+  --dot: #4ade80;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: "TASA Orbiter", ui-sans-serif, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 13px;
+  line-height: 1.45;
+  font-weight: 400;
+  letter-spacing: -0.005em;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.app {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+}
+
+.viewport {
+  position: absolute;
+  inset: 0;
+}
+
+/* ---------- floating panels ---------- */
+
+.hud,
+.errors,
+.bar {
+  position: absolute;
+  background-color: var(--panel);
+  border-radius: var(--radius-panel);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(20px) saturate(140%);
+  -webkit-backdrop-filter: blur(20px) saturate(140%);
+}
+
+.hud {
+  top: 16px;
+  left: 16px;
+  padding: 11px 15px;
+}
+
+.hud h1 {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: -0.012em;
+}
+
+/* A small status dot carries "this scene is live" without adding a label. */
+.hud h1::before {
+  content: "";
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  margin-right: 8px;
+  vertical-align: 2px;
+  border-radius: 50%;
+  background: var(--dot);
+}
+
+.hud p {
+  margin: 3px 0 0 13px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 400;
+}
+
+/* ---------- bottom control bar ---------- */
+
+.bar {
+  left: 50%;
+  bottom: 18px;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: min(640px, calc(100% - 32px));
+  padding: 9px 12px;
+  flex-wrap: nowrap;
+}
+
+.bar button,
+.bar select {
+  font: inherit;
+  font-size: 12.5px;
+  color: var(--text);
+  background-color: var(--panel-strong);
+  border: 0;
+  border-radius: var(--radius-control);
+  padding: 6px 13px;
+  cursor: pointer;
+  text-align: center;
+  transition: background-color 120ms ease, color 120ms ease, opacity 120ms ease;
+}
+
+/*
+ * Reserve the width of the widest label so the control does not resize as it
+ * toggles between Play and Pause, which shifts everything after it in the bar.
+ * 61px is "Pause" at 12.5px TASA Orbiter plus the 26px of horizontal padding.
+ */
+.bar button {
+  min-width: 64px;
+}
+
+.bar button:hover:not(:disabled),
+.bar select:hover {
+  background-color: var(--panel-hover);
+}
+
+.bar button:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.bar button:focus-visible,
+.bar select:focus-visible,
+.bar input[type="range"]:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.35);
+  outline-offset: 2px;
+}
+
+.bar select {
+  appearance: none;
+  -webkit-appearance: none;
+  flex: 0 1 190px;
+  min-width: 0;
+  padding-right: 28px;
+  /* Chevron drawn in the background so the control needs no border or arrow box. */
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' fill='none'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%2386868f' stroke-width='1.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 11px center;
+  text-overflow: ellipsis;
+}
+
+.bar select option {
+  background-color: #17171a;
+  color: var(--text);
+}
+
+/* ---------- scrubber ---------- */
+
+.bar input[type="range"] {
+  flex: 1;
+  appearance: none;
+  -webkit-appearance: none;
+  height: 20px;
+  background: transparent;
+  cursor: pointer;
+  margin: 0;
+}
+
+.bar input[type="range"]::-webkit-slider-runnable-track {
+  height: 3px;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.13);
+}
+
+.bar input[type="range"]::-moz-range-track {
+  height: 3px;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.13);
+}
+
+.bar input[type="range"]::-webkit-slider-thumb {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 11px;
+  height: 11px;
+  margin-top: -4px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+.bar input[type="range"]::-moz-range-thumb {
+  width: 11px;
+  height: 11px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+.bar input[type="range"]:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
+.time {
+  min-width: 96px;
+  text-align: right;
+  color: var(--muted);
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0;
+}
+
+/* ---------- diagnostics ---------- */
+
+.errors {
+  top: 16px;
+  right: 16px;
+  max-width: 440px;
+  padding: 13px 15px;
+  background-color: rgba(58, 22, 20, 0.5);
+}
+
+.errors h2 {
+  margin: 0 0 7px;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--danger);
+  letter-spacing: -0.01em;
+}
+
+.errors code {
+  display: block;
+  margin-top: 4px;
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, monospace;
+  font-size: 11.5px;
+  line-height: 1.5;
+  color: #d8b5b0;
+  white-space: pre-wrap;
+  word-break: break-word;
+}

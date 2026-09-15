@@ -1,0 +1,153 @@
+{
+  "version": 1,
+  "name": "side-table",
+  "environment": {
+    "preset": "product-white",
+    "background": "transparent"
+  },
+  "camera": {
+    "fov": 26,
+    "framing": {
+      "fit": "all",
+      "view": "iso",
+      "padding": 0.14
+    }
+  },
+  "materials": {
+    "oak": {
+      "color": "#c8a170",
+      "roughness": 0.62
+    },
+    "steel": {
+      "color": "#8b8f96",
+      "roughness": 0.3,
+      "metalness": 0.8
+    }
+  },
+  "nodes": [
+    {
+      "type": "group",
+      "id": "tableRoot1",
+      "name": "table",
+      "children": [
+        {
+          "type": "box",
+          "id": "shelfTop01",
+          "name": "top",
+          "size": [
+            0.52,
+            0.03,
+            0.52
+          ],
+          "radius": 0.012,
+          "material": "oak",
+          "transform": {
+            "position": [
+              0,
+              0.56,
+              0
+            ]
+          }
+        },
+        {
+          "type": "box",
+          "id": "shelfMid01",
+          "name": "middle",
+          "size": [
+            0.46,
+            0.025,
+            0.46
+          ],
+          "radius": 0.01,
+          "material": "oak",
+          "transform": {
+            "position": [
+              0,
+              0.33,
+              0
+            ]
+          }
+        },
+        {
+          "type": "box",
+          "id": "shelfLow01",
+          "name": "lower",
+          "size": [
+            0.46,
+            0.025,
+            0.46
+          ],
+          "radius": 0.01,
+          "material": "oak",
+          "transform": {
+            "position": [
+              0,
+              0.1,
+              0
+            ]
+          }
+        },
+        {
+          "type": "cylinder",
+          "id": "legFrontL1",
+          "name": "leg-front-left",
+          "radius": 0.012,
+          "height": 0.545,
+          "material": "steel",
+          "transform": {
+            "position": [
+              -0.2,
+              0.2725,
+              0.2
+            ]
+          }
+        },
+        {
+          "type": "cylinder",
+          "id": "legFrontR1",
+          "name": "leg-front-right",
+          "radius": 0.012,
+          "height": 0.545,
+          "material": "steel",
+          "transform": {
+            "position": [
+              0.2,
+              0.2725,
+              0.2
+            ]
+          }
+        },
+        {
+          "type": "cylinder",
+          "id": "legBackL001",
+          "name": "leg-back-left",
+          "radius": 0.012,
+          "height": 0.545,
+          "material": "steel",
+          "transform": {
+            "position": [
+              -0.2,
+              0.2725,
+              -0.2
+            ]
+          }
+        },
+        {
+          "type": "cylinder",
+          "id": "legBackR001",
+          "name": "leg-back-right",
+          "radius": 0.012,
+          "height": 0.545,
+          "material": "steel",
+          "transform": {
+            "position": [
+              0.2,
+              0.2725,
+              -0.2
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

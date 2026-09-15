@@ -1,0 +1,57 @@
+{
+  "version": 1,
+  "name": "rounded-cube",
+  "environment": {
+    "preset": "studio-soft",
+    "background": "transparent"
+  },
+  "camera": {
+    "fov": 30,
+    "framing": {
+      "fit": "all",
+      "view": "iso",
+      "padding": 0.12
+    }
+  },
+  "materials": {
+    "clay": {
+      "color": "#e2725b",
+      "roughness": 0.5
+    }
+  },
+  "nodes": [
+    {
+      "type": "box",
+      "id": "bodyCube01",
+      "name": "body",
+      "size": 1,
+      "radius": 0.16,
+      "material": "clay"
+    }
+  ],
+  "animation": {
+    "clips": [
+      {
+        "name": "spin",
+        "duration": 2,
+        "fps": 30,
+        "loop": "forever",
+        "tracks": [
+          {
+            "target": "body.transform.rotation.y",
+            "keys": [
+              [
+                0,
+                0
+              ],
+              [
+                2,
+                360
+              ]
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

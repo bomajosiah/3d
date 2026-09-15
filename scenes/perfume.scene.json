@@ -1,0 +1,126 @@
+{
+  "version": 1,
+  "name": "perfume",
+  "environment": {
+    "background": "transparent",
+    "preset": "studio-contrast"
+  },
+  "camera": {
+    "fov": 28,
+    "framing": {
+      "view": "iso",
+      "fit": "all",
+      "padding": 0.15
+    }
+  },
+  "materials": {
+    "cap": {
+      "color": "#2f2b28",
+      "roughness": 0.35
+    },
+    "glass": {
+      "color": "#8fb9c9",
+      "metalness": 0.1,
+      "roughness": 0.12
+    }
+  },
+  "nodes": [
+    {
+      "name": "body",
+      "type": "box",
+      "id": "z27NOTVd",
+      "size": [
+        0.36,
+        0.44,
+        0.18
+      ],
+      "radius": 0.05,
+      "material": "glass"
+    },
+    {
+      "name": "neck",
+      "type": "cylinder",
+      "id": "JcaqGQDD",
+      "radius": 0.055,
+      "height": 0.09,
+      "material": "glass",
+      "transform": {
+        "position": [
+          0,
+          0.26,
+          0
+        ]
+      }
+    },
+    {
+      "name": "cap",
+      "type": "box",
+      "id": "yJ9CaZnH",
+      "size": [
+        0.13,
+        0.11,
+        0.13
+      ],
+      "radius": 0.02,
+      "material": "cap",
+      "transform": {
+        "position": [
+          0,
+          0.35,
+          0
+        ]
+      }
+    }
+  ],
+  "animation": {
+    "clips": [
+      {
+        "name": "spin",
+        "duration": 2,
+        "fps": 30,
+        "loop": "forever",
+        "tracks": [
+          {
+            "keys": [
+              [
+                0,
+                0
+              ],
+              [
+                2,
+                360
+              ]
+            ],
+            "target": "body.transform.rotation.y"
+          },
+          {
+            "keys": [
+              [
+                0,
+                0
+              ],
+              [
+                2,
+                360
+              ]
+            ],
+            "target": "neck.transform.rotation.y"
+          },
+          {
+            "keys": [
+              [
+                0,
+                0
+              ],
+              [
+                2,
+                360
+              ]
+            ],
+            "target": "cap.transform.rotation.y"
+          }
+        ]
+      }
+    ]
+  }
+}

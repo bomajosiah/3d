@@ -1,0 +1,33 @@
+{
+  "version": 1,
+  "name": "product-furniture",
+  "environment": {
+    "preset": "product-white",
+    "background": "#f7f5f2"
+  },
+  "materials": {
+    "ceramic": {
+      "color": "#a8b9b2",
+      "roughness": 0.28
+    },
+    "wood": {
+      "color": "#b77b42",
+      "roughness": 0.5
+    },
+    "steel": {
+      "color": "#333942",
+      "metalness": 0.8,
+      "roughness": 0.28
+    }
+  },
+  "nodes": [
+    {
+      "type": "asset",
+      "name": "furniture",
+      "builder": "../assets/builders/products.py",
+      "parameters": {
+        "kind": "furniture"
+      }
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "name": "3d-workspace",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "bin": {
+    "3d": "./packages/cli/bin/3d.mjs"
+  },
+  "scripts": {
+    "3d": "node packages/cli/bin/3d.mjs",
+    "test": "vitest run",
+    "check": "tsc -p tsconfig.json --noEmit && tsc -p apps/studio/tsconfig.json --noEmit",
+    "docs": "node scripts/gen-docs.ts",
+    "docs:check": "node scripts/check-docs.ts",
+    "studio": "pnpm --filter @3d/studio dev",
+    "test:blender": "BLENDER_TESTS=1 vitest run"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8"
+  },
+  "dependencies": {
+    "@3d/cli": "workspace:*",
+    "@3d/schema": "workspace:*"
+  }
+}
