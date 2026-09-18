@@ -38,7 +38,9 @@ jobs:
   export:
     needs: plan
     runs-on: ubuntu-latest
-    timeout-minutes: 180
+    # A 125-frame scene takes ~3h on this runner. 350 leaves room without
+    # letting a wedged job run to GitHub's 6h maximum.
+    timeout-minutes: 350
     strategy:
       fail-fast: false
       matrix:
@@ -94,10 +96,12 @@ jobs:
         env:
           SCENE: ${{ matrix.scene }}
           BLENDER_BIN: ${{ github.workspace }}/.3d/tools/blender/blender
-          # Headroom over the local defaults, so a cold cache or the
-          # `ubuntu-latest` fallback cannot trip the 300s asset-build budget.
+          # Headroom over the local default, so a cold cache cannot trip the
+          # 300s asset-build budget. The render budget is deliberately NOT set
+          # here: it now scales with frame count in render.ts, and the flat
+          # 90-minute value this used to carry is what killed the four longest
+          # scenes mid-render.
           BLENDER_BUILD_TIMEOUT_MS: '1800000'
-          BLENDER_RENDER_TIMEOUT_MS: '5400000'
         run: pnpm icon "scenes/$SCENE.scene.json" "dist/icons/$SCENE"
 
       - uses: actions/upload-artifact@v4

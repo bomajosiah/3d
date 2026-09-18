@@ -18,7 +18,7 @@
   },
   "camera": {
     "type": "orthographic",
-    "framing": { "view": "front", "fit": "all", "padding": 0.04 }
+    "framing": { "view": "front", "fit": "all", "padding": 0.04, "region": { "center": [-0.00175, 0.00522, 0], "radius": 0.15758 } }
   },
   "materials": {
     "board":  { "color": "#eeaa66", "roughness": 0.3 },
@@ -41,7 +41,7 @@
             {
               "name": "spin",
               "type": "group",
-              "transform": { "rotation": [0, -44.4, 0] },
+              "transform": { "rotation": [0, -43.92, 0] },
               "children": [
                 {
                   "name": "palette",

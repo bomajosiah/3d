@@ -31,7 +31,12 @@ export async function renderFinal(doc: SceneDocument, requests: { time: number; 
     writeFileSync(join(directory, 'request.json'), JSON.stringify({ meshes, frames, environment: doc.environment,
       width: options.width, height: options.height, samples: options.samples ?? 64,
       bounds: [built.bounds.min.toArray(), built.bounds.max.toArray()], center: sphere.center.toArray(), radius: sphere.radius }))
-    await run(info.executable, ['--background', '--factory-startup', '--python-exit-code', '1', '--python', join(PYTHON_DIR, 'render.py'), '--', join(directory, 'request.json')], timeoutFrom('BLENDER_RENDER_TIMEOUT_MS', 900_000))
+    // One Blender call renders the whole batch, so the budget has to scale with
+    // it. A flat timeout silently passed single frames and killed long icon
+    // clips at the same number, which is how a 125-frame export failed after
+    // already doing most of the work.
+    const budget = Math.max(900_000, frames.length * 150_000)
+    await run(info.executable, ['--background', '--factory-startup', '--python-exit-code', '1', '--python', join(PYTHON_DIR, 'render.py'), '--', join(directory, 'request.json')], timeoutFrom('BLENDER_RENDER_TIMEOUT_MS', budget))
     return { frames: frames.map(f => ({ time: f.time, view: f.view, png: readFileSync(f.output), coverage: 1 }) as Frame),
       stats: { bounds: [...built.bounds.min.toArray(), ...built.bounds.max.toArray()] as SceneStats['bounds'], radius: sphere.radius, triangles: built.triangles, nodes: built.content.children.length, toneMapping: RENDERER_SETTINGS.toneMapping }, warnings: built.warnings }
   } finally { rmSync(directory, { recursive: true, force: true }) }

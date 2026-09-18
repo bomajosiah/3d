@@ -209,7 +209,7 @@
     "clips": [
       {
         "name": "steam",
-        "duration": 4.4,
+        "duration": 3,
         "fps": 60,
         "loop": "forever",
         "tracks": [
@@ -221,22 +221,22 @@
                 "inOutQuad"
               ],
               [
-                1.1,
+                0.75,
                 11,
                 "inOutQuad"
               ],
               [
-                2.2,
+                1.5,
                 0,
                 "inOutQuad"
               ],
               [
-                3.3,
+                2.25,
                 -11,
                 "inOutQuad"
               ],
               [
-                4.4,
+                3,
                 0,
                 "inOutQuad"
               ]
@@ -251,22 +251,22 @@
                 "inOutQuad"
               ],
               [
-                1.1,
+                0.75,
                 6,
                 "inOutQuad"
               ],
               [
-                2.2,
+                1.5,
                 0,
                 "inOutQuad"
               ],
               [
-                3.3,
+                2.25,
                 -6,
                 "inOutQuad"
               ],
               [
-                4.4,
+                3,
                 0,
                 "inOutQuad"
               ]
@@ -281,12 +281,12 @@
                 "inOutQuad"
               ],
               [
-                1.65,
+                1.125,
                 0.0725,
                 "inOutQuad"
               ],
               [
-                4.4,
+                3,
                 0.069,
                 "inOutQuad"
               ]
@@ -301,22 +301,22 @@
                 "inOutQuad"
               ],
               [
-                1.6,
+                1.091,
                 5,
                 "inOutQuad"
               ],
               [
-                2.7,
+                1.841,
                 0,
                 "inOutQuad"
               ],
               [
-                3.8,
+                2.591,
                 -5,
                 "inOutQuad"
               ],
               [
-                4.4,
+                3,
                 0,
                 "inOutQuad"
               ]
@@ -331,12 +331,12 @@
                 "inOutQuad"
               ],
               [
-                2.15,
+                1.466,
                 0.0764,
                 "inOutQuad"
               ],
               [
-                4.4,
+                3,
                 0.0735,
                 "inOutQuad"
               ]
@@ -351,22 +351,22 @@
                 "inOutQuad"
               ],
               [
-                2.1,
+                1.432,
                 4,
                 "inOutQuad"
               ],
               [
-                3.2,
+                2.182,
                 0,
                 "inOutQuad"
               ],
               [
-                4.3,
+                2.932,
                 -4,
                 "inOutQuad"
               ],
               [
-                4.4,
+                3,
                 0,
                 "inOutQuad"
               ]
@@ -381,12 +381,12 @@
                 "inOutQuad"
               ],
               [
-                2.65,
+                1.807,
                 0.0738,
                 "inOutQuad"
               ],
               [
-                4.4,
+                3,
                 0.0715,
                 "inOutQuad"
               ]

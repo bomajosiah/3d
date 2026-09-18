@@ -14,7 +14,7 @@ import bmesh
 from modeling import mesh, bevel, loft, solidify
 
 SPAN = 0.15          # board semi-major axis, metres
-WAIST = 0.67         # semi-minor / semi-major
+WAIST = 0.682        # semi-minor / semi-major
 THICK = 0.157        # slab thickness
 RIM = 0.040          # rounding of every slab edge
 OUTLINE = 320        # samples around the board outline
