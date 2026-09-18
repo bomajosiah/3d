@@ -28,7 +28,10 @@ describe('cli contract', () => {
   })
 
   it('outlines an example as machine-readable JSON', async () => {
-    const { code, stdout } = await cli(['outline', 'examples/side-table.scene.json', '--json'])
+    const dir = mkdtempSync(join(tmpdir(), '3d-cli-'))
+    const file = join(dir, 'outline.scene.json')
+    writeFileSync(file, JSON.stringify({ name: 'outline-fixture', nodes: [{ type: 'box', name: 'body' }] }))
+    const { code, stdout } = await cli(['outline', file, '--json'])
     expect(code).toBe(0)
     const payload = JSON.parse(stdout)
     expect(payload.ok).toBe(true)
@@ -48,7 +51,7 @@ describe('cli contract', () => {
   })
 
   it('exits 64 on an unknown option and says what is available', async () => {
-    const { code, stderr } = await cli(['render', 'examples/rounded-cube.scene.json', '--sise', '10'])
+    const { code, stderr } = await cli(['render', 'unused.scene.json', '--sise', '10'])
     expect(code).toBe(64)
     expect(stderr).toContain('unknown option')
   })

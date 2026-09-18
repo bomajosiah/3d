@@ -8,8 +8,10 @@ import { create } from './commands/create.ts'
 import { inspect } from './commands/inspect.ts'
 import { build } from './commands/build.ts'
 import { doctor } from './commands/doctor.ts'
+import { exportCommand } from './commands/export.ts'
+import { video } from './commands/video.ts'
 
-export const COMMANDS: CommandSpec[] = [create, build, inspect, outline, validate, render, sheet, fmt, doctor]
+export const COMMANDS: CommandSpec[] = [create, build, inspect, outline, validate, render, sheet, video, exportCommand, fmt, doctor]
 
 function topLevelHelp(): string {
   const width = Math.max(...COMMANDS.map((cmd) => cmd.name.length)) + 2

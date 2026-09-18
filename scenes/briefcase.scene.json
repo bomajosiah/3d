@@ -1,0 +1,208 @@
+{
+  "version": 1,
+  "name": "briefcase",
+  "environment": {
+    "ao": 0.8,
+    "aoRadius": 0.014,
+    "background": "transparent",
+    "floor": {
+      "mode": "none"
+    },
+    "intensity": 1,
+    "preset": "product-white",
+    "rotation": -15
+  },
+  "camera": {
+    "type": "orthographic",
+    "fov": 32,
+    "framing": {
+      "view": "front",
+      "fit": "all",
+      "padding": 0.02,
+      "region": {
+        "radius": 0.222,
+        "center": [
+          0.008,
+          0.164,
+          0.03
+        ]
+      }
+    }
+  },
+  "materials": {
+    "beach_sky": {
+      "color": "#79d5f4",
+      "roughness": 0.5
+    },
+    "gold": {
+      "color": "#ffd251",
+      "metalness": 0.25,
+      "roughness": 0.23
+    },
+    "green": {
+      "color": "#369755",
+      "roughness": 0.5
+    },
+    "green_light": {
+      "color": "#76b74b",
+      "roughness": 0.5
+    },
+    "lantern": {
+      "color": "#c5885b",
+      "roughness": 0.5
+    },
+    "leather": {
+      "color": "#583b35",
+      "roughness": 0.34
+    },
+    "mountain": {
+      "color": "#53667d",
+      "roughness": 0.5
+    },
+    "orange": {
+      "color": "#dc8238",
+      "roughness": 0.31
+    },
+    "palm_green": {
+      "color": "#60b447",
+      "roughness": 0.5
+    },
+    "palm_trunk": {
+      "color": "#80ac39",
+      "roughness": 0.5
+    },
+    "red": {
+      "color": "#ed4c3b",
+      "roughness": 0.5
+    },
+    "red_dark": {
+      "color": "#d83e38",
+      "roughness": 0.34
+    },
+    "red_light": {
+      "color": "#ff5945",
+      "roughness": 0.5
+    },
+    "sand": {
+      "color": "#ffd666",
+      "roughness": 0.5
+    },
+    "sky": {
+      "color": "#38c4f0",
+      "roughness": 0.48
+    },
+    "sticker_white": {
+      "color": "#f7f4ef",
+      "roughness": 0.38
+    },
+    "sun": {
+      "color": "#ffd259",
+      "roughness": 0.4
+    },
+    "water": {
+      "color": "#79dceb",
+      "roughness": 0.5
+    }
+  },
+  "nodes": [
+    {
+      "name": "briefcase",
+      "type": "group",
+      "id": "8e24Ajfy",
+      "transform": {
+        "rotation": [
+          16,
+          -23,
+          1
+        ]
+      },
+      "children": [
+        {
+          "name": "body",
+          "type": "asset",
+          "id": "PCrD3xAD",
+          "builder": "../assets/builders/briefcase.py",
+          "parameters": {
+            "part": "body"
+          }
+        },
+        {
+          "name": "handle",
+          "type": "asset",
+          "id": "uP7woB6L",
+          "builder": "../assets/builders/briefcase.py",
+          "parameters": {
+            "part": "handle"
+          }
+        }
+      ]
+    }
+  ],
+  "animation": {
+    "clips": [
+      {
+        "name": "ready-to-go",
+        "duration": 0.8,
+        "fps": 30,
+        "loop": "once",
+        "tracks": [
+          {
+            "keys": [
+              [
+                0,
+                0
+              ],
+              [
+                0.18,
+                0.038,
+                "outCubic"
+              ],
+              [
+                0.5,
+                0,
+                "inOutCubic"
+              ],
+              [
+                0.8,
+                0
+              ]
+            ],
+            "target": "briefcase.transform.position.y"
+          }
+        ]
+      }
+    ]
+  },
+  "meta": {
+    "inspection": [
+      {
+        "radius": 0.078,
+        "center": [
+          0,
+          0.305,
+          0.065
+        ],
+        "label": "handle"
+      },
+      {
+        "radius": 0.093,
+        "center": [
+          -0.047,
+          0.158,
+          0.1
+        ],
+        "label": "stickers"
+      },
+      {
+        "radius": 0.055,
+        "center": [
+          0.125,
+          0.105,
+          0
+        ],
+        "label": "corner-bands"
+      }
+    ],
+    "reference": "00-tasks/task-1/briefcase.png"
+  }
+}

@@ -46,10 +46,10 @@ it, because you get one image per read.
 ### Let the human watch
 
 ```bash
-pnpm studio      # http://localhost:5174
+pnpm studio      # http://localhost:5175
 ```
 
-The browser app lists every scene in `scenes/` and `examples/`, plays the
+The browser app lists every scene in `scenes/`, plays the
 animation, and **hot-reloads when you edit a file** — no page reload, so their
 camera and playhead survive your edit. Invalid JSON shows the same diagnostics
 the CLI prints. Start it when the human wants to follow along; you don't need it
@@ -64,6 +64,8 @@ to work.
 | `3d validate <scene>` | schema errors with `file:line:col` and a suggested fix |
 | `3d render <scene>` | one frame to PNG (`--at`, `--size`, `--view`, `--bg`) |
 | `3d sheet <scene>` | several frames or views in one labelled image |
+| `3d video <scene>` | record the animation clip to an MP4 or WebM |
+| `3d export <scene>` | write the scene as GLB or USDZ for an app or AR viewer |
 | `3d fmt <scene>` | canonicalise: fill in ids, order keys, round numbers |
 | `3d doctor` | check Node, Chromium, WebGL and sharp are working |
 
@@ -106,7 +108,7 @@ A realistic one:
 }
 ```
 
-Working examples live in [`examples/`](examples/) — read those before inventing a shape.
+Working production scenes live in [`scenes/`](scenes/) — inspect those before inventing a shape.
 
 ## Conventions that will bite you if you guess
 
@@ -186,7 +188,7 @@ An animation `target` is a selector plus a property path:
 
 1. Never hand-write `id`. Run `3d fmt`.
 2. Look at the render before saying it works. `3d sheet` for anything animated.
-3. Never edit files marked `GENERATED` — change the source and run `pnpm docs`.
+3. Never edit files marked `GENERATED` — change the source and run `pnpm run docs`.
 
 ## Repo layout
 
@@ -196,7 +198,7 @@ packages/core     document → three.js; geometry, materials, lighting, animatio
 packages/blender  local Python builders, geometry cache, and Cycles final renderer
 packages/render   headless renderer (Playwright + Chromium, offscreen readback)
 packages/cli      the `3d` binary
-examples/         reference scenes, also used as golden-image fixtures
+scenes/           production scene documents shown in Studio
 docs/agent/       GENERATED schema and CLI reference
 ```
 

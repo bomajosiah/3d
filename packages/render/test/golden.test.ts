@@ -4,8 +4,8 @@ import { describe, expect, it } from 'vitest'
 import { parseSceneText } from '@3d/schema'
 import { compareImages, diffSheet, renderFrames } from '../src/index.ts'
 
-const EXAMPLES = join(process.cwd(), 'examples')
-const GOLDEN = join(EXAMPLES, '__golden__')
+const FIXTURES = join(process.cwd(), 'packages/render/test/fixtures')
+const GOLDEN = join(FIXTURES, '__golden__')
 const UPDATE = process.env.UPDATE_GOLDEN === '1'
 const SIZE = 192
 
@@ -28,7 +28,7 @@ describe('golden renders', () => {
 
   for (const testCase of CASES) {
     it(`matches the committed render of ${testCase.file}`, async () => {
-      const path = join(EXAMPLES, testCase.file)
+      const path = join(FIXTURES, testCase.file)
       const doc = parseSceneText(readFileSync(path, 'utf8'), path)
       const { frames } = await renderFrames(doc, [{ time: testCase.time }], { width: SIZE, height: SIZE })
       const actual = frames[0]!.png

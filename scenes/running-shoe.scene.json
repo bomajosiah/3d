@@ -1,0 +1,160 @@
+{
+  "version": 1,
+  "name": "running-shoe",
+  "environment": {
+    "ao": 0.5,
+    "aoRadius": 0.006,
+    "background": "transparent",
+    "floor": {
+      "mode": "none"
+    },
+    "intensity": 1.15,
+    "preset": "studio-soft",
+    "rotation": -20
+  },
+  "camera": {
+    "type": "orthographic",
+    "framing": {
+      "fit": "all",
+      "view": "iso",
+      "padding": 0.03,
+      "region": {
+        "center": [
+          0,
+          0.062,
+          0
+        ],
+        "radius": 0.152
+      }
+    }
+  },
+  "materials": {
+    "interior": {
+      "color": "#5b5d63",
+      "metalness": 0,
+      "roughness": 0.7
+    },
+    "midsole": {
+      "color": "#f4f5f7",
+      "metalness": 0,
+      "roughness": 0.48
+    },
+    "outsole": {
+      "color": "#32343c",
+      "metalness": 0,
+      "roughness": 0.55
+    },
+    "stripe": {
+      "color": "#dcdee2",
+      "metalness": 0,
+      "roughness": 0.5
+    },
+    "trim": {
+      "color": "#f2f3f6",
+      "metalness": 0,
+      "roughness": 0.5
+    },
+    "upper": {
+      "color": "#a6a8ab",
+      "metalness": 0,
+      "roughness": 0.52
+    }
+  },
+  "nodes": [
+    {
+      "name": "shoe",
+      "type": "asset",
+      "id": "sv47dSnQ",
+      "transform": {
+        "rotation": [
+          0,
+          0,
+          0
+        ]
+      },
+      "builder": "../assets/builders/running_shoe.py"
+    }
+  ],
+  "animation": {
+    "clips": [
+      {
+        "name": "stride",
+        "duration": 2.5,
+        "fps": 60,
+        "loop": "forever",
+        "tracks": [
+          {
+            "keys": [
+              [
+                0,
+                0,
+                "inOutQuad"
+              ],
+              [
+                0.625,
+                -5,
+                "inOutQuad"
+              ],
+              [
+                1.25,
+                0,
+                "inOutQuad"
+              ],
+              [
+                1.875,
+                5,
+                "inOutQuad"
+              ],
+              [
+                2.5,
+                0,
+                "inOutQuad"
+              ]
+            ],
+            "target": "shoe.transform.rotation.z"
+          },
+          {
+            "keys": [
+              [
+                0,
+                0,
+                "inOutQuad"
+              ],
+              [
+                1.25,
+                8,
+                "inOutQuad"
+              ],
+              [
+                2.5,
+                0,
+                "inOutQuad"
+              ]
+            ],
+            "target": "shoe.transform.rotation.y"
+          },
+          {
+            "keys": [
+              [
+                0,
+                0,
+                "inOutQuad"
+              ],
+              [
+                1.25,
+                0.01,
+                "inOutQuad"
+              ],
+              [
+                2.5,
+                0,
+                "inOutQuad"
+              ]
+            ],
+            "target": "shoe.transform.position.y"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -166,6 +166,71 @@ Examples:
   3d sheet scenes/bottle.scene.json --views iso,front,right,top
 ```
 
+## `3d video`
+
+```
+3d video <scene>
+
+  Render the animation clip to an MP4 or WebM video.
+
+  Renders every frame of the scene's clip and encodes it with Blender's FFmpeg.
+  
+  --quality preview uses the fast headless renderer; --quality final uses Cycles
+  and is much slower but matches 3d render --quality final.
+  
+  A clip that loops plays seamlessly: the last frame is one step before the
+  first, so the video can be looped without a duplicated frame.
+
+Arguments:
+  scene    Scene JSON file.
+
+Options:
+  --size <number>           Height in pixels; width follows --aspect. (default: 720)
+  --aspect <w:h>            Frame aspect, e.g. 1:1, 16:9, 9:16. (default: 1:1)
+  --quality <string>        preview or final. (default: preview)
+  --format <string>         mp4 or webm. (default: mp4)
+  --fps <number>            Frames per second; defaults to the clip fps.
+  --view <string>           Camera view: iso, front, back, left, right, top, bottom.
+  --bg <hex>                Background colour; video carries no alpha. (default: #ffffff)
+  --out <path>              Output file.
+  --supersample <number>    Preview supersampling factor. (default: 2)
+  --json                    Emit machine-readable JSON on stdout.
+  --quiet                   Suppress the human summary.
+
+Examples:
+  3d video scenes/cutlery.scene.json
+  3d video scenes/cutlery.scene.json --quality final --size 1080 --aspect 9:16
+```
+
+## `3d export`
+
+```
+3d export <scene>
+
+  Export the whole scene as a GLB or USDZ model for an app or AR viewer.
+
+  Writes composed transforms, materials and the baked animation clip into one
+  file. GLB is the portable master — Android Scene Viewer, model-viewer, and
+  every engine read it. USDZ is what iOS AR Quick Look requires.
+  
+  Use --format both to write the pair app stores usually want.
+  Use --static to leave the animation out and export the pose at t=0.
+
+Arguments:
+  scene    Scene JSON file.
+
+Options:
+  --format <name>    glb, usdz, or both. (default: glb)
+  --out <path>       Output file, or directory when --format both.
+  --static           Export the t=0 pose without the animation.
+  --json             Emit machine-readable JSON on stdout.
+  --quiet            Suppress the human summary.
+
+Examples:
+  3d export scenes/cutlery.scene.json --format both
+  3d export scenes/cutlery.scene.json --format usdz --out dist/cutlery.usdz
+```
+
 ## `3d fmt`
 
 ```

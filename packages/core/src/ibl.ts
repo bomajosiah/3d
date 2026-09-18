@@ -74,8 +74,44 @@ const ENVIRONMENTS: Record<string, EnvSpec> = {
   },
 }
 
-function buildEnvironmentScene(preset: string): THREE.Scene {
-  const spec = ENVIRONMENTS[preset] ?? ENVIRONMENTS['studio-soft']!
+/**
+ * Authored lights become emissive panels too, not just analytic lights. Metal is
+ * nearly pure reflection, so a rig that exists only as analytic lights leaves
+ * metal reflecting the preset room and looking untouched by the rig.
+ *
+ * The environment is scale-free while authored lights are in scene units, so
+ * each panel is placed along its light's direction at a fixed radius, sized by
+ * the angle the light subtends, and given the radiance P / (4*pi*size^2).
+ */
+const ENV_RADIUS = 3.6
+const ENV_POWER_SCALE = 0.62
+
+function customPanels(doc: SceneDocument): Panel[] {
+  return doc.environment.lights.map((l) => {
+    const from = new THREE.Vector3(...l.position)
+    const to = new THREE.Vector3(...l.target)
+    const distance = Math.max(from.distanceTo(to), 1e-4)
+    const dir = from.clone().sub(to).normalize()
+    const span = Math.max((l.size / distance) * ENV_RADIUS, 0.2)
+    return {
+      position: [dir.x * ENV_RADIUS, dir.y * ENV_RADIUS, dir.z * ENV_RADIUS] as [number, number, number],
+      size: [span, span] as [number, number],
+      lookAt: [0, 0, 0] as [number, number, number],
+      color: l.color,
+      intensity: (l.power / (4 * Math.PI * l.size * l.size)) * ENV_POWER_SCALE,
+    }
+  })
+}
+
+function buildEnvironmentScene(doc: SceneDocument): THREE.Scene {
+  const preset = doc.environment.preset
+  const custom = doc.environment.lights.length > 0
+  const base = ENVIRONMENTS[preset] ?? ENVIRONMENTS['studio-soft']!
+  // A flat dim room when the rig is authored, so the panels carry the look —
+  // the final renderer's world is likewise a dim flat grey behind its lights.
+  const spec: EnvSpec = custom
+    ? { room: '#4a4a4d', floor: '#3a3a3d', panels: customPanels(doc) }
+    : base
   const scene = new THREE.Scene()
 
   // An inverted box is the room itself: it sets what the object reflects in
@@ -107,7 +143,12 @@ function buildEnvironmentScene(preset: string): THREE.Scene {
   return scene
 }
 
-let cache: { key: string; texture: THREE.Texture } | undefined
+// A PMREM texture belongs to the WebGL renderer/context that produced it. The
+// Studio replaces its Canvas (and therefore its renderer) while changing
+// projects, so a preset-only cache can hand the new renderer a texture backed
+// by the previous, already-disposed context. Include the renderer in the cache
+// identity even when the two projects use the same preset.
+let cache: { renderer: THREE.WebGLRenderer; key: string; texture: THREE.Texture } | undefined
 
 /**
  * Builds (and caches) the prefiltered environment for a document and attaches
@@ -119,14 +160,17 @@ export function applyEnvironment(
   scene: THREE.Scene,
   doc: SceneDocument,
 ): void {
-  const preset = doc.environment.preset
   const rotation = doc.environment.rotation
+  // Authored lights change the map, so they belong in the cache identity.
+  const key = doc.environment.lights.length
+    ? `custom:${JSON.stringify(doc.environment.lights)}`
+    : doc.environment.preset
 
-  if (!cache || cache.key !== preset) {
+  if (!cache || cache.renderer !== renderer || cache.key !== key) {
     cache?.texture.dispose()
     const pmrem = new THREE.PMREMGenerator(renderer)
     pmrem.compileEquirectangularShader()
-    const envScene = buildEnvironmentScene(preset)
+    const envScene = buildEnvironmentScene(doc)
     const target = pmrem.fromScene(envScene, 0.04)
     envScene.traverse((o) => {
       const mesh = o as THREE.Mesh
@@ -136,7 +180,7 @@ export function applyEnvironment(
       else material?.dispose?.()
     })
     pmrem.dispose()
-    cache = { key: preset, texture: target.texture }
+    cache = { renderer, key, texture: target.texture }
   }
 
   scene.environment = cache.texture

@@ -10,6 +10,21 @@ export function run(executable: string, args: string[], timeout = 300_000): Prom
     })
   })
 }
+/**
+ * Reads a timeout override in milliseconds.
+ *
+ * The defaults are tuned on a developer machine. A CI runner with fewer cores
+ * needs a longer leash for the same scene, so each budget is adjustable
+ * without changing what a local run does.
+ */
+export function timeoutFrom(variable: string, fallback: number): number {
+  const raw = process.env[variable]
+  if (!raw) return fallback
+  const value = Number(raw)
+  if (!Number.isFinite(value) || value <= 0) throw new Error(`${variable} must be a positive number of milliseconds; got "${raw}"`)
+  return value
+}
+
 export async function blenderInfo(root = process.cwd()): Promise<{ executable: string; version: string }> {
   const candidates = process.env.BLENDER_BIN ? [process.env.BLENDER_BIN] : [
     resolve(root, '.3d/tools/Blender.app/Contents/MacOS/Blender'),

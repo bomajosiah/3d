@@ -82,6 +82,9 @@ importers:
       '@3d/schema':
         specifier: workspace:*
         version: link:../schema
+      sharp:
+        specifier: ^0.35.4
+        version: 0.35.4(@types/node@22.20.2)
       three:
         specifier: ^0.186.0
         version: 0.186.0

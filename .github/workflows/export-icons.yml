@@ -1,0 +1,108 @@
+# Renders the Flutter UI icon deliverable off your machine.
+#
+# Each scene gets its own runner, so a batch costs roughly what one scene costs
+# rather than the sum. That parallelism is the whole point: measured on an M1,
+# this workload only keeps ~2 cores busy (a 1536px final frame took 45s wall for
+# 88s CPU), so a free 4 vCPU runner is enough to match local per-scene speed and
+# a paid larger runner would sit mostly idle.
+name: Export icons
+
+on:
+  workflow_dispatch:
+    inputs:
+      scenes:
+        description: 'Scene names, space or comma separated (e.g. "dice compass coffee-cup")'
+        required: true
+        type: string
+
+# Matches the local Blender so CI output is comparable to what you already
+# looked at. The asset cache key is version-derived, so bumping this is a
+# deliberate, self-invalidating change.
+env:
+  BLENDER_VERSION: '4.5.10'
+
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    outputs:
+      scenes: ${{ steps.plan.outputs.scenes }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: plan
+        # The input goes through the environment, never string interpolation
+        # into the shell.
+        env:
+          SCENES: ${{ inputs.scenes }}
+        run: node .github/scripts/plan-scenes.mjs
+
+  export:
+    needs: plan
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    strategy:
+      fail-fast: false
+      matrix:
+        scene: ${{ fromJSON(needs.plan.outputs.scenes) }}
+    steps:
+      - uses: actions/checkout@v4
+
+      # package.json carries no packageManager field, so the version is
+      # pinned here to match the lockfile.
+      - uses: pnpm/action-setup@v4
+        with:
+          version: '11.17.0'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: pnpm
+
+      # img2webp packs the animated WebP; sharp ships prebuilt, no toolchain.
+      - name: Install libwebp
+        run: sudo apt-get update && sudo apt-get install -y --no-install-recommends webp
+
+      - name: Cache Blender
+        id: blender
+        uses: actions/cache@v4
+        with:
+          path: .3d/tools/blender
+          key: blender-${{ env.BLENDER_VERSION }}-linux-x64
+
+      - name: Install Blender
+        if: steps.blender.outputs.cache-hit != 'true'
+        run: |
+          mkdir -p .3d/tools/blender
+          curl -fsSL "https://download.blender.org/release/Blender${BLENDER_VERSION%.*}/blender-${BLENDER_VERSION}-linux-x64.tar.xz" \
+            | tar -xJ -C .3d/tools/blender --strip-components=1
+
+      # Asset builds dominate a cold run. The key mirrors what cacheHash keys
+      # on — builder sources plus Blender version — and is scoped per scene so
+      # parallel jobs never race for one entry.
+      - name: Cache built assets
+        uses: actions/cache@v4
+        with:
+          path: .3d/cache
+          key: assets-${{ env.BLENDER_VERSION }}-${{ hashFiles('assets/builders/**/*.py') }}-${{ matrix.scene }}
+          restore-keys: |
+            assets-${{ env.BLENDER_VERSION }}-${{ hashFiles('assets/builders/**/*.py') }}-
+
+      - name: Install dependencies
+        env:
+          PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: '1'
+        run: pnpm install --frozen-lockfile
+
+      - name: Export ${{ matrix.scene }}
+        env:
+          SCENE: ${{ matrix.scene }}
+          BLENDER_BIN: ${{ github.workspace }}/.3d/tools/blender/blender
+          # Headroom over the local defaults, so a cold cache or the
+          # `ubuntu-latest` fallback cannot trip the 300s asset-build budget.
+          BLENDER_BUILD_TIMEOUT_MS: '1800000'
+          BLENDER_RENDER_TIMEOUT_MS: '5400000'
+        run: pnpm icon "scenes/$SCENE.scene.json" "dist/icons/$SCENE"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: icon-${{ matrix.scene }}
+          path: dist/icons/${{ matrix.scene }}
+          if-no-files-found: error
+          retention-days: 30

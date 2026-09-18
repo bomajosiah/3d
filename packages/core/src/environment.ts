@@ -59,7 +59,51 @@ export const ENVIRONMENT_RIGS: Record<string, LightSpec[]> = {
 const AMBIENT_SCALE = 0.18
 const DIRECTIONAL_SCALE = 0.5
 
+/**
+ * Converts one authored area light into the analytic rig. The final renderer
+ * treats `power` as watts on a Blender area light; three.js intensities are
+ * unitless, so go through irradiance (P / 4*pi*d^2) and scale. Without this the
+ * same document lights a scene in Cycles and leaves it black here.
+ */
+const CUSTOM_POWER_SCALE = 2.2
+
+function customRig(doc: SceneDocument, radius: number): THREE.Group {
+  const group = new THREE.Group()
+  group.name = '__environment'
+  const lights = doc.environment.lights
+  const strongest = lights.reduce((best, l, i) => (l.power > lights[best]!.power ? i : best), 0)
+  lights.forEach((spec, i) => {
+    const from = new THREE.Vector3(...spec.position)
+    const to = new THREE.Vector3(...spec.target)
+    const distance = Math.max(from.distanceTo(to), 1e-4)
+    const irradiance = spec.power / (4 * Math.PI * distance * distance)
+    const light = new THREE.DirectionalLight(
+      new THREE.Color(spec.color),
+      irradiance * CUSTOM_POWER_SCALE * doc.environment.intensity,
+    )
+    light.position.copy(from)
+    light.target.position.copy(to)
+    group.add(light.target)
+    if (i === strongest) {
+      light.castShadow = true
+      light.shadow.mapSize.set(2048, 2048)
+      const cam = light.shadow.camera
+      const extent = radius * 1.8
+      cam.left = -extent; cam.right = extent; cam.top = extent; cam.bottom = -extent
+      cam.near = 0.01; cam.far = Math.max(radius * 12, 4)
+      light.shadow.bias = -0.0008
+      light.shadow.normalBias = radius * 0.02
+      light.shadow.radius = 6
+    }
+    group.add(light)
+  })
+  group.rotation.y = (doc.environment.rotation * Math.PI) / 180
+  return group
+}
+
 export function buildEnvironment(doc: SceneDocument, radius: number): THREE.Group {
+  // Authored lights replace the preset rig, matching the final renderer.
+  if (doc.environment.lights.length) return customRig(doc, radius)
   const group = new THREE.Group()
   group.name = '__environment'
   const rig = ENVIRONMENT_RIGS[doc.environment.preset] ?? ENVIRONMENT_RIGS['studio-soft']!

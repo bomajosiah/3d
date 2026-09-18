@@ -1,0 +1,270 @@
+{
+  "version": 1,
+  "name": "dice",
+  "environment": {
+    "ao": 0.65,
+    "aoRadius": 0.006,
+    "background": "transparent",
+    "floor": {
+      "mode": "none"
+    },
+    "intensity": 1,
+    "lights": [
+      {
+        "size": 0.46,
+        "color": "#ffffff",
+        "position": [
+          -0.38,
+          0.57,
+          0.55
+        ],
+        "power": 10,
+        "target": [
+          0,
+          0.145,
+          0
+        ]
+      },
+      {
+        "size": 0.45,
+        "color": "#f1f2ff",
+        "position": [
+          0.4,
+          0.2,
+          0.42
+        ],
+        "power": 2.2,
+        "target": [
+          0,
+          0.145,
+          0
+        ]
+      },
+      {
+        "size": 0.35,
+        "color": "#ffffff",
+        "position": [
+          -0.3,
+          0.4,
+          -0.3
+        ],
+        "power": 4,
+        "target": [
+          0,
+          0.145,
+          0
+        ]
+      }
+    ],
+    "preset": "product-white",
+    "rotation": -20
+  },
+  "camera": {
+    "type": "orthographic",
+    "framing": {
+      "view": "front",
+      "fit": "all",
+      "padding": 0.02,
+      "region": {
+        "radius": 0.156,
+        "center": [
+          0,
+          0.145,
+          0
+        ]
+      }
+    }
+  },
+  "materials": {
+    "black": {
+      "color": "#252527",
+      "roughness": 0.34
+    },
+    "ivory": {
+      "color": "#f1f3fa",
+      "roughness": 0.23
+    },
+    "red": {
+      "color": "#ef2028",
+      "roughness": 0.32
+    }
+  },
+  "nodes": [
+    {
+      "name": "dice",
+      "type": "group",
+      "id": "0Ar27YeI",
+      "transform": {
+        "position": [
+          0,
+          0.145,
+          0
+        ],
+        "rotation": [
+          24,
+          32,
+          0
+        ]
+      },
+      "children": [
+        {
+          "name": "body",
+          "type": "asset",
+          "id": "IWNWZ2MQ",
+          "builder": "../assets/builders/dice.py",
+          "parameters": {}
+        }
+      ]
+    }
+  ],
+  "animation": {
+    "clips": [
+      {
+        "name": "roll-and-settle",
+        "duration": 1.6,
+        "fps": 60,
+        "loop": "forever",
+        "tracks": [
+          {
+            "keys": [
+              [
+                0,
+                32,
+                "linear"
+              ],
+              [
+                0.12,
+                32,
+                "linear"
+              ],
+              [
+                0.94,
+                392,
+                "inOutCubic"
+              ],
+              [
+                1.1,
+                395,
+                "outCubic"
+              ],
+              [
+                1.28,
+                392,
+                "inOutCubic"
+              ],
+              [
+                1.6,
+                392,
+                "linear"
+              ]
+            ],
+            "target": "dice.transform.rotation.y"
+          },
+          {
+            "keys": [
+              [
+                0,
+                0,
+                "linear"
+              ],
+              [
+                0.12,
+                0,
+                "linear"
+              ],
+              [
+                0.42,
+                -12,
+                "inOutCubic"
+              ],
+              [
+                0.76,
+                8,
+                "inOutCubic"
+              ],
+              [
+                1.02,
+                -3,
+                "inOutCubic"
+              ],
+              [
+                1.28,
+                0,
+                "inOutCubic"
+              ],
+              [
+                1.6,
+                0,
+                "linear"
+              ]
+            ],
+            "target": "dice.transform.rotation.z"
+          },
+          {
+            "keys": [
+              [
+                0,
+                0.145,
+                "linear"
+              ],
+              [
+                0.12,
+                0.145,
+                "linear"
+              ],
+              [
+                0.48,
+                0.164,
+                "outCubic"
+              ],
+              [
+                0.94,
+                0.145,
+                "inOutCubic"
+              ],
+              [
+                1.08,
+                0.149,
+                "outCubic"
+              ],
+              [
+                1.28,
+                0.145,
+                "inOutCubic"
+              ],
+              [
+                1.6,
+                0.145,
+                "linear"
+              ]
+            ],
+            "target": "dice.transform.position.y"
+          }
+        ]
+      }
+    ]
+  },
+  "meta": {
+    "inspection": [
+      {
+        "radius": 0.055,
+        "center": [
+          0,
+          0.227,
+          0.037
+        ],
+        "label": "red-inset-pip"
+      },
+      {
+        "radius": 0.075,
+        "center": [
+          -0.025,
+          0.16,
+          0.12
+        ],
+        "label": "rounded-corner"
+      }
+    ],
+    "reference": "00-tasks/task-1/dice.png"
+  }
+}

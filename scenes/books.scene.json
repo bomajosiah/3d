@@ -1,0 +1,407 @@
+{
+  "version": 1,
+  "name": "books",
+  "environment": {
+    "ao": 0.6,
+    "aoRadius": 0.008,
+    "background": "transparent",
+    "floor": {
+      "mode": "none"
+    },
+    "intensity": 1,
+    "preset": "product-white",
+    "rotation": -20
+  },
+  "camera": {
+    "type": "orthographic",
+    "framing": {
+      "view": "iso",
+      "fit": "all",
+      "padding": 0.03,
+      "region": {
+        "radius": 0.18,
+        "center": [
+          0,
+          0.096,
+          0
+        ]
+      }
+    }
+  },
+  "materials": {
+    "blue": {
+      "color": "#2b8ef0",
+      "metalness": 0,
+      "roughness": 0.18
+    },
+    "green": {
+      "color": "#5cbf46",
+      "metalness": 0,
+      "roughness": 0.18
+    },
+    "paper": {
+      "color": "#f4f3ef",
+      "metalness": 0,
+      "roughness": 0.62
+    },
+    "red": {
+      "color": "#f0394c",
+      "metalness": 0,
+      "roughness": 0.18
+    },
+    "yellow": {
+      "color": "#fcc21b",
+      "metalness": 0,
+      "roughness": 0.18
+    }
+  },
+  "nodes": [
+    {
+      "name": "stack",
+      "type": "group",
+      "id": "7eX6Q9RJ",
+      "children": [
+        {
+          "name": "blue",
+          "type": "group",
+          "id": "rH0netdn",
+          "transform": {
+            "position": [
+              0,
+              0.024,
+              0
+            ],
+            "rotation": [
+              0,
+              0,
+              0
+            ],
+            "scale": [
+              1,
+              1,
+              1
+            ]
+          },
+          "children": [
+            {
+              "name": "cover",
+              "type": "extrude",
+              "id": "VU28nGJC",
+              "material": "blue",
+              "bevel": 0.0042,
+              "bevelSegments": 6,
+              "curveSegments": 28,
+              "depth": 0.215,
+              "origin": "path",
+              "path": {
+                "d": "M 0.1,0.024 L -0.076,0.024 C -0.0892548,0.024 -0.1,0.0132548 -0.1,0 C -0.1,-0.0132548 -0.0892548,-0.024 -0.076,-0.024 L 0.1,-0.024 L 0.1,-0.014 L -0.05,-0.014 C -0.057732,-0.014 -0.064,-0.00773199 -0.064,0 C -0.064,0.00773199 -0.057732,0.014 -0.05,0.014 L 0.1,0.014 Z"
+              }
+            },
+            {
+              "name": "pages",
+              "type": "extrude",
+              "id": "jJgUq9nS",
+              "material": "paper",
+              "bevel": 0.0012,
+              "bevelSegments": 4,
+              "curveSegments": 20,
+              "depth": 0.201,
+              "origin": "path",
+              "path": {
+                "d": "M 0.089,0.0136 L -0.05,0.0136 C -0.0575111,0.0136 -0.0636,0.00751107 -0.0636,0 C -0.0636,-0.00751107 -0.0575111,-0.0136 -0.05,-0.0136 L 0.089,-0.0136 Z"
+              }
+            }
+          ]
+        },
+        {
+          "name": "yellow",
+          "type": "group",
+          "id": "1Mu8FAeE",
+          "transform": {
+            "position": [
+              0,
+              0.072,
+              0
+            ],
+            "rotation": [
+              0,
+              6,
+              0
+            ],
+            "scale": [
+              0.985,
+              1,
+              0.985
+            ]
+          },
+          "children": [
+            {
+              "name": "cover",
+              "type": "extrude",
+              "id": "LKNwIxwx",
+              "material": "yellow",
+              "bevel": 0.0042,
+              "bevelSegments": 6,
+              "curveSegments": 28,
+              "depth": 0.215,
+              "origin": "path",
+              "path": {
+                "d": "M 0.1,0.024 L -0.076,0.024 C -0.0892548,0.024 -0.1,0.0132548 -0.1,0 C -0.1,-0.0132548 -0.0892548,-0.024 -0.076,-0.024 L 0.1,-0.024 L 0.1,-0.014 L -0.05,-0.014 C -0.057732,-0.014 -0.064,-0.00773199 -0.064,0 C -0.064,0.00773199 -0.057732,0.014 -0.05,0.014 L 0.1,0.014 Z"
+              }
+            },
+            {
+              "name": "pages",
+              "type": "extrude",
+              "id": "JMfdb3Xd",
+              "material": "paper",
+              "bevel": 0.0012,
+              "bevelSegments": 4,
+              "curveSegments": 20,
+              "depth": 0.201,
+              "origin": "path",
+              "path": {
+                "d": "M 0.089,0.0136 L -0.05,0.0136 C -0.0575111,0.0136 -0.0636,0.00751107 -0.0636,0 C -0.0636,-0.00751107 -0.0575111,-0.0136 -0.05,-0.0136 L 0.089,-0.0136 Z"
+              }
+            }
+          ]
+        },
+        {
+          "name": "red",
+          "type": "group",
+          "id": "0LET1oo6",
+          "transform": {
+            "position": [
+              0,
+              0.12,
+              0
+            ],
+            "rotation": [
+              0,
+              -5,
+              0
+            ],
+            "scale": [
+              0.97,
+              1,
+              0.97
+            ]
+          },
+          "children": [
+            {
+              "name": "cover",
+              "type": "extrude",
+              "id": "fP2vv10P",
+              "material": "red",
+              "bevel": 0.0042,
+              "bevelSegments": 6,
+              "curveSegments": 28,
+              "depth": 0.215,
+              "origin": "path",
+              "path": {
+                "d": "M 0.1,0.024 L -0.076,0.024 C -0.0892548,0.024 -0.1,0.0132548 -0.1,0 C -0.1,-0.0132548 -0.0892548,-0.024 -0.076,-0.024 L 0.1,-0.024 L 0.1,-0.014 L -0.05,-0.014 C -0.057732,-0.014 -0.064,-0.00773199 -0.064,0 C -0.064,0.00773199 -0.057732,0.014 -0.05,0.014 L 0.1,0.014 Z"
+              }
+            },
+            {
+              "name": "pages",
+              "type": "extrude",
+              "id": "wEI4dM9C",
+              "material": "paper",
+              "bevel": 0.0012,
+              "bevelSegments": 4,
+              "curveSegments": 20,
+              "depth": 0.201,
+              "origin": "path",
+              "path": {
+                "d": "M 0.089,0.0136 L -0.05,0.0136 C -0.0575111,0.0136 -0.0636,0.00751107 -0.0636,0 C -0.0636,-0.00751107 -0.0575111,-0.0136 -0.05,-0.0136 L 0.089,-0.0136 Z"
+              }
+            }
+          ]
+        },
+        {
+          "name": "green",
+          "type": "group",
+          "id": "WanqtIV6",
+          "transform": {
+            "position": [
+              0,
+              0.168,
+              0
+            ],
+            "rotation": [
+              0,
+              3,
+              0
+            ],
+            "scale": [
+              0.955,
+              1,
+              0.955
+            ]
+          },
+          "children": [
+            {
+              "name": "cover",
+              "type": "extrude",
+              "id": "GzcfZvwo",
+              "material": "green",
+              "bevel": 0.0042,
+              "bevelSegments": 6,
+              "curveSegments": 28,
+              "depth": 0.215,
+              "origin": "path",
+              "path": {
+                "d": "M 0.1,0.024 L -0.076,0.024 C -0.0892548,0.024 -0.1,0.0132548 -0.1,0 C -0.1,-0.0132548 -0.0892548,-0.024 -0.076,-0.024 L 0.1,-0.024 L 0.1,-0.014 L -0.05,-0.014 C -0.057732,-0.014 -0.064,-0.00773199 -0.064,0 C -0.064,0.00773199 -0.057732,0.014 -0.05,0.014 L 0.1,0.014 Z"
+              }
+            },
+            {
+              "name": "pages",
+              "type": "extrude",
+              "id": "9nVZSYEO",
+              "material": "paper",
+              "bevel": 0.0012,
+              "bevelSegments": 4,
+              "curveSegments": 20,
+              "depth": 0.201,
+              "origin": "path",
+              "path": {
+                "d": "M 0.089,0.0136 L -0.05,0.0136 C -0.0575111,0.0136 -0.0636,0.00751107 -0.0636,0 C -0.0636,-0.00751107 -0.0575111,-0.0136 -0.05,-0.0136 L 0.089,-0.0136 Z"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "animation": {
+    "clips": [
+      {
+        "name": "fan",
+        "duration": 4.8,
+        "fps": 60,
+        "loop": "forever",
+        "tracks": [
+          {
+            "keys": [
+              [
+                0,
+                0,
+                "linear"
+              ],
+              [
+                4.8,
+                360,
+                "linear"
+              ]
+            ],
+            "target": "stack.transform.rotation.y"
+          },
+          {
+            "keys": [
+              [
+                0,
+                6,
+                "linear"
+              ],
+              [
+                0.2,
+                6,
+                "linear"
+              ],
+              [
+                1.05,
+                18,
+                "outBack"
+              ],
+              [
+                2.1,
+                18,
+                "linear"
+              ],
+              [
+                3.05,
+                6,
+                "inOutCubic"
+              ],
+              [
+                4.8,
+                6,
+                "linear"
+              ]
+            ],
+            "target": "stack/yellow.transform.rotation.y"
+          },
+          {
+            "keys": [
+              [
+                0,
+                -5,
+                "linear"
+              ],
+              [
+                0.35,
+                -5,
+                "linear"
+              ],
+              [
+                1.2,
+                30,
+                "outBack"
+              ],
+              [
+                2.25,
+                30,
+                "linear"
+              ],
+              [
+                3.2,
+                -5,
+                "inOutCubic"
+              ],
+              [
+                4.8,
+                -5,
+                "linear"
+              ]
+            ],
+            "target": "stack/red.transform.rotation.y"
+          },
+          {
+            "keys": [
+              [
+                0,
+                3,
+                "linear"
+              ],
+              [
+                0.5,
+                3,
+                "linear"
+              ],
+              [
+                1.35,
+                46,
+                "outBack"
+              ],
+              [
+                2.4,
+                46,
+                "linear"
+              ],
+              [
+                3.35,
+                3,
+                "inOutCubic"
+              ],
+              [
+                4.8,
+                3,
+                "linear"
+              ]
+            ],
+            "target": "stack/green.transform.rotation.y"
+          }
+        ]
+      }
+    ]
+  }
+}

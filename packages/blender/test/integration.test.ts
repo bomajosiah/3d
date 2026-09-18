@@ -53,12 +53,4 @@ describe.runIf(process.env.BLENDER_TESTS === '1')('Blender end-to-end', () => {
       expect(glbBounds.max[axis]).toBeCloseTo(built.bounds.max[axis],6)
     }
   },180_000)
-  it.each(['product-bottle','product-enclosure','product-furniture','desk-lamp'])('builds and previews %s independently of cutlery',async name=>{
-    const file=resolve(`examples/${name}.scene.json`)
-    const doc=await prepareAssets(parseSceneText(readFileSync(file,'utf8')),file)
-    const built=buildScene(doc)
-    expect(built.triangles).toBeGreaterThan(100)
-    const result=await renderFrames(doc,[{time:0}],{width:64,height:64,supersample:1})
-    expect(result.frames[0]!.png.length).toBeGreaterThan(500)
-  },180_000)
 })

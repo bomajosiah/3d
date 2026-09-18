@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
 import { Canvas, useFrame, useThree } from '@react-three/fiber'
 import { Html, OrbitControls } from '@react-three/drei'
 import * as THREE from 'three'
@@ -53,13 +53,19 @@ function SceneContents({ doc, time }: Props) {
     })
   }, [built])
 
-  useEffect(() => {
+  // Change the background and IBL together before the new scene is painted.
+  // A normal effect leaves one frame where the new project is rendered under
+  // the previous project's environment, which is especially conspicuous on
+  // metallic materials.
+  useLayoutEffect(() => {
     scene.background = doc.environment.background === 'transparent' ? null : new THREE.Color(doc.environment.background)
-  }, [scene, doc.environment.background])
-
-  // The same procedural environment the exporter uses, so metals match.
-  useEffect(() => {
     applyEnvironment(gl, scene, doc)
+    return () => {
+      scene.background = null
+      scene.environment = null
+      scene.environmentIntensity = 1
+      scene.environmentRotation.set(0, 0, 0)
+    }
   }, [gl, scene, doc])
 
   useEffect(() => {

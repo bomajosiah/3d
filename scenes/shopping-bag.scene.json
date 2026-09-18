@@ -1,0 +1,255 @@
+{
+  "version": 1,
+  "name": "shopping-bag",
+  "environment": {
+    "ao": 0.7,
+    "aoRadius": 0.012,
+    "background": "transparent",
+    "exposure": 0.2,
+    "floor": {
+      "mode": "none"
+    },
+    "intensity": 1,
+    "lights": [
+      {
+        "size": 0.4,
+        "color": "#ffffff",
+        "position": [
+          -0.34,
+          0.4,
+          0.52
+        ],
+        "power": 11,
+        "target": [
+          0,
+          0.07,
+          0
+        ]
+      },
+      {
+        "size": 0.34,
+        "color": "#ffffff",
+        "position": [
+          -0.02,
+          0.55,
+          0.12
+        ],
+        "power": 5,
+        "target": [
+          0,
+          0.08,
+          0
+        ]
+      },
+      {
+        "size": 0.36,
+        "color": "#e6efff",
+        "position": [
+          0.5,
+          0.16,
+          0.3
+        ],
+        "power": 2.6,
+        "target": [
+          0.03,
+          0.06,
+          0
+        ]
+      },
+      {
+        "size": 0.3,
+        "color": "#ffffff",
+        "position": [
+          -0.3,
+          0.3,
+          -0.4
+        ],
+        "power": 2.5,
+        "target": [
+          0,
+          0.08,
+          0
+        ]
+      }
+    ],
+    "preset": "product-white",
+    "rotation": -20
+  },
+  "camera": {
+    "type": "orthographic",
+    "framing": {
+      "view": "front",
+      "fit": "all",
+      "padding": 0.02,
+      "region": {
+        "radius": 0.095,
+        "center": [
+          0,
+          0.079,
+          0.008
+        ]
+      }
+    }
+  },
+  "materials": {
+    "pink": {
+      "color": "#fa5aa8",
+      "roughness": 0.28
+    },
+    "pink_handle": {
+      "color": "#fd79b8",
+      "roughness": 0.26
+    }
+  },
+  "nodes": [
+    {
+      "name": "scene",
+      "type": "group",
+      "id": "zGtt6nD0",
+      "transform": {
+        "rotation": [
+          12,
+          -28,
+          0
+        ]
+      },
+      "children": [
+        {
+          "name": "bag",
+          "type": "asset",
+          "id": "F9IRf8wG",
+          "transform": {},
+          "builder": "../assets/builders/shopping_bag.py",
+          "parameters": {
+            "tint": "pink"
+          }
+        }
+      ]
+    }
+  ],
+  "animation": {
+    "clips": [
+      {
+        "name": "lift",
+        "duration": 2.5,
+        "fps": 60,
+        "loop": "forever",
+        "tracks": [
+          {
+            "keys": [
+              [
+                0,
+                -28,
+                "inOutQuad"
+              ],
+              [
+                0.625,
+                -23,
+                "inOutQuad"
+              ],
+              [
+                1.25,
+                -28,
+                "inOutQuad"
+              ],
+              [
+                1.875,
+                -33,
+                "inOutQuad"
+              ],
+              [
+                2.5,
+                -28,
+                "inOutQuad"
+              ]
+            ],
+            "target": "scene.transform.rotation.y"
+          },
+          {
+            "keys": [
+              [
+                0,
+                0
+              ],
+              [
+                0.9,
+                0.01,
+                "outQuad"
+              ],
+              [
+                1.8,
+                0,
+                "inQuad"
+              ],
+              [
+                2.5,
+                0
+              ]
+            ],
+            "target": "bag.transform.position.y"
+          },
+          {
+            "keys": [
+              [
+                0,
+                0
+              ],
+              [
+                0.45,
+                -2.2,
+                "inOutQuad"
+              ],
+              [
+                1.35,
+                1,
+                "inOutQuad"
+              ],
+              [
+                1.8,
+                0,
+                "inOutQuad"
+              ],
+              [
+                2.5,
+                0
+              ]
+            ],
+            "target": "bag.transform.rotation.z"
+          }
+        ]
+      }
+    ]
+  },
+  "meta": {
+    "inspection": [
+      {
+        "radius": 0.045,
+        "center": [
+          0,
+          0.135,
+          0.03
+        ],
+        "label": "handles"
+      },
+      {
+        "radius": 0.04,
+        "center": [
+          0.03,
+          0.02,
+          0.02
+        ],
+        "label": "folded-base"
+      },
+      {
+        "radius": 0.05,
+        "center": [
+          0,
+          0.09,
+          0
+        ],
+        "label": "rim-and-pleat"
+      }
+    ],
+    "reference": "00-tasks/task-1/shopping-bag.png"
+  }
+}

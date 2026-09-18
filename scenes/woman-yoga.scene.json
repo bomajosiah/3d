@@ -1,0 +1,239 @@
+{
+  "version": 1,
+  "name": "woman-yoga",
+  "environment": {
+    "ao": 0.5,
+    "aoRadius": 0.008,
+    "background": "transparent",
+    "floor": {
+      "mode": "none"
+    },
+    "intensity": 1.05,
+    "preset": "product-white",
+    "rotation": -18
+  },
+  "camera": {
+    "type": "orthographic",
+    "framing": {
+      "view": "front",
+      "fit": "all",
+      "padding": 0.02,
+      "region": {
+        "radius": 0.245,
+        "center": [
+          0,
+          0.214,
+          0.02
+        ]
+      }
+    }
+  },
+  "materials": {
+    "blue": {
+      "color": "#269bd7",
+      "roughness": 0.38
+    },
+    "face": {
+      "color": "#593029",
+      "roughness": 0.4
+    },
+    "hair": {
+      "color": "#ffd23e",
+      "roughness": 0.32
+    },
+    "pink": {
+      "color": "#c74b9d",
+      "roughness": 0.38
+    },
+    "skin": {
+      "color": "#ffc84b",
+      "roughness": 0.36
+    }
+  },
+  "nodes": [
+    {
+      "name": "legs",
+      "type": "asset",
+      "id": "2gFOw5TS",
+      "builder": "../assets/builders/woman_yoga/model.py",
+      "parameters": {
+        "part": "legs"
+      },
+      "transform": {
+        "scale": [
+          1.08,
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "name": "upper-body",
+      "type": "asset",
+      "id": "TmI3xNKl",
+      "builder": "../assets/builders/woman_yoga/model.py",
+      "parameters": {
+        "part": "upper"
+      },
+      "transform": {
+        "scale": [
+          1.08,
+          1,
+          1
+        ]
+      }
+    }
+  ],
+  "animation": {
+    "clips": [
+      {
+        "name": "calm-breath",
+        "duration": 3,
+        "fps": 60,
+        "loop": "forever",
+        "tracks": [
+          {
+            "keys": [
+              [
+                0,
+                1.08
+              ],
+              [
+                0.15,
+                1.08
+              ],
+              [
+                1.4,
+                1.0929600000000002,
+                "inOutCubic"
+              ],
+              [
+                2.8,
+                1.08,
+                "inOutCubic"
+              ],
+              [
+                3,
+                1.08
+              ]
+            ],
+            "target": "upper-body.transform.scale.x"
+          },
+          {
+            "keys": [
+              [
+                0,
+                1
+              ],
+              [
+                0.15,
+                1
+              ],
+              [
+                1.4,
+                1.008,
+                "inOutCubic"
+              ],
+              [
+                2.8,
+                1,
+                "inOutCubic"
+              ],
+              [
+                3,
+                1
+              ]
+            ],
+            "target": "upper-body.transform.scale.y"
+          },
+          {
+            "keys": [
+              [
+                0,
+                1
+              ],
+              [
+                0.15,
+                1
+              ],
+              [
+                1.4,
+                1.018,
+                "inOutCubic"
+              ],
+              [
+                2.8,
+                1,
+                "inOutCubic"
+              ],
+              [
+                3,
+                1
+              ]
+            ],
+            "target": "upper-body.transform.scale.z"
+          },
+          {
+            "keys": [
+              [
+                0,
+                0
+              ],
+              [
+                0.15,
+                0
+              ],
+              [
+                1.4,
+                0.001,
+                "inOutCubic"
+              ],
+              [
+                2.8,
+                0,
+                "inOutCubic"
+              ],
+              [
+                3,
+                0
+              ]
+            ],
+            "target": "upper-body.transform.position.y"
+          }
+        ]
+      }
+    ]
+  },
+  "meta": {
+    "inspection": [
+      {
+        "radius": 0.115,
+        "center": [
+          0,
+          0.32,
+          0.04
+        ],
+        "label": "face-and-hair"
+      },
+      {
+        "radius": 0.043,
+        "center": [
+          -0.157,
+          0.096,
+          0.025
+        ],
+        "label": "left-mudra"
+      },
+      {
+        "radius": 0.15,
+        "center": [
+          0,
+          0.048,
+          0.06
+        ],
+        "label": "crossed-legs"
+      }
+    ],
+    "reference": "00-tasks/task-1/woman-yoga.png"
+  }
+}

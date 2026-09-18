@@ -1,0 +1,205 @@
+{
+  "version": 1,
+  "name": "location-pin",
+  "environment": {
+    "ao": 0.4,
+    "aoRadius": 0.006,
+    "background": "transparent",
+    "floor": {
+      "mode": "none"
+    },
+    "intensity": 0.45,
+    "lights": [
+      {
+        "size": 0.15,
+        "color": "#ffffff",
+        "position": [
+          -0.2,
+          0.36,
+          0.3
+        ],
+        "power": 15,
+        "target": [
+          0,
+          0.14,
+          0
+        ]
+      },
+      {
+        "size": 0.11,
+        "color": "#bcd2ff",
+        "position": [
+          0.28,
+          0.22,
+          -0.2
+        ],
+        "power": 2.4,
+        "target": [
+          0,
+          0.12,
+          0
+        ]
+      },
+      {
+        "size": 0.14,
+        "color": "#ffffff",
+        "position": [
+          0.16,
+          -0.06,
+          0.34
+        ],
+        "power": 1.1,
+        "target": [
+          0,
+          0.045,
+          0
+        ]
+      }
+    ],
+    "preset": "studio-contrast",
+    "rotation": -22
+  },
+  "camera": {
+    "type": "orthographic",
+    "framing": {
+      "view": "front",
+      "fit": "all",
+      "padding": 0.04,
+      "region": {
+        "radius": 0.118,
+        "center": [
+          0,
+          0.103,
+          0
+        ]
+      }
+    }
+  },
+  "materials": {
+    "red": {
+      "color": "#fa1d32",
+      "metalness": 0,
+      "roughness": 0.21
+    },
+    "steel": {
+      "color": "#949ba7",
+      "metalness": 0.4,
+      "roughness": 0.17
+    }
+  },
+  "nodes": [
+    {
+      "name": "pin",
+      "type": "group",
+      "id": "60fl87VC",
+      "children": [
+        {
+          "name": "shaft",
+          "type": "lathe",
+          "id": "p4DZOHot",
+          "segments": 64,
+          "profile": {
+            "d": "M 0,0 C 0.00579899,0 0.0105,0.00470101 0.0105,0.0105 L 0.0105,0.0925 L 0,0.0925 Z"
+          },
+          "material": "steel",
+          "tolerance": 0.001
+        },
+        {
+          "name": "collar",
+          "type": "cylinder",
+          "id": "EIAKtB9m",
+          "radius": 0.013,
+          "radiusTop": 0.0112,
+          "height": 0.016,
+          "radialSegments": 56,
+          "material": "red",
+          "transform": {
+            "position": [
+              0,
+              0.0935,
+              0
+            ]
+          }
+        },
+        {
+          "name": "ball",
+          "type": "sphere",
+          "id": "hj1cFqR6",
+          "radius": 0.055,
+          "material": "red",
+          "transform": {
+            "position": [
+              0,
+              0.151,
+              0
+            ]
+          },
+          "heightSegments": 64,
+          "widthSegments": 96
+        }
+      ]
+    }
+  ],
+  "animation": {
+    "clips": [
+      {
+        "name": "bob",
+        "duration": 2.5,
+        "fps": 60,
+        "loop": "forever",
+        "tracks": [
+          {
+            "keys": [
+              [
+                0,
+                0,
+                "inOutQuad"
+              ],
+              [
+                0.625,
+                6,
+                "inOutQuad"
+              ],
+              [
+                1.25,
+                0,
+                "inOutQuad"
+              ],
+              [
+                1.875,
+                -6,
+                "inOutQuad"
+              ],
+              [
+                2.5,
+                0,
+                "inOutQuad"
+              ]
+            ],
+            "target": "pin.transform.rotation.z"
+          },
+          {
+            "keys": [
+              [
+                0,
+                0,
+                "inOutQuad"
+              ],
+              [
+                1.25,
+                0.013,
+                "inOutQuad"
+              ],
+              [
+                2.5,
+                0,
+                "inOutQuad"
+              ]
+            ],
+            "target": "pin.transform.position.y"
+          }
+        ]
+      }
+    ]
+  }
+}

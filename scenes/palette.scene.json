@@ -1,0 +1,62 @@
+{
+  "version": 1,
+  "name": "palette",
+  "environment": {
+    "preset": "studio-soft",
+    "background": "transparent",
+    "floor": { "mode": "none" },
+    "intensity": 0.9,
+    "rotation": -24,
+    "exposure": 0.1,
+    "ao": 0.55,
+    "aoRadius": 0.02,
+    "lights": [
+      { "position": [-0.24, 0.5, 0.38], "target": [0, 0.02, 0], "size": 0.4, "power": 26, "color": "#ffffff" },
+      { "position": [0.34, 0.34, 0.32], "target": [0.04, 0.01, 0], "size": 0.3, "power": 8, "color": "#fff1e2" },
+      { "position": [-0.1, 0.24, -0.46], "target": [0, 0.01, 0], "size": 0.34, "power": 6, "color": "#ffd9b5" }
+    ]
+  },
+  "camera": {
+    "type": "orthographic",
+    "framing": { "view": "front", "fit": "all", "padding": 0.04 }
+  },
+  "materials": {
+    "board":  { "color": "#eeaa66", "roughness": 0.3 },
+    "blue":   { "color": "#2ba4f0", "roughness": 0.13 },
+    "green":  { "color": "#45c74a", "roughness": 0.13 },
+    "yellow": { "color": "#fbd42c", "roughness": 0.13 },
+    "purple": { "color": "#8f34ee", "roughness": 0.13 },
+    "red":    { "color": "#f53c56", "roughness": 0.13 }
+  },
+  "nodes": [
+    {
+      "name": "stage",
+      "type": "group",
+      "children": [
+        {
+          "name": "tip",
+          "type": "group",
+          "transform": { "rotation": [56, 0, 0] },
+          "children": [
+            {
+              "name": "spin",
+              "type": "group",
+              "transform": { "rotation": [0, -44.4, 0] },
+              "children": [
+                {
+                  "name": "palette",
+                  "type": "asset",
+                  "builder": "../assets/builders/palette.py",
+                  "parameters": { "board": "board" }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "meta": {
+    "reference": "00-tasks/task-1/palette.png"
+  }
+}

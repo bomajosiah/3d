@@ -1,3 +1,7 @@
 export * from './process.ts'
 export * from './build.ts'
 export * from './render.ts'
+export * from './export.ts'
+export * from './video.ts'
+export * from './collect.ts'
+export * from './icon.ts'

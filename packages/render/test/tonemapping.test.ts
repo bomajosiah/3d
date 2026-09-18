@@ -5,7 +5,7 @@ import { RENDERER_SETTINGS } from '@3d/core'
 import { parseSceneText } from '@3d/schema'
 import { compareImages, renderFrames } from '../src/index.ts'
 
-const doc = () => parseSceneText(readFileSync('examples/rounded-cube.scene.json', 'utf8'), 'x')
+const doc = () => parseSceneText(readFileSync('packages/render/test/fixtures/rounded-cube.scene.json', 'utf8'), 'x')
 
 /**
  * Regression guard. three only honours renderer.toneMapping when the current

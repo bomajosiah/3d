@@ -1,0 +1,156 @@
+{
+  "version": 1,
+  "name": "compass",
+  "environment": {
+    "ao": 0.75,
+    "aoRadius": 0.012,
+    "background": "transparent",
+    "floor": {
+      "mode": "none"
+    },
+    "intensity": 1.1,
+    "preset": "studio-soft",
+    "rotation": -18
+  },
+  "camera": {
+    "type": "orthographic",
+    "framing": {
+      "view": "front",
+      "fit": "all",
+      "padding": 0.1
+    }
+  },
+  "materials": {
+    "blue": {
+      "color": "#9bb5e7",
+      "metalness": 0.05,
+      "roughness": 0.24
+    },
+    "face": {
+      "color": "#f5f1ea",
+      "roughness": 0.48
+    },
+    "needle_white": {
+      "color": "#f7f5f2",
+      "roughness": 0.34
+    },
+    "red": {
+      "color": "#ff3f43",
+      "roughness": 0.25
+    }
+  },
+  "nodes": [
+    {
+      "name": "compass",
+      "type": "group",
+      "id": "DzBApjmh",
+      "transform": {
+        "rotation": [
+          -7,
+          -9,
+          0
+        ]
+      },
+      "children": [
+        {
+          "name": "casing",
+          "type": "asset",
+          "id": "T6KDreyQ",
+          "builder": "../assets/builders/compass.py",
+          "parameters": {
+            "part": "casing"
+          }
+        },
+        {
+          "name": "needle",
+          "type": "asset",
+          "id": "vEpXqChT",
+          "transform": {
+            "rotation": [
+              0,
+              0,
+              -45
+            ]
+          },
+          "builder": "../assets/builders/compass.py",
+          "parameters": {
+            "part": "needle"
+          }
+        }
+      ]
+    }
+  ],
+  "animation": {
+    "clips": [
+      {
+        "name": "find-north",
+        "duration": 1.15,
+        "fps": 30,
+        "loop": "once",
+        "tracks": [
+          {
+            "keys": [
+              [
+                0,
+                -45
+              ],
+              [
+                0.18,
+                -20,
+                "outCubic"
+              ],
+              [
+                0.43,
+                -59,
+                "inOutCubic"
+              ],
+              [
+                0.68,
+                -39,
+                "inOutCubic"
+              ],
+              [
+                0.88,
+                -47,
+                "inOutCubic"
+              ],
+              [
+                1.04,
+                -45,
+                "outCubic"
+              ],
+              [
+                1.15,
+                -45
+              ]
+            ],
+            "target": "compass/needle.transform.rotation.z"
+          }
+        ]
+      }
+    ]
+  },
+  "meta": {
+    "inspection": [
+      {
+        "radius": 0.082,
+        "center": [
+          0,
+          0,
+          0.02
+        ],
+        "label": "needle"
+      },
+      {
+        "radius": 0.034,
+        "center": [
+          0.07,
+          0.11,
+          0
+        ],
+        "label": "top-loop"
+      }
+    ],
+    "reference": "00-tasks/task-1/compass.png"
+  }
+}

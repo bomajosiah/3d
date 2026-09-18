@@ -1,0 +1,5651 @@
+{
+  "version": 1,
+  "name": "disco",
+  "environment": {
+    "ao": 0.3,
+    "aoRadius": 0.004,
+    "background": "transparent",
+    "floor": {
+      "mode": "none"
+    },
+    "intensity": 1.25,
+    "preset": "product-white",
+    "rotation": -15
+  },
+  "camera": {
+    "type": "orthographic",
+    "framing": {
+      "view": "front",
+      "fit": "all",
+      "padding": 0.03,
+      "region": {
+        "radius": 0.162,
+        "center": [
+          0,
+          0.156,
+          0
+        ]
+      }
+    }
+  },
+  "materials": {
+    "blue": {
+      "color": "#8fbcf2",
+      "metalness": 0.42,
+      "roughness": 0.2
+    },
+    "core": {
+      "color": "#aab2c0",
+      "metalness": 0.3,
+      "roughness": 0.42
+    },
+    "lilac": {
+      "color": "#c6adf0",
+      "metalness": 0.42,
+      "roughness": 0.2
+    },
+    "pale": {
+      "color": "#e6edf8",
+      "metalness": 0.4,
+      "roughness": 0.2
+    },
+    "silver": {
+      "color": "#dde3ed",
+      "metalness": 0.45,
+      "roughness": 0.21
+    },
+    "steel": {
+      "color": "#c3cad8",
+      "metalness": 0.5,
+      "roughness": 0.24
+    },
+    "white": {
+      "color": "#f7f8fa",
+      "metalness": 0.4,
+      "roughness": 0.19
+    }
+  },
+  "nodes": [
+    {
+      "name": "ball",
+      "type": "group",
+      "id": "oL99rVD9",
+      "transform": {
+        "position": [
+          0,
+          0.156,
+          0
+        ]
+      },
+      "children": [
+        {
+          "name": "core",
+          "type": "sphere",
+          "id": "0b3tKBqu",
+          "radius": 0.1485,
+          "material": "core",
+          "heightSegments": 32,
+          "widthSegments": 48
+        },
+        {
+          "name": "tiles",
+          "type": "group",
+          "id": "qRDDq5j9",
+          "children": [
+            {
+              "name": "c0",
+              "type": "group",
+              "id": "7CHbPyv7",
+              "transform": {
+                "rotation": [
+                  0,
+                  0,
+                  0
+                ]
+              },
+              "children": [
+                {
+                  "name": "r0",
+                  "type": "group",
+                  "id": "JeYoW84f",
+                  "transform": {
+                    "rotation": [
+                      81,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-0-0",
+                      "type": "box",
+                      "id": "aIX2ZWSd",
+                      "size": [
+                        0.0088,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "pale",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r1",
+                  "type": "group",
+                  "id": "tm2WEo5B",
+                  "transform": {
+                    "rotation": [
+                      63,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-0-1",
+                      "type": "box",
+                      "id": "1B9tLy5I",
+                      "size": [
+                        0.0255,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "white",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r2",
+                  "type": "group",
+                  "id": "HNFJFthP",
+                  "transform": {
+                    "rotation": [
+                      45,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-0-2",
+                      "type": "box",
+                      "id": "gy3bt1eJ",
+                      "size": [
+                        0.0398,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "blue",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r3",
+                  "type": "group",
+                  "id": "LxB6m5VV",
+                  "transform": {
+                    "rotation": [
+                      27,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-0-3",
+                      "type": "box",
+                      "id": "bTj9E6Tp",
+                      "size": [
+                        0.0501,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "steel",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r4",
+                  "type": "group",
+                  "id": "cCLTkd2N",
+                  "transform": {
+                    "rotation": [
+                      9,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-0-4",
+                      "type": "box",
+                      "id": "gbBYbqtn",
+                      "size": [
+                        0.0556,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "pale",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r5",
+                  "type": "group",
+                  "id": "b2HrVgt4",
+                  "transform": {
+                    "rotation": [
+                      -9,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-0-5",
+                      "type": "box",
+                      "id": "Ki1JJypQ",
+                      "size": [
+                        0.0556,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "white",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r6",
+                  "type": "group",
+                  "id": "PtKZ3acE",
+                  "transform": {
+                    "rotation": [
+                      -27,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-0-6",
+                      "type": "box",
+                      "id": "W8aiIv4T",
+                      "size": [
+                        0.0501,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "pale",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r7",
+                  "type": "group",
+                  "id": "VhkRGDX4",
+                  "transform": {
+                    "rotation": [
+                      -45,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-0-7",
+                      "type": "box",
+                      "id": "BIpJxRMJ",
+                      "size": [
+                        0.0398,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "silver",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r8",
+                  "type": "group",
+                  "id": "Zy4XhoSn",
+                  "transform": {
+                    "rotation": [
+                      -63,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-0-8",
+                      "type": "box",
+                      "id": "clkGEgCf",
+                      "size": [
+                        0.0255,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "blue",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r9",
+                  "type": "group",
+                  "id": "z7Zg4InE",
+                  "transform": {
+                    "rotation": [
+                      -81,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-0-9",
+                      "type": "box",
+                      "id": "Gp3oDCwd",
+                      "size": [
+                        0.0088,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "white",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "c1",
+              "type": "group",
+              "id": "1Hs5C0Th",
+              "transform": {
+                "rotation": [
+                  0,
+                  22.5,
+                  0
+                ]
+              },
+              "children": [
+                {
+                  "name": "r0",
+                  "type": "group",
+                  "id": "5Ehv0Hyk",
+                  "transform": {
+                    "rotation": [
+                      81,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-1-0",
+                      "type": "box",
+                      "id": "h1EAd8kh",
+                      "size": [
+                        0.0088,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "silver",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r1",
+                  "type": "group",
+                  "id": "Waed6E3f",
+                  "transform": {
+                    "rotation": [
+                      63,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-1-1",
+                      "type": "box",
+                      "id": "oeWTiNVk",
+                      "size": [
+                        0.0255,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "lilac",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r2",
+                  "type": "group",
+                  "id": "ROVO7xXe",
+                  "transform": {
+                    "rotation": [
+                      45,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-1-2",
+                      "type": "box",
+                      "id": "84JB8e6y",
+                      "size": [
+                        0.0398,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "lilac",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r3",
+                  "type": "group",
+                  "id": "DyvRTRDG",
+                  "transform": {
+                    "rotation": [
+                      27,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-1-3",
+                      "type": "box",
+                      "id": "OsipioMg",
+                      "size": [
+                        0.0501,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "steel",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r4",
+                  "type": "group",
+                  "id": "dOdfo7yr",
+                  "transform": {
+                    "rotation": [
+                      9,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-1-4",
+                      "type": "box",
+                      "id": "UxHxUj1i",
+                      "size": [
+                        0.0556,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "blue",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r5",
+                  "type": "group",
+                  "id": "McZJCfwL",
+                  "transform": {
+                    "rotation": [
+                      -9,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-1-5",
+                      "type": "box",
+                      "id": "ViI52Cp8",
+                      "size": [
+                        0.0556,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "silver",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r6",
+                  "type": "group",
+                  "id": "QoLOfrUG",
+                  "transform": {
+                    "rotation": [
+                      -27,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-1-6",
+                      "type": "box",
+                      "id": "gAagoSeL",
+                      "size": [
+                        0.0501,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "blue",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r7",
+                  "type": "group",
+                  "id": "CIO6WBwL",
+                  "transform": {
+                    "rotation": [
+                      -45,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-1-7",
+                      "type": "box",
+                      "id": "kXKNcdWy",
+                      "size": [
+                        0.0398,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "blue",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r8",
+                  "type": "group",
+                  "id": "7WniNEAA",
+                  "transform": {
+                    "rotation": [
+                      -63,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-1-8",
+                      "type": "box",
+                      "id": "lqwzIRyZ",
+                      "size": [
+                        0.0255,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "pale",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r9",
+                  "type": "group",
+                  "id": "I1TSKt6v",
+                  "transform": {
+                    "rotation": [
+                      -81,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-1-9",
+                      "type": "box",
+                      "id": "ihZQlyBj",
+                      "size": [
+                        0.0088,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "white",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "c2",
+              "type": "group",
+              "id": "5XDl2KRE",
+              "transform": {
+                "rotation": [
+                  0,
+                  45,
+                  0
+                ]
+              },
+              "children": [
+                {
+                  "name": "r0",
+                  "type": "group",
+                  "id": "2jnN9BXw",
+                  "transform": {
+                    "rotation": [
+                      81,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-2-0",
+                      "type": "box",
+                      "id": "7bchh7au",
+                      "size": [
+                        0.0088,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "steel",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r1",
+                  "type": "group",
+                  "id": "VQGH2SgH",
+                  "transform": {
+                    "rotation": [
+                      63,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-2-1",
+                      "type": "box",
+                      "id": "mIY9QjMs",
+                      "size": [
+                        0.0255,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "blue",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r2",
+                  "type": "group",
+                  "id": "88P0gaer",
+                  "transform": {
+                    "rotation": [
+                      45,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-2-2",
+                      "type": "box",
+                      "id": "I509cIsw",
+                      "size": [
+                        0.0398,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "steel",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r3",
+                  "type": "group",
+                  "id": "zwYDakLk",
+                  "transform": {
+                    "rotation": [
+                      27,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-2-3",
+                      "type": "box",
+                      "id": "8amblQbo",
+                      "size": [
+                        0.0501,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "white",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r4",
+                  "type": "group",
+                  "id": "BX5v963P",
+                  "transform": {
+                    "rotation": [
+                      9,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-2-4",
+                      "type": "box",
+                      "id": "qHBFCtQ4",
+                      "size": [
+                        0.0556,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "pale",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r5",
+                  "type": "group",
+                  "id": "hiBeKXkI",
+                  "transform": {
+                    "rotation": [
+                      -9,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-2-5",
+                      "type": "box",
+                      "id": "XrtufmwX",
+                      "size": [
+                        0.0556,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "steel",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r6",
+                  "type": "group",
+                  "id": "CaN1tF67",
+                  "transform": {
+                    "rotation": [
+                      -27,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-2-6",
+                      "type": "box",
+                      "id": "7A60Gz3m",
+                      "size": [
+                        0.0501,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "silver",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r7",
+                  "type": "group",
+                  "id": "qrDNVcbh",
+                  "transform": {
+                    "rotation": [
+                      -45,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-2-7",
+                      "type": "box",
+                      "id": "guUTEpvn",
+                      "size": [
+                        0.0398,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "pale",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r8",
+                  "type": "group",
+                  "id": "fmMtsQpP",
+                  "transform": {
+                    "rotation": [
+                      -63,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-2-8",
+                      "type": "box",
+                      "id": "sohcPF48",
+                      "size": [
+                        0.0255,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "silver",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r9",
+                  "type": "group",
+                  "id": "PJBEXQie",
+                  "transform": {
+                    "rotation": [
+                      -81,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-2-9",
+                      "type": "box",
+                      "id": "rfllNp1W",
+                      "size": [
+                        0.0088,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "steel",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "c3",
+              "type": "group",
+              "id": "7LdBbDfs",
+              "transform": {
+                "rotation": [
+                  0,
+                  67.5,
+                  0
+                ]
+              },
+              "children": [
+                {
+                  "name": "r0",
+                  "type": "group",
+                  "id": "jaYMfsB2",
+                  "transform": {
+                    "rotation": [
+                      81,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-3-0",
+                      "type": "box",
+                      "id": "l1t0yT1o",
+                      "size": [
+                        0.0088,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "white",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r1",
+                  "type": "group",
+                  "id": "FGE17lvH",
+                  "transform": {
+                    "rotation": [
+                      63,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-3-1",
+                      "type": "box",
+                      "id": "afUf7rCs",
+                      "size": [
+                        0.0255,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "lilac",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r2",
+                  "type": "group",
+                  "id": "1Q9TdQXe",
+                  "transform": {
+                    "rotation": [
+                      45,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-3-2",
+                      "type": "box",
+                      "id": "FbGqhmLB",
+                      "size": [
+                        0.0398,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "silver",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r3",
+                  "type": "group",
+                  "id": "dr4dK7Ip",
+                  "transform": {
+                    "rotation": [
+                      27,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-3-3",
+                      "type": "box",
+                      "id": "dewdYPsk",
+                      "size": [
+                        0.0501,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "steel",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r4",
+                  "type": "group",
+                  "id": "hIxIscP0",
+                  "transform": {
+                    "rotation": [
+                      9,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-3-4",
+                      "type": "box",
+                      "id": "t4QObRhR",
+                      "size": [
+                        0.0556,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "pale",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r5",
+                  "type": "group",
+                  "id": "kpk2mmg6",
+                  "transform": {
+                    "rotation": [
+                      -9,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-3-5",
+                      "type": "box",
+                      "id": "5T6GkDkU",
+                      "size": [
+                        0.0556,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "white",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r6",
+                  "type": "group",
+                  "id": "g6TJrNFm",
+                  "transform": {
+                    "rotation": [
+                      -27,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-3-6",
+                      "type": "box",
+                      "id": "hutGchlp",
+                      "size": [
+                        0.0501,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "blue",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r7",
+                  "type": "group",
+                  "id": "66kyA8bw",
+                  "transform": {
+                    "rotation": [
+                      -45,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-3-7",
+                      "type": "box",
+                      "id": "aauMmQzn",
+                      "size": [
+                        0.0398,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "lilac",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r8",
+                  "type": "group",
+                  "id": "qaRwZqz4",
+                  "transform": {
+                    "rotation": [
+                      -63,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-3-8",
+                      "type": "box",
+                      "id": "dbhgk3B4",
+                      "size": [
+                        0.0255,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "steel",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r9",
+                  "type": "group",
+                  "id": "LpcpCIjp",
+                  "transform": {
+                    "rotation": [
+                      -81,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-3-9",
+                      "type": "box",
+                      "id": "k1Pyd1im",
+                      "size": [
+                        0.0088,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "blue",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "c4",
+              "type": "group",
+              "id": "Mtw6jeqB",
+              "transform": {
+                "rotation": [
+                  0,
+                  90,
+                  0
+                ]
+              },
+              "children": [
+                {
+                  "name": "r0",
+                  "type": "group",
+                  "id": "WfzxsfFl",
+                  "transform": {
+                    "rotation": [
+                      81,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-4-0",
+                      "type": "box",
+                      "id": "GcxX69R7",
+                      "size": [
+                        0.0088,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "lilac",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r1",
+                  "type": "group",
+                  "id": "Mx1UXLxQ",
+                  "transform": {
+                    "rotation": [
+                      63,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-4-1",
+                      "type": "box",
+                      "id": "qdJdAUg2",
+                      "size": [
+                        0.0255,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "lilac",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r2",
+                  "type": "group",
+                  "id": "t5marp1j",
+                  "transform": {
+                    "rotation": [
+                      45,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-4-2",
+                      "type": "box",
+                      "id": "hlXDyLdU",
+                      "size": [
+                        0.0398,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "silver",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r3",
+                  "type": "group",
+                  "id": "lDddNl6Z",
+                  "transform": {
+                    "rotation": [
+                      27,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-4-3",
+                      "type": "box",
+                      "id": "q5a1wGCk",
+                      "size": [
+                        0.0501,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "blue",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r4",
+                  "type": "group",
+                  "id": "nyi5S17X",
+                  "transform": {
+                    "rotation": [
+                      9,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-4-4",
+                      "type": "box",
+                      "id": "oj2LDiT2",
+                      "size": [
+                        0.0556,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "lilac",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r5",
+                  "type": "group",
+                  "id": "w2kEkYfG",
+                  "transform": {
+                    "rotation": [
+                      -9,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-4-5",
+                      "type": "box",
+                      "id": "22k4KyPH",
+                      "size": [
+                        0.0556,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "pale",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r6",
+                  "type": "group",
+                  "id": "5PYhzOI6",
+                  "transform": {
+                    "rotation": [
+                      -27,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-4-6",
+                      "type": "box",
+                      "id": "tRMhR86U",
+                      "size": [
+                        0.0501,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "silver",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r7",
+                  "type": "group",
+                  "id": "DjT14ihw",
+                  "transform": {
+                    "rotation": [
+                      -45,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-4-7",
+                      "type": "box",
+                      "id": "kcCdiMgm",
+                      "size": [
+                        0.0398,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "white",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r8",
+                  "type": "group",
+                  "id": "lAepN5Ub",
+                  "transform": {
+                    "rotation": [
+                      -63,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-4-8",
+                      "type": "box",
+                      "id": "xVbWotQL",
+                      "size": [
+                        0.0255,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "silver",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r9",
+                  "type": "group",
+                  "id": "8fiyhxIh",
+                  "transform": {
+                    "rotation": [
+                      -81,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-4-9",
+                      "type": "box",
+                      "id": "fVXbaqbV",
+                      "size": [
+                        0.0088,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "steel",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "c5",
+              "type": "group",
+              "id": "w56ikuSU",
+              "transform": {
+                "rotation": [
+                  0,
+                  112.5,
+                  0
+                ]
+              },
+              "children": [
+                {
+                  "name": "r0",
+                  "type": "group",
+                  "id": "hcF0kQ8a",
+                  "transform": {
+                    "rotation": [
+                      81,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-5-0",
+                      "type": "box",
+                      "id": "Ne6Yjv8k",
+                      "size": [
+                        0.0088,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "silver",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r1",
+                  "type": "group",
+                  "id": "mrPrpSaV",
+                  "transform": {
+                    "rotation": [
+                      63,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-5-1",
+                      "type": "box",
+                      "id": "ITAeBgvt",
+                      "size": [
+                        0.0255,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "steel",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r2",
+                  "type": "group",
+                  "id": "rFgyFqwh",
+                  "transform": {
+                    "rotation": [
+                      45,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-5-2",
+                      "type": "box",
+                      "id": "x5O3A8dT",
+                      "size": [
+                        0.0398,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "lilac",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r3",
+                  "type": "group",
+                  "id": "s0OUouIH",
+                  "transform": {
+                    "rotation": [
+                      27,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-5-3",
+                      "type": "box",
+                      "id": "wskU1ckU",
+                      "size": [
+                        0.0501,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "lilac",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r4",
+                  "type": "group",
+                  "id": "9PWKARtA",
+                  "transform": {
+                    "rotation": [
+                      9,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-5-4",
+                      "type": "box",
+                      "id": "uwIPE7wu",
+                      "size": [
+                        0.0556,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "lilac",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r5",
+                  "type": "group",
+                  "id": "GWJjcxvH",
+                  "transform": {
+                    "rotation": [
+                      -9,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-5-5",
+                      "type": "box",
+                      "id": "SfySQvcW",
+                      "size": [
+                        0.0556,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "white",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r6",
+                  "type": "group",
+                  "id": "OhBo78wR",
+                  "transform": {
+                    "rotation": [
+                      -27,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-5-6",
+                      "type": "box",
+                      "id": "KhV00oYE",
+                      "size": [
+                        0.0501,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "white",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r7",
+                  "type": "group",
+                  "id": "pD5MVKch",
+                  "transform": {
+                    "rotation": [
+                      -45,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-5-7",
+                      "type": "box",
+                      "id": "Ad8v6Im9",
+                      "size": [
+                        0.0398,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "lilac",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r8",
+                  "type": "group",
+                  "id": "9Pjs4J8S",
+                  "transform": {
+                    "rotation": [
+                      -63,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-5-8",
+                      "type": "box",
+                      "id": "lzrunhbH",
+                      "size": [
+                        0.0255,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "white",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r9",
+                  "type": "group",
+                  "id": "K0eFx7kN",
+                  "transform": {
+                    "rotation": [
+                      -81,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-5-9",
+                      "type": "box",
+                      "id": "SZekh1Ka",
+                      "size": [
+                        0.0088,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "steel",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "c6",
+              "type": "group",
+              "id": "i1zhWmVy",
+              "transform": {
+                "rotation": [
+                  0,
+                  135,
+                  0
+                ]
+              },
+              "children": [
+                {
+                  "name": "r0",
+                  "type": "group",
+                  "id": "RsdvbdGz",
+                  "transform": {
+                    "rotation": [
+                      81,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-6-0",
+                      "type": "box",
+                      "id": "jXzjzart",
+                      "size": [
+                        0.0088,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "lilac",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r1",
+                  "type": "group",
+                  "id": "ouXGvvS4",
+                  "transform": {
+                    "rotation": [
+                      63,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-6-1",
+                      "type": "box",
+                      "id": "H26Zx1T8",
+                      "size": [
+                        0.0255,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "lilac",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r2",
+                  "type": "group",
+                  "id": "lasfSYw2",
+                  "transform": {
+                    "rotation": [
+                      45,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-6-2",
+                      "type": "box",
+                      "id": "a0cpYsaF",
+                      "size": [
+                        0.0398,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "white",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r3",
+                  "type": "group",
+                  "id": "h5F6ZJrU",
+                  "transform": {
+                    "rotation": [
+                      27,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-6-3",
+                      "type": "box",
+                      "id": "4zQlF0kq",
+                      "size": [
+                        0.0501,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "white",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r4",
+                  "type": "group",
+                  "id": "2w3Pbr4S",
+                  "transform": {
+                    "rotation": [
+                      9,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-6-4",
+                      "type": "box",
+                      "id": "rtd50sIK",
+                      "size": [
+                        0.0556,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "white",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r5",
+                  "type": "group",
+                  "id": "cKIii4QY",
+                  "transform": {
+                    "rotation": [
+                      -9,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-6-5",
+                      "type": "box",
+                      "id": "CqWutchx",
+                      "size": [
+                        0.0556,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "silver",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r6",
+                  "type": "group",
+                  "id": "Uegm6kqR",
+                  "transform": {
+                    "rotation": [
+                      -27,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-6-6",
+                      "type": "box",
+                      "id": "efsxwiHT",
+                      "size": [
+                        0.0501,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "blue",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r7",
+                  "type": "group",
+                  "id": "aOIUHx9e",
+                  "transform": {
+                    "rotation": [
+                      -45,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-6-7",
+                      "type": "box",
+                      "id": "r5M0GG7Q",
+                      "size": [
+                        0.0398,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "white",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r8",
+                  "type": "group",
+                  "id": "QMvPS7Bv",
+                  "transform": {
+                    "rotation": [
+                      -63,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-6-8",
+                      "type": "box",
+                      "id": "XBtF9JWo",
+                      "size": [
+                        0.0255,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "steel",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r9",
+                  "type": "group",
+                  "id": "nv69CpUt",
+                  "transform": {
+                    "rotation": [
+                      -81,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-6-9",
+                      "type": "box",
+                      "id": "O2CLneil",
+                      "size": [
+                        0.0088,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "silver",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "c7",
+              "type": "group",
+              "id": "xdBGeUee",
+              "transform": {
+                "rotation": [
+                  0,
+                  157.5,
+                  0
+                ]
+              },
+              "children": [
+                {
+                  "name": "r0",
+                  "type": "group",
+                  "id": "AMwdwpE0",
+                  "transform": {
+                    "rotation": [
+                      81,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-7-0",
+                      "type": "box",
+                      "id": "ILdzZInT",
+                      "size": [
+                        0.0088,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "pale",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r1",
+                  "type": "group",
+                  "id": "3S8TVvl1",
+                  "transform": {
+                    "rotation": [
+                      63,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-7-1",
+                      "type": "box",
+                      "id": "kV6B4C2g",
+                      "size": [
+                        0.0255,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "silver",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r2",
+                  "type": "group",
+                  "id": "p0rKSvy4",
+                  "transform": {
+                    "rotation": [
+                      45,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-7-2",
+                      "type": "box",
+                      "id": "Qhs9lGrB",
+                      "size": [
+                        0.0398,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "lilac",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r3",
+                  "type": "group",
+                  "id": "GL6NdN9R",
+                  "transform": {
+                    "rotation": [
+                      27,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-7-3",
+                      "type": "box",
+                      "id": "5rfPC1gd",
+                      "size": [
+                        0.0501,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "white",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r4",
+                  "type": "group",
+                  "id": "EgS6cx14",
+                  "transform": {
+                    "rotation": [
+                      9,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-7-4",
+                      "type": "box",
+                      "id": "8rOdxJDe",
+                      "size": [
+                        0.0556,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "white",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r5",
+                  "type": "group",
+                  "id": "XWQ3JIak",
+                  "transform": {
+                    "rotation": [
+                      -9,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-7-5",
+                      "type": "box",
+                      "id": "TqflmSKe",
+                      "size": [
+                        0.0556,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "silver",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r6",
+                  "type": "group",
+                  "id": "JZ1e7o0D",
+                  "transform": {
+                    "rotation": [
+                      -27,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-7-6",
+                      "type": "box",
+                      "id": "LN5UYbOh",
+                      "size": [
+                        0.0501,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "white",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r7",
+                  "type": "group",
+                  "id": "AkHOS929",
+                  "transform": {
+                    "rotation": [
+                      -45,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-7-7",
+                      "type": "box",
+                      "id": "rv3NTFFU",
+                      "size": [
+                        0.0398,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "lilac",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r8",
+                  "type": "group",
+                  "id": "7nFSMYrB",
+                  "transform": {
+                    "rotation": [
+                      -63,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-7-8",
+                      "type": "box",
+                      "id": "oqqlUmJw",
+                      "size": [
+                        0.0255,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "silver",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r9",
+                  "type": "group",
+                  "id": "fBKW8ohp",
+                  "transform": {
+                    "rotation": [
+                      -81,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-7-9",
+                      "type": "box",
+                      "id": "abteAv3A",
+                      "size": [
+                        0.0088,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "blue",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "c8",
+              "type": "group",
+              "id": "n8ZrNiFr",
+              "transform": {
+                "rotation": [
+                  0,
+                  180,
+                  0
+                ]
+              },
+              "children": [
+                {
+                  "name": "r0",
+                  "type": "group",
+                  "id": "46QvQPYr",
+                  "transform": {
+                    "rotation": [
+                      81,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-8-0",
+                      "type": "box",
+                      "id": "SbwL6Vzb",
+                      "size": [
+                        0.0088,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "silver",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r1",
+                  "type": "group",
+                  "id": "sGbcaDEB",
+                  "transform": {
+                    "rotation": [
+                      63,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-8-1",
+                      "type": "box",
+                      "id": "9n64egdQ",
+                      "size": [
+                        0.0255,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "pale",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r2",
+                  "type": "group",
+                  "id": "0ojqUzWz",
+                  "transform": {
+                    "rotation": [
+                      45,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-8-2",
+                      "type": "box",
+                      "id": "EZ3Ve08T",
+                      "size": [
+                        0.0398,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "silver",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r3",
+                  "type": "group",
+                  "id": "YQggsSGx",
+                  "transform": {
+                    "rotation": [
+                      27,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-8-3",
+                      "type": "box",
+                      "id": "kh6i4Z40",
+                      "size": [
+                        0.0501,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "silver",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r4",
+                  "type": "group",
+                  "id": "YkcoVNib",
+                  "transform": {
+                    "rotation": [
+                      9,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-8-4",
+                      "type": "box",
+                      "id": "DorlJUri",
+                      "size": [
+                        0.0556,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "lilac",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r5",
+                  "type": "group",
+                  "id": "LfBS3Isa",
+                  "transform": {
+                    "rotation": [
+                      -9,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-8-5",
+                      "type": "box",
+                      "id": "HIgSmDeC",
+                      "size": [
+                        0.0556,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "steel",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r6",
+                  "type": "group",
+                  "id": "bFFdfMCR",
+                  "transform": {
+                    "rotation": [
+                      -27,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-8-6",
+                      "type": "box",
+                      "id": "6Ywe0Usp",
+                      "size": [
+                        0.0501,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "pale",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r7",
+                  "type": "group",
+                  "id": "oetlM4Lw",
+                  "transform": {
+                    "rotation": [
+                      -45,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-8-7",
+                      "type": "box",
+                      "id": "5bi43w6H",
+                      "size": [
+                        0.0398,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "white",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r8",
+                  "type": "group",
+                  "id": "Hwf3pfut",
+                  "transform": {
+                    "rotation": [
+                      -63,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-8-8",
+                      "type": "box",
+                      "id": "rvNdUldb",
+                      "size": [
+                        0.0255,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "blue",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r9",
+                  "type": "group",
+                  "id": "Ae9gQV7P",
+                  "transform": {
+                    "rotation": [
+                      -81,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-8-9",
+                      "type": "box",
+                      "id": "7oOISKzk",
+                      "size": [
+                        0.0088,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "silver",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "c9",
+              "type": "group",
+              "id": "t6kJwy7X",
+              "transform": {
+                "rotation": [
+                  0,
+                  202.5,
+                  0
+                ]
+              },
+              "children": [
+                {
+                  "name": "r0",
+                  "type": "group",
+                  "id": "XgBynSzm",
+                  "transform": {
+                    "rotation": [
+                      81,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-9-0",
+                      "type": "box",
+                      "id": "f7kScErF",
+                      "size": [
+                        0.0088,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "blue",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r1",
+                  "type": "group",
+                  "id": "r4Nsw4z6",
+                  "transform": {
+                    "rotation": [
+                      63,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-9-1",
+                      "type": "box",
+                      "id": "IAxhbaAe",
+                      "size": [
+                        0.0255,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "pale",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r2",
+                  "type": "group",
+                  "id": "bhZdJinP",
+                  "transform": {
+                    "rotation": [
+                      45,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-9-2",
+                      "type": "box",
+                      "id": "AQM5JVhe",
+                      "size": [
+                        0.0398,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "steel",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r3",
+                  "type": "group",
+                  "id": "JTgDJ6GD",
+                  "transform": {
+                    "rotation": [
+                      27,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-9-3",
+                      "type": "box",
+                      "id": "Kpbp1aHH",
+                      "size": [
+                        0.0501,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "lilac",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r4",
+                  "type": "group",
+                  "id": "ibJ15xuT",
+                  "transform": {
+                    "rotation": [
+                      9,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-9-4",
+                      "type": "box",
+                      "id": "bgB22KtT",
+                      "size": [
+                        0.0556,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "white",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r5",
+                  "type": "group",
+                  "id": "Bci4Lj71",
+                  "transform": {
+                    "rotation": [
+                      -9,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-9-5",
+                      "type": "box",
+                      "id": "y7YdXOGW",
+                      "size": [
+                        0.0556,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "steel",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r6",
+                  "type": "group",
+                  "id": "HFxaoFWv",
+                  "transform": {
+                    "rotation": [
+                      -27,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-9-6",
+                      "type": "box",
+                      "id": "NuqkLArb",
+                      "size": [
+                        0.0501,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "pale",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r7",
+                  "type": "group",
+                  "id": "Br4ge82l",
+                  "transform": {
+                    "rotation": [
+                      -45,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-9-7",
+                      "type": "box",
+                      "id": "nfhbvc5v",
+                      "size": [
+                        0.0398,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "pale",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r8",
+                  "type": "group",
+                  "id": "aRAQrJIW",
+                  "transform": {
+                    "rotation": [
+                      -63,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-9-8",
+                      "type": "box",
+                      "id": "9blvvcSX",
+                      "size": [
+                        0.0255,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "pale",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r9",
+                  "type": "group",
+                  "id": "QiswfcUa",
+                  "transform": {
+                    "rotation": [
+                      -81,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-9-9",
+                      "type": "box",
+                      "id": "SRL79Ztr",
+                      "size": [
+                        0.0088,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "silver",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "c10",
+              "type": "group",
+              "id": "hqt6xoj7",
+              "transform": {
+                "rotation": [
+                  0,
+                  225,
+                  0
+                ]
+              },
+              "children": [
+                {
+                  "name": "r0",
+                  "type": "group",
+                  "id": "f4LvHQc5",
+                  "transform": {
+                    "rotation": [
+                      81,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-10-0",
+                      "type": "box",
+                      "id": "nT1Kh5Lh",
+                      "size": [
+                        0.0088,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "silver",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r1",
+                  "type": "group",
+                  "id": "lffE8jeE",
+                  "transform": {
+                    "rotation": [
+                      63,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-10-1",
+                      "type": "box",
+                      "id": "Ih1ilHgd",
+                      "size": [
+                        0.0255,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "blue",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r2",
+                  "type": "group",
+                  "id": "xPNID9xU",
+                  "transform": {
+                    "rotation": [
+                      45,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-10-2",
+                      "type": "box",
+                      "id": "R6Uq7hSq",
+                      "size": [
+                        0.0398,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "pale",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r3",
+                  "type": "group",
+                  "id": "NqzA7QeP",
+                  "transform": {
+                    "rotation": [
+                      27,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-10-3",
+                      "type": "box",
+                      "id": "g6GLEkd5",
+                      "size": [
+                        0.0501,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "lilac",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r4",
+                  "type": "group",
+                  "id": "0tr4pbs5",
+                  "transform": {
+                    "rotation": [
+                      9,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-10-4",
+                      "type": "box",
+                      "id": "IiR0BUWR",
+                      "size": [
+                        0.0556,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "blue",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r5",
+                  "type": "group",
+                  "id": "ljZb3WmJ",
+                  "transform": {
+                    "rotation": [
+                      -9,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-10-5",
+                      "type": "box",
+                      "id": "lnNea4yd",
+                      "size": [
+                        0.0556,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "silver",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r6",
+                  "type": "group",
+                  "id": "J0ZctLoi",
+                  "transform": {
+                    "rotation": [
+                      -27,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-10-6",
+                      "type": "box",
+                      "id": "JKtt8y2Z",
+                      "size": [
+                        0.0501,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "white",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r7",
+                  "type": "group",
+                  "id": "Zmdas9Vf",
+                  "transform": {
+                    "rotation": [
+                      -45,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-10-7",
+                      "type": "box",
+                      "id": "ExrAfeQp",
+                      "size": [
+                        0.0398,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "lilac",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r8",
+                  "type": "group",
+                  "id": "CF0HM6FM",
+                  "transform": {
+                    "rotation": [
+                      -63,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-10-8",
+                      "type": "box",
+                      "id": "VyeUGfME",
+                      "size": [
+                        0.0255,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "pale",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r9",
+                  "type": "group",
+                  "id": "zvh3v4Z3",
+                  "transform": {
+                    "rotation": [
+                      -81,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-10-9",
+                      "type": "box",
+                      "id": "2HNCmIkv",
+                      "size": [
+                        0.0088,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "steel",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "c11",
+              "type": "group",
+              "id": "vJ38PzQ0",
+              "transform": {
+                "rotation": [
+                  0,
+                  247.5,
+                  0
+                ]
+              },
+              "children": [
+                {
+                  "name": "r0",
+                  "type": "group",
+                  "id": "mqGV0YxT",
+                  "transform": {
+                    "rotation": [
+                      81,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-11-0",
+                      "type": "box",
+                      "id": "DzN28c2I",
+                      "size": [
+                        0.0088,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "silver",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r1",
+                  "type": "group",
+                  "id": "3ViwtZaQ",
+                  "transform": {
+                    "rotation": [
+                      63,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-11-1",
+                      "type": "box",
+                      "id": "5MXsRMhW",
+                      "size": [
+                        0.0255,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "pale",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r2",
+                  "type": "group",
+                  "id": "2fEI9Yyp",
+                  "transform": {
+                    "rotation": [
+                      45,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-11-2",
+                      "type": "box",
+                      "id": "RGRNxL4X",
+                      "size": [
+                        0.0398,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "lilac",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r3",
+                  "type": "group",
+                  "id": "crHR5Qf7",
+                  "transform": {
+                    "rotation": [
+                      27,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-11-3",
+                      "type": "box",
+                      "id": "UkPsXhk1",
+                      "size": [
+                        0.0501,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "lilac",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r4",
+                  "type": "group",
+                  "id": "p3t2Kgm9",
+                  "transform": {
+                    "rotation": [
+                      9,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-11-4",
+                      "type": "box",
+                      "id": "eqUzugDX",
+                      "size": [
+                        0.0556,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "white",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r5",
+                  "type": "group",
+                  "id": "KZfpUzeF",
+                  "transform": {
+                    "rotation": [
+                      -9,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-11-5",
+                      "type": "box",
+                      "id": "qMd40rAl",
+                      "size": [
+                        0.0556,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "blue",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r6",
+                  "type": "group",
+                  "id": "1E4hamjv",
+                  "transform": {
+                    "rotation": [
+                      -27,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-11-6",
+                      "type": "box",
+                      "id": "mLxQ4iRm",
+                      "size": [
+                        0.0501,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "pale",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r7",
+                  "type": "group",
+                  "id": "6Bbk5j9s",
+                  "transform": {
+                    "rotation": [
+                      -45,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-11-7",
+                      "type": "box",
+                      "id": "T1xwPNQw",
+                      "size": [
+                        0.0398,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "pale",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r8",
+                  "type": "group",
+                  "id": "f0iy4LG1",
+                  "transform": {
+                    "rotation": [
+                      -63,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-11-8",
+                      "type": "box",
+                      "id": "Mwlhkezl",
+                      "size": [
+                        0.0255,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "pale",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r9",
+                  "type": "group",
+                  "id": "OBuDKW78",
+                  "transform": {
+                    "rotation": [
+                      -81,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-11-9",
+                      "type": "box",
+                      "id": "RZdXmsOL",
+                      "size": [
+                        0.0088,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "lilac",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "c12",
+              "type": "group",
+              "id": "gqUnxl6c",
+              "transform": {
+                "rotation": [
+                  0,
+                  270,
+                  0
+                ]
+              },
+              "children": [
+                {
+                  "name": "r0",
+                  "type": "group",
+                  "id": "03qiMd3x",
+                  "transform": {
+                    "rotation": [
+                      81,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-12-0",
+                      "type": "box",
+                      "id": "A0OwWpIb",
+                      "size": [
+                        0.0088,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "pale",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r1",
+                  "type": "group",
+                  "id": "LB7ntFwH",
+                  "transform": {
+                    "rotation": [
+                      63,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-12-1",
+                      "type": "box",
+                      "id": "fOz7oZ7f",
+                      "size": [
+                        0.0255,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "lilac",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r2",
+                  "type": "group",
+                  "id": "59Y3GJym",
+                  "transform": {
+                    "rotation": [
+                      45,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-12-2",
+                      "type": "box",
+                      "id": "YHATjLkR",
+                      "size": [
+                        0.0398,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "lilac",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r3",
+                  "type": "group",
+                  "id": "W0V5FuQk",
+                  "transform": {
+                    "rotation": [
+                      27,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-12-3",
+                      "type": "box",
+                      "id": "XVu5YZjq",
+                      "size": [
+                        0.0501,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "silver",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r4",
+                  "type": "group",
+                  "id": "9jd80weE",
+                  "transform": {
+                    "rotation": [
+                      9,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-12-4",
+                      "type": "box",
+                      "id": "VieDwXzn",
+                      "size": [
+                        0.0556,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "blue",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r5",
+                  "type": "group",
+                  "id": "G8DLDwDr",
+                  "transform": {
+                    "rotation": [
+                      -9,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-12-5",
+                      "type": "box",
+                      "id": "nNr87VyN",
+                      "size": [
+                        0.0556,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "white",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r6",
+                  "type": "group",
+                  "id": "FH03KgDb",
+                  "transform": {
+                    "rotation": [
+                      -27,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-12-6",
+                      "type": "box",
+                      "id": "P2G2R7VB",
+                      "size": [
+                        0.0501,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "white",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r7",
+                  "type": "group",
+                  "id": "16RR2eVX",
+                  "transform": {
+                    "rotation": [
+                      -45,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-12-7",
+                      "type": "box",
+                      "id": "jfH4raIp",
+                      "size": [
+                        0.0398,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "silver",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r8",
+                  "type": "group",
+                  "id": "yWkUknGM",
+                  "transform": {
+                    "rotation": [
+                      -63,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-12-8",
+                      "type": "box",
+                      "id": "7zVHFYMl",
+                      "size": [
+                        0.0255,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "white",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r9",
+                  "type": "group",
+                  "id": "Jrggze0m",
+                  "transform": {
+                    "rotation": [
+                      -81,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-12-9",
+                      "type": "box",
+                      "id": "rBCgbNmB",
+                      "size": [
+                        0.0088,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "white",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "c13",
+              "type": "group",
+              "id": "lf0U6dyP",
+              "transform": {
+                "rotation": [
+                  0,
+                  292.5,
+                  0
+                ]
+              },
+              "children": [
+                {
+                  "name": "r0",
+                  "type": "group",
+                  "id": "vgeifwi2",
+                  "transform": {
+                    "rotation": [
+                      81,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-13-0",
+                      "type": "box",
+                      "id": "ulUaNLTr",
+                      "size": [
+                        0.0088,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "lilac",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r1",
+                  "type": "group",
+                  "id": "y8BaK1y3",
+                  "transform": {
+                    "rotation": [
+                      63,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-13-1",
+                      "type": "box",
+                      "id": "LRp1xzHb",
+                      "size": [
+                        0.0255,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "pale",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r2",
+                  "type": "group",
+                  "id": "ZfoAvy50",
+                  "transform": {
+                    "rotation": [
+                      45,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-13-2",
+                      "type": "box",
+                      "id": "ILwQ04eE",
+                      "size": [
+                        0.0398,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "pale",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r3",
+                  "type": "group",
+                  "id": "KWIshwof",
+                  "transform": {
+                    "rotation": [
+                      27,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-13-3",
+                      "type": "box",
+                      "id": "lG8lWbNM",
+                      "size": [
+                        0.0501,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "pale",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r4",
+                  "type": "group",
+                  "id": "oil12rkz",
+                  "transform": {
+                    "rotation": [
+                      9,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-13-4",
+                      "type": "box",
+                      "id": "9cdXJC06",
+                      "size": [
+                        0.0556,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "white",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r5",
+                  "type": "group",
+                  "id": "zj7ATbj3",
+                  "transform": {
+                    "rotation": [
+                      -9,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-13-5",
+                      "type": "box",
+                      "id": "gOUQg5Gn",
+                      "size": [
+                        0.0556,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "lilac",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r6",
+                  "type": "group",
+                  "id": "dpLWdnzw",
+                  "transform": {
+                    "rotation": [
+                      -27,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-13-6",
+                      "type": "box",
+                      "id": "fILLvZnM",
+                      "size": [
+                        0.0501,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "silver",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r7",
+                  "type": "group",
+                  "id": "Zvu3aaT3",
+                  "transform": {
+                    "rotation": [
+                      -45,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-13-7",
+                      "type": "box",
+                      "id": "tI46KhFK",
+                      "size": [
+                        0.0398,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "silver",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r8",
+                  "type": "group",
+                  "id": "BB9acZA0",
+                  "transform": {
+                    "rotation": [
+                      -63,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-13-8",
+                      "type": "box",
+                      "id": "JrM8t2SO",
+                      "size": [
+                        0.0255,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "pale",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r9",
+                  "type": "group",
+                  "id": "a2TAf1B9",
+                  "transform": {
+                    "rotation": [
+                      -81,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-13-9",
+                      "type": "box",
+                      "id": "chWkdsb6",
+                      "size": [
+                        0.0088,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "lilac",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "c14",
+              "type": "group",
+              "id": "lTiYdC1C",
+              "transform": {
+                "rotation": [
+                  0,
+                  315,
+                  0
+                ]
+              },
+              "children": [
+                {
+                  "name": "r0",
+                  "type": "group",
+                  "id": "XVAt0KSV",
+                  "transform": {
+                    "rotation": [
+                      81,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-14-0",
+                      "type": "box",
+                      "id": "0oFkCzEP",
+                      "size": [
+                        0.0088,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "white",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r1",
+                  "type": "group",
+                  "id": "4rNDJ9iH",
+                  "transform": {
+                    "rotation": [
+                      63,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-14-1",
+                      "type": "box",
+                      "id": "nVb9cwkz",
+                      "size": [
+                        0.0255,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "blue",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r2",
+                  "type": "group",
+                  "id": "D2aeYp5q",
+                  "transform": {
+                    "rotation": [
+                      45,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-14-2",
+                      "type": "box",
+                      "id": "nZbCQIH6",
+                      "size": [
+                        0.0398,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "blue",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r3",
+                  "type": "group",
+                  "id": "q8vWM3wH",
+                  "transform": {
+                    "rotation": [
+                      27,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-14-3",
+                      "type": "box",
+                      "id": "DG98nRPr",
+                      "size": [
+                        0.0501,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "pale",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r4",
+                  "type": "group",
+                  "id": "gQhB1FeM",
+                  "transform": {
+                    "rotation": [
+                      9,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-14-4",
+                      "type": "box",
+                      "id": "rClMK1sl",
+                      "size": [
+                        0.0556,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "white",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r5",
+                  "type": "group",
+                  "id": "bdeMMfNz",
+                  "transform": {
+                    "rotation": [
+                      -9,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-14-5",
+                      "type": "box",
+                      "id": "SBfyVzKr",
+                      "size": [
+                        0.0556,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "blue",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r6",
+                  "type": "group",
+                  "id": "QygzqQhI",
+                  "transform": {
+                    "rotation": [
+                      -27,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-14-6",
+                      "type": "box",
+                      "id": "7W2aClrV",
+                      "size": [
+                        0.0501,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "blue",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r7",
+                  "type": "group",
+                  "id": "uXGx58AR",
+                  "transform": {
+                    "rotation": [
+                      -45,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-14-7",
+                      "type": "box",
+                      "id": "sWThkeSj",
+                      "size": [
+                        0.0398,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "pale",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r8",
+                  "type": "group",
+                  "id": "JfCdeNAO",
+                  "transform": {
+                    "rotation": [
+                      -63,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-14-8",
+                      "type": "box",
+                      "id": "YsHaRPZM",
+                      "size": [
+                        0.0255,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "lilac",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r9",
+                  "type": "group",
+                  "id": "pQo7lBxh",
+                  "transform": {
+                    "rotation": [
+                      -81,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-14-9",
+                      "type": "box",
+                      "id": "RgG88ebD",
+                      "size": [
+                        0.0088,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "pale",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "c15",
+              "type": "group",
+              "id": "JlmbwrDR",
+              "transform": {
+                "rotation": [
+                  0,
+                  337.5,
+                  0
+                ]
+              },
+              "children": [
+                {
+                  "name": "r0",
+                  "type": "group",
+                  "id": "dAksuYOA",
+                  "transform": {
+                    "rotation": [
+                      81,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-15-0",
+                      "type": "box",
+                      "id": "of3JCsor",
+                      "size": [
+                        0.0088,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "steel",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r1",
+                  "type": "group",
+                  "id": "hOhCKKHZ",
+                  "transform": {
+                    "rotation": [
+                      63,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-15-1",
+                      "type": "box",
+                      "id": "bbvzJG3C",
+                      "size": [
+                        0.0255,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "silver",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r2",
+                  "type": "group",
+                  "id": "g6Lj1UVY",
+                  "transform": {
+                    "rotation": [
+                      45,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-15-2",
+                      "type": "box",
+                      "id": "gVz1xvr1",
+                      "size": [
+                        0.0398,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "blue",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r3",
+                  "type": "group",
+                  "id": "ELY1EfDk",
+                  "transform": {
+                    "rotation": [
+                      27,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-15-3",
+                      "type": "box",
+                      "id": "ThFZZ5cn",
+                      "size": [
+                        0.0501,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "pale",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r4",
+                  "type": "group",
+                  "id": "vRO203gz",
+                  "transform": {
+                    "rotation": [
+                      9,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-15-4",
+                      "type": "box",
+                      "id": "LNggsdWG",
+                      "size": [
+                        0.0556,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "white",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r5",
+                  "type": "group",
+                  "id": "ks19QXuU",
+                  "transform": {
+                    "rotation": [
+                      -9,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-15-5",
+                      "type": "box",
+                      "id": "kv1rNpDr",
+                      "size": [
+                        0.0556,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "pale",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r6",
+                  "type": "group",
+                  "id": "V3lV4N7F",
+                  "transform": {
+                    "rotation": [
+                      -27,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-15-6",
+                      "type": "box",
+                      "id": "b8wXTprX",
+                      "size": [
+                        0.0501,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "lilac",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r7",
+                  "type": "group",
+                  "id": "gvBUQD6w",
+                  "transform": {
+                    "rotation": [
+                      -45,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-15-7",
+                      "type": "box",
+                      "id": "PDYRGGdS",
+                      "size": [
+                        0.0398,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "white",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r8",
+                  "type": "group",
+                  "id": "SIpDrfMT",
+                  "transform": {
+                    "rotation": [
+                      -63,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-15-8",
+                      "type": "box",
+                      "id": "lGP6tNdl",
+                      "size": [
+                        0.0255,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "pale",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "name": "r9",
+                  "type": "group",
+                  "id": "1fhe3Hj7",
+                  "transform": {
+                    "rotation": [
+                      -81,
+                      0,
+                      0
+                    ]
+                  },
+                  "children": [
+                    {
+                      "name": "tile-15-9",
+                      "type": "box",
+                      "id": "GEtxTjhl",
+                      "size": [
+                        0.0088,
+                        0.045,
+                        0.006
+                      ],
+                      "radius": 0.0022,
+                      "material": "blue",
+                      "transform": {
+                        "position": [
+                          0,
+                          0,
+                          0.1495
+                        ]
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "animation": {
+    "clips": [
+      {
+        "name": "spin",
+        "duration": 2.5,
+        "fps": 60,
+        "loop": "forever",
+        "tracks": [
+          {
+            "keys": [
+              [
+                0,
+                0,
+                "linear"
+              ],
+              [
+                2.5,
+                360,
+                "linear"
+              ]
+            ],
+            "target": "ball.transform.rotation.y"
+          },
+          {
+            "keys": [
+              [
+                0,
+                0.156,
+                "inOutQuad"
+              ],
+              [
+                1.25,
+                0.161,
+                "inOutQuad"
+              ],
+              [
+                2.5,
+                0.156,
+                "inOutQuad"
+              ]
+            ],
+            "target": "ball.transform.position.y"
+          }
+        ]
+      }
+    ]
+  }
+}

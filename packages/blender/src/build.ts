@@ -4,7 +4,7 @@ import { dirname, resolve, relative, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import type { SceneDocument, SceneNode } from '@3d/schema'
 import { assetKey, buildScene, type CompiledAsset, type CompiledAssets } from '@3d/core'
-import { blenderInfo, run } from './process.ts'
+import { blenderInfo, run, timeoutFrom } from './process.ts'
 
 export const PYTHON_DIR = fileURLToPath(new URL('../python/', import.meta.url))
 export function projectRoot(file: string): string {
@@ -77,7 +77,7 @@ export async function prepareAssets(doc: SceneDocument, sceneFile: string): Prom
             const request = join(staging, 'request.json')
             writeFileSync(request, JSON.stringify({ builder: join(staging, 'project', relative(root, builder)), parameters: node.parameters, output: staging, projectRoot: join(staging, 'project') }))
             try {
-              await run(info!.executable, ['--background', '--factory-startup', '--python-exit-code', '1', '--python', join(staging, 'runtime/worker.py'), '--', request])
+              await run(info!.executable, ['--background', '--factory-startup', '--python-exit-code', '1', '--python', join(staging, 'runtime/worker.py'), '--', request], timeoutFrom('BLENDER_BUILD_TIMEOUT_MS', 300_000))
               const compiled = JSON.parse(readFileSync(join(staging, 'mesh.json'), 'utf8'))
               if (!existsSync(output)) {
                 try { renameSync(staging, output) }

@@ -147,9 +147,11 @@ function stats(): {
   }
 }
 
+export type BrowserBridge = { init: typeof init; frame: typeof frame; stats: typeof stats; VIEWS: typeof VIEW_DIRECTIONS }
+
 declare global {
   interface Window {
-    __3d: { init: typeof init; frame: typeof frame; stats: typeof stats; VIEWS: typeof VIEW_DIRECTIONS }
+    __3d: BrowserBridge
   }
 }
 

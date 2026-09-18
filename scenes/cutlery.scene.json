@@ -2,132 +2,107 @@
   "version": 1,
   "name": "cutlery",
   "environment": {
-    "preset": "product-white",
-    "background": "#f7f5f2",
+    "ao": 0.68,
+    "aoRadius": 0.01,
+    "background": "transparent",
     "floor": {
-      "mode": "shadow",
-      "color": "#f7f5f2"
-    }
+      "mode": "none"
+    },
+    "intensity": 1.25,
+    "preset": "product-white",
+    "rotation": -24
   },
   "camera": {
-    "fov": 14,
+    "type": "orthographic",
     "framing": {
       "view": "front",
-      "padding": 0.06
+      "fit": "all",
+      "padding": 0.065
     }
   },
   "materials": {
-    "gold": {
-      "color": "#e7b966",
-      "metalness": 1,
-      "roughness": 0.34
+    "blue": {
+      "color": "#85cbfa",
+      "metalness": 0.08,
+      "roughness": 0.25
+    },
+    "silver": {
+      "color": "#e2eaf4",
+      "metalness": 0.48,
+      "roughness": 0.24
     }
   },
   "nodes": [
     {
+      "name": "fork",
       "type": "asset",
-      "name": "spoon",
-      "builder": "../assets/builders/cutlery.py",
-      "parameters": {
-        "kind": "spoon"
-      },
-      "material": "gold",
+      "id": "47Mw80Px",
       "transform": {
         "position": [
-          -0.035,
-          0.115,
+          -0.045,
+          0.12,
           0
         ]
-      }
-    },
-    {
-      "type": "asset",
-      "name": "fork",
+      },
       "builder": "../assets/builders/cutlery.py",
       "parameters": {
         "kind": "fork"
-      },
-      "material": "gold",
+      }
+    },
+    {
+      "name": "knife",
+      "type": "asset",
+      "id": "LGRMRYbt",
       "transform": {
         "position": [
-          0.035,
-          0.115,
+          0.045,
+          0.12,
           0
         ]
+      },
+      "builder": "../assets/builders/cutlery.py",
+      "parameters": {
+        "kind": "knife"
       }
     }
   ],
   "animation": {
     "clips": [
       {
-        "name": "cross",
-        "duration": 2.4,
-        "fps": 30,
+        "name": "cross-return",
+        "duration": 1.4,
+        "fps": 60,
         "loop": "forever",
         "tracks": [
           {
             "keys": [
               [
                 0,
-                0
-              ],
-              [
-                0.9,
-                22,
-                "outBack"
-              ],
-              [
-                1.4,
-                22
-              ],
-              [
-                2.4,
                 0,
                 "inOutCubic"
-              ]
-            ],
-            "target": "spoon.transform.rotation.z"
-          },
-          {
-            "keys": [
+              ],
               [
+                0.12,
                 0,
-                -0.035
-              ],
-              [
-                0.9,
-                -0.011,
-                "outCubic"
-              ],
-              [
-                1.4,
-                -0.011
-              ],
-              [
-                2.4,
-                -0.035,
                 "inOutCubic"
-              ]
-            ],
-            "target": "spoon.transform.position.x"
-          },
-          {
-            "keys": [
-              [
-                0,
-                0
               ],
               [
-                0.9,
-                -22,
-                "outBack"
+                0.52,
+                -31,
+                "inOutCubic"
+              ],
+              [
+                0.68,
+                -31,
+                "inOutCubic"
+              ],
+              [
+                1.12,
+                0,
+                "inOutCubic"
               ],
               [
                 1.4,
-                -22
-              ],
-              [
-                2.4,
                 0,
                 "inOutCubic"
               ]
@@ -138,105 +113,211 @@
             "keys": [
               [
                 0,
-                0.035
+                -0.045,
+                "inOutCubic"
               ],
               [
-                0.9,
-                0.011,
-                "outCubic"
+                0.12,
+                -0.045,
+                "inOutCubic"
+              ],
+              [
+                0.52,
+                -0.019,
+                "inOutCubic"
+              ],
+              [
+                0.68,
+                -0.019,
+                "inOutCubic"
+              ],
+              [
+                1.12,
+                -0.045,
+                "inOutCubic"
               ],
               [
                 1.4,
-                0.011
-              ],
-              [
-                2.4,
-                0.035,
+                -0.045,
                 "inOutCubic"
               ]
             ],
             "target": "fork.transform.position.x"
           },
           {
-            "target": "spoon.transform.position.z",
             "keys": [
               [
                 0,
-                0
+                0,
+                "inOutCubic"
               ],
               [
-                0.9,
-                -0.012,
-                "outCubic"
+                0.12,
+                0,
+                "inOutCubic"
+              ],
+              [
+                0.38,
+                0.014,
+                "inOutCubic"
+              ],
+              [
+                0.82,
+                0.014,
+                "inOutCubic"
+              ],
+              [
+                1.12,
+                0,
+                "inOutCubic"
               ],
               [
                 1.4,
-                -0.012
-              ],
-              [
-                2.4,
                 0,
                 "inOutCubic"
               ]
-            ]
+            ],
+            "target": "fork.transform.position.z"
           },
           {
-            "target": "fork.transform.position.z",
             "keys": [
               [
                 0,
-                0
+                0,
+                "inOutCubic"
               ],
               [
-                0.9,
-                0.012,
-                "outCubic"
+                0.12,
+                0,
+                "inOutCubic"
+              ],
+              [
+                0.52,
+                31,
+                "inOutCubic"
+              ],
+              [
+                0.68,
+                31,
+                "inOutCubic"
+              ],
+              [
+                1.12,
+                0,
+                "inOutCubic"
               ],
               [
                 1.4,
-                0.012
-              ],
-              [
-                2.4,
                 0,
                 "inOutCubic"
               ]
-            ]
+            ],
+            "target": "knife.transform.rotation.z"
+          },
+          {
+            "keys": [
+              [
+                0,
+                0.045,
+                "inOutCubic"
+              ],
+              [
+                0.12,
+                0.045,
+                "inOutCubic"
+              ],
+              [
+                0.52,
+                0.019,
+                "inOutCubic"
+              ],
+              [
+                0.68,
+                0.019,
+                "inOutCubic"
+              ],
+              [
+                1.12,
+                0.045,
+                "inOutCubic"
+              ],
+              [
+                1.4,
+                0.045,
+                "inOutCubic"
+              ]
+            ],
+            "target": "knife.transform.position.x"
+          },
+          {
+            "keys": [
+              [
+                0,
+                0,
+                "inOutCubic"
+              ],
+              [
+                0.12,
+                0,
+                "inOutCubic"
+              ],
+              [
+                0.38,
+                -0.014,
+                "inOutCubic"
+              ],
+              [
+                0.82,
+                -0.014,
+                "inOutCubic"
+              ],
+              [
+                1.12,
+                0,
+                "inOutCubic"
+              ],
+              [
+                1.4,
+                0,
+                "inOutCubic"
+              ]
+            ],
+            "target": "knife.transform.position.z"
           }
         ]
       }
     ]
   },
   "meta": {
-    "reference": "references/cutlery-target.png",
     "inspection": [
       {
-        "label": "Spoon neck",
+        "radius": 0.045,
         "center": [
-          -0.035,
-          0.146,
+          -0.044,
+          0.22,
           0
         ],
-        "radius": 0.025
+        "label": "fork-slots"
       },
       {
-        "label": "Fork neck",
+        "radius": 0.055,
         "center": [
-          0.035,
-          0.146,
+          0.044,
+          0.235,
           0
         ],
-        "radius": 0.025
+        "label": "knife-crown"
       },
       {
-        "label": "Fork slots",
+        "radius": 0.09,
         "center": [
-          0.035,
-          0.183,
-          0
+          0,
+          0.055,
+          0.01
         ],
-        "radius": 0.029
+        "label": "handle-inlays"
       }
-    ]
+    ],
+    "reference": "00-tasks/task-1/cutlery.png"
   }
 }

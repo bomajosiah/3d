@@ -1,0 +1,382 @@
+{
+  "version": 1,
+  "name": "hammer-tools",
+  "environment": {
+    "ao": 0.35,
+    "aoRadius": 0.006,
+    "background": "transparent",
+    "floor": {
+      "mode": "none"
+    },
+    "intensity": 0.4,
+    "lights": [
+      {
+        "size": 0.12,
+        "color": "#ffffff",
+        "position": [
+          -0.26,
+          0.58,
+          0.46
+        ],
+        "power": 62,
+        "target": [
+          0,
+          0.2,
+          0
+        ]
+      },
+      {
+        "size": 0.1,
+        "color": "#9fc4ff",
+        "position": [
+          0.4,
+          0.44,
+          -0.3
+        ],
+        "power": 26,
+        "target": [
+          0,
+          0.24,
+          0
+        ]
+      },
+      {
+        "size": 0.16,
+        "color": "#ffffff",
+        "position": [
+          0.32,
+          0.02,
+          0.44
+        ],
+        "power": 9,
+        "target": [
+          0,
+          0.16,
+          0
+        ]
+      }
+    ],
+    "preset": "studio-contrast",
+    "rotation": -20
+  },
+  "camera": {
+    "type": "orthographic",
+    "framing": {
+      "view": "front",
+      "fit": "all",
+      "padding": 0.02,
+      "region": {
+        "radius": 0.228,
+        "center": [
+          0.006,
+          0.189,
+          0
+        ]
+      }
+    }
+  },
+  "materials": {
+    "grip": {
+      "color": "#22252a",
+      "metalness": 0.04,
+      "roughness": 0.62
+    },
+    "steel": {
+      "color": "#d4dbe6",
+      "metalness": 0.88,
+      "roughness": 0.15
+    }
+  },
+  "nodes": [
+    {
+      "name": "tools",
+      "type": "group",
+      "id": "baEOaAKO",
+      "transform": {
+        "rotation": [
+          0,
+          9,
+          0
+        ]
+      },
+      "children": [
+        {
+          "name": "hammer-right",
+          "type": "group",
+          "id": "cewjChlC",
+          "transform": {
+            "position": [
+              0,
+              0.14,
+              -0.029
+            ],
+            "rotation": [
+              0,
+              0,
+              -27
+            ]
+          },
+          "children": [
+            {
+              "name": "body",
+              "type": "group",
+              "id": "Kyg6k3l4",
+              "transform": {
+                "position": [
+                  0,
+                  -0.14,
+                  0
+                ]
+              },
+              "children": [
+                {
+                  "name": "grip",
+                  "type": "lathe",
+                  "id": "Tivijf9i",
+                  "segments": 48,
+                  "profile": {
+                    "d": "M 0,0 C 0.0090,0 0.0165,0.0075 0.0165,0.0165 L 0.0165,0.15 L 0,0.15 Z"
+                  },
+                  "material": "grip",
+                  "tolerance": 0.0012
+                },
+                {
+                  "name": "shaft",
+                  "type": "cylinder",
+                  "id": "UMhAnj06",
+                  "radius": 0.0138,
+                  "height": 0.149,
+                  "radialSegments": 40,
+                  "material": "steel",
+                  "transform": {
+                    "position": [
+                      0,
+                      0.2205,
+                      0
+                    ]
+                  }
+                },
+                {
+                  "name": "collar",
+                  "type": "cylinder",
+                  "id": "CsaWpqge",
+                  "radius": 0.0198,
+                  "height": 0.02,
+                  "radialSegments": 40,
+                  "material": "steel",
+                  "transform": {
+                    "position": [
+                      0,
+                      0.291,
+                      0
+                    ]
+                  }
+                },
+                {
+                  "name": "head",
+                  "type": "extrude",
+                  "id": "eMiIMyK8",
+                  "material": "steel",
+                  "transform": {
+                    "position": [
+                      0,
+                      0.322,
+                      0
+                    ]
+                  },
+                  "bevel": 0.005,
+                  "bevelSegments": 4,
+                  "curveSegments": 20,
+                  "depth": 0.052,
+                  "origin": "path",
+                  "path": {
+                    "d": "M -0.048,-0.030 L -0.048,0.032 L -0.028,0.034 L 0.055,0.015 L 0.098,0.006 L 0.098,-0.006 L 0.055,-0.015 L -0.028,-0.034 Z"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "hammer-left",
+          "type": "group",
+          "id": "zSv0F3VB",
+          "transform": {
+            "position": [
+              0,
+              0.14,
+              0.029
+            ],
+            "rotation": [
+              0,
+              0,
+              27
+            ]
+          },
+          "children": [
+            {
+              "name": "body",
+              "type": "group",
+              "id": "paH1TIxK",
+              "transform": {
+                "position": [
+                  0,
+                  -0.14,
+                  0
+                ]
+              },
+              "children": [
+                {
+                  "name": "grip",
+                  "type": "lathe",
+                  "id": "biCQbDjB",
+                  "segments": 48,
+                  "profile": {
+                    "d": "M 0,0 C 0.0090,0 0.0165,0.0075 0.0165,0.0165 L 0.0165,0.15 L 0,0.15 Z"
+                  },
+                  "material": "grip",
+                  "tolerance": 0.0012
+                },
+                {
+                  "name": "shaft",
+                  "type": "cylinder",
+                  "id": "FWQL7mgU",
+                  "radius": 0.0138,
+                  "height": 0.149,
+                  "radialSegments": 40,
+                  "material": "steel",
+                  "transform": {
+                    "position": [
+                      0,
+                      0.2205,
+                      0
+                    ]
+                  }
+                },
+                {
+                  "name": "collar",
+                  "type": "cylinder",
+                  "id": "ZuxHFVPJ",
+                  "radius": 0.0198,
+                  "height": 0.02,
+                  "radialSegments": 40,
+                  "material": "steel",
+                  "transform": {
+                    "position": [
+                      0,
+                      0.291,
+                      0
+                    ]
+                  }
+                },
+                {
+                  "name": "head",
+                  "type": "extrude",
+                  "id": "gdACHfYw",
+                  "material": "steel",
+                  "transform": {
+                    "position": [
+                      0,
+                      0.322,
+                      0
+                    ]
+                  },
+                  "bevel": 0.005,
+                  "bevelSegments": 4,
+                  "curveSegments": 20,
+                  "depth": 0.052,
+                  "origin": "path",
+                  "path": {
+                    "d": "M -0.074,-0.018 L -0.074,0.018 L -0.056,0.026 L 0.050,0.030 L 0.068,0.022 L 0.068,-0.022 L 0.050,-0.030 L -0.056,-0.026 Z"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "animation": {
+    "clips": [
+      {
+        "name": "scissor",
+        "duration": 2.5,
+        "fps": 60,
+        "loop": "forever",
+        "tracks": [
+          {
+            "keys": [
+              [
+                0,
+                9,
+                "inOutQuad"
+              ],
+              [
+                0.625,
+                16,
+                "inOutQuad"
+              ],
+              [
+                1.25,
+                9,
+                "inOutQuad"
+              ],
+              [
+                1.875,
+                2,
+                "inOutQuad"
+              ],
+              [
+                2.5,
+                9,
+                "inOutQuad"
+              ]
+            ],
+            "target": "tools.transform.rotation.y"
+          },
+          {
+            "keys": [
+              [
+                0,
+                27,
+                "inOutQuad"
+              ],
+              [
+                1.25,
+                31.5,
+                "inOutQuad"
+              ],
+              [
+                2.5,
+                27,
+                "inOutQuad"
+              ]
+            ],
+            "target": "hammer-left.transform.rotation.z"
+          },
+          {
+            "keys": [
+              [
+                0,
+                -27,
+                "inOutQuad"
+              ],
+              [
+                1.25,
+                -31.5,
+                "inOutQuad"
+              ],
+              [
+                2.5,
+                -27,
+                "inOutQuad"
+              ]
+            ],
+            "target": "hammer-right.transform.rotation.z"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -110,14 +110,10 @@ entries (metres, watts); `exposure` is in stops. Use `floor.mode: "shadow"` for 
 seamless backdrop, `"solid"` for a real floor, or `"none"`. `background: "transparent"`
 exports alpha independently of the reflection environment.
 
-## Worked examples
+## Working scenes
 
+- `scenes/compass.scene.json`: closed manufactured parts, raised dial details, and a pivoted needle.
 - `scenes/cutlery.scene.json`: continuous spoon shell and branched fork control mesh.
-- `examples/product-bottle.scene.json`: hollow loft with a connected lip and inner wall.
-- `examples/product-enclosure.scene.json`: bevels and planar face normals.
-- `examples/product-furniture.scene.json`: separate manufactured parts and swept legs.
-- `examples/desk-lamp.scene.json`: independent transfer example, using loft and sweep
-  without cutlery-specific logic. This is not a blind evaluation by a fresh external agent.
 
 ## Validation
 
@@ -136,6 +132,6 @@ baseline is explicit, never automatic. New product renders are **review candidat
 not human-approved artistic baselines. Keep preview and Cycles baselines separate;
 a pixel comparison between different renderers does not measure model quality.
 
-To verify the studio, run it on port 5176 and execute `node scripts/check-studio.mjs`.
+To verify the studio, run `pnpm check:studio`; it starts and stops its own studio.
 The smoke test creates isolated temporary assets, checks reference/GLB loading and
 stale-preview handling, writes screenshots, and removes its fixtures.

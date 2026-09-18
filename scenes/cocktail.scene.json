@@ -1,0 +1,259 @@
+{
+  "version": 1,
+  "name": "cocktail",
+  "environment": {
+    "ao": 0.45,
+    "aoRadius": 0.006,
+    "background": "transparent",
+    "floor": {
+      "mode": "none"
+    },
+    "intensity": 1,
+    "lights": [
+      {
+        "size": 0.45,
+        "color": "#ffffff",
+        "position": [
+          -0.4,
+          0.6,
+          0.65
+        ],
+        "power": 9,
+        "target": [
+          0,
+          0.18,
+          0
+        ]
+      },
+      {
+        "size": 0.4,
+        "color": "#d8eaff",
+        "position": [
+          0.35,
+          0.25,
+          0.55
+        ],
+        "power": 4,
+        "target": [
+          0,
+          0.18,
+          0
+        ]
+      },
+      {
+        "size": 0.3,
+        "color": "#ffffff",
+        "position": [
+          -0.15,
+          0.025,
+          0.6
+        ],
+        "power": 4,
+        "target": [
+          0,
+          0.2,
+          0
+        ]
+      }
+    ],
+    "preset": "product-white",
+    "rotation": -12
+  },
+  "camera": {
+    "type": "orthographic",
+    "framing": {
+      "view": "front",
+      "fit": "all",
+      "padding": 0.025,
+      "region": {
+        "radius": 0.2345,
+        "center": [
+          0.014,
+          0.175,
+          0.03
+        ]
+      }
+    }
+  },
+  "materials": {
+    "drink": {
+      "color": "#ff4250",
+      "roughness": 0.24
+    },
+    "glass": {
+      "opacity": 0.14,
+      "color": "#c8e6ff",
+      "roughness": 0.14
+    },
+    "glass_solid": {
+      "color": "#c0ddfa",
+      "metalness": 0.1,
+      "roughness": 0.18
+    },
+    "olive": {
+      "color": "#71832d",
+      "roughness": 0.26
+    },
+    "pimento": {
+      "color": "#dc260c",
+      "roughness": 0.23
+    },
+    "wood": {
+      "color": "#eea34e",
+      "roughness": 0.28
+    }
+  },
+  "nodes": [
+    {
+      "name": "cocktail",
+      "type": "group",
+      "id": "58trj7tO",
+      "transform": {
+        "rotation": [
+          15,
+          0,
+          0
+        ]
+      },
+      "children": [
+        {
+          "name": "glass-and-drink",
+          "type": "asset",
+          "id": "Qqal0h73",
+          "builder": "../assets/builders/cocktail.py",
+          "parameters": {
+            "part": "glass"
+          }
+        },
+        {
+          "name": "olive-garnish",
+          "type": "asset",
+          "id": "MZOtpEza",
+          "builder": "../assets/builders/cocktail.py",
+          "parameters": {
+            "part": "garnish"
+          }
+        }
+      ]
+    }
+  ],
+  "animation": {
+    "clips": [
+      {
+        "name": "cheers",
+        "duration": 1.35,
+        "fps": 60,
+        "loop": "forever",
+        "tracks": [
+          {
+            "keys": [
+              [
+                0,
+                0,
+                "inOutCubic"
+              ],
+              [
+                0.1,
+                0,
+                "inOutCubic"
+              ],
+              [
+                0.4,
+                0.012,
+                "inOutCubic"
+              ],
+              [
+                0.58,
+                0.012,
+                "inOutCubic"
+              ],
+              [
+                0.98,
+                0,
+                "inOutCubic"
+              ],
+              [
+                1.35,
+                0,
+                "inOutCubic"
+              ]
+            ],
+            "target": "cocktail.transform.position.y"
+          },
+          {
+            "keys": [
+              [
+                0,
+                0,
+                "inOutCubic"
+              ],
+              [
+                0.1,
+                0,
+                "inOutCubic"
+              ],
+              [
+                0.4,
+                -4,
+                "inOutCubic"
+              ],
+              [
+                0.58,
+                -4,
+                "inOutCubic"
+              ],
+              [
+                0.85,
+                1,
+                "inOutCubic"
+              ],
+              [
+                1.1,
+                0,
+                "inOutCubic"
+              ],
+              [
+                1.35,
+                0,
+                "inOutCubic"
+              ]
+            ],
+            "target": "cocktail.transform.rotation.z"
+          }
+        ]
+      }
+    ]
+  },
+  "meta": {
+    "inspection": [
+      {
+        "radius": 0.15,
+        "center": [
+          0,
+          0.25,
+          0.07
+        ],
+        "label": "rolled-rim-and-drink"
+      },
+      {
+        "radius": 0.064,
+        "center": [
+          0.084,
+          0.287,
+          0.103
+        ],
+        "label": "olive-and-pimento"
+      },
+      {
+        "radius": 0.065,
+        "center": [
+          0,
+          0.08,
+          0.02
+        ],
+        "label": "flowing-stem"
+      }
+    ],
+    "reference": "00-tasks/task-1/cocktail.png"
+  }
+}

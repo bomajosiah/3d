@@ -1,4 +1,5 @@
 import { readFileSync, readdirSync, createReadStream, realpathSync } from 'node:fs'
+import { randomUUID } from 'node:crypto'
 import { basename, dirname, join, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import react from '@vitejs/plugin-react'
@@ -6,11 +7,33 @@ import { defineConfig, type Plugin } from 'vite'
 import { prepareAssets } from '../../packages/blender/src/build.ts'
 import { compiledAssets } from '../../packages/core/src/assets.ts'
 import { parseSceneText, ValidationError } from '../../packages/schema/src/index.ts'
+import { exporters } from './exporters.ts'
+import type { ExportFormatId } from './src/exportFormats.ts'
 
 const here = dirname(fileURLToPath(import.meta.url))
 const ROOT = resolve(here, '../..')
-const SCENE_DIRS = [join(ROOT, 'scenes'), join(ROOT, 'examples')]
+const SCENE_DIRS = [join(ROOT, 'scenes')]
 const isScene = (file: string) => file.endsWith('.scene.json')
+
+type ExportJob = {
+  id: string
+  scene: string
+  format: ExportFormatId
+  status: 'queued' | 'running' | 'complete' | 'failed'
+  progress: number
+  stage: string
+  output?: string
+  error?: string
+}
+
+const readJson = async (req: import('node:http').IncomingMessage): Promise<unknown> => {
+  let body = ''
+  for await (const chunk of req) {
+    body += chunk
+    if (body.length > 64_000) throw new Error('Request body is too large')
+  }
+  return JSON.parse(body || '{}')
+}
 
 /**
  * Watches scene files and pushes parsed documents over the HMR socket. The page
@@ -18,6 +41,7 @@ const isScene = (file: string) => file.endsWith('.scene.json')
  * makes watching an agent work on a scene pleasant rather than seasick.
  */
 function scenePlugin(): Plugin {
+  const exportJobs = new Map<string, ExportJob>()
   const read = async (file: string) => {
     try {
       if (!list().some(entry => entry.path === file)) throw new Error('Unknown scene path')
@@ -69,6 +93,54 @@ function scenePlugin(): Plugin {
       }
       server.watcher.on('change', push)
       server.watcher.on('add', push)
+
+      server.middlewares.use(async (req, res, next) => {
+        const url = new URL(req.url ?? '', 'http://localhost')
+        if (url.pathname === '/__3d/exports' && req.method === 'POST') {
+          res.setHeader('content-type', 'application/json')
+          try {
+            const body = await readJson(req) as { path?: unknown; format?: unknown; settings?: unknown }
+            if (typeof body.path !== 'string' || !list().some((entry) => entry.path === body.path)) throw new Error('Unknown scene path')
+            if (typeof body.format !== 'string' || !(body.format in exporters)) throw new Error('Unknown export format')
+            const format = body.format as ExportFormatId
+            const running = [...exportJobs.values()].find((job) => job.scene === body.path && job.format === format && (job.status === 'queued' || job.status === 'running'))
+            if (running) {
+              res.statusCode = 202
+              res.end(JSON.stringify(running))
+              return
+            }
+
+            const job: ExportJob = { id: randomUUID(), scene: body.path, format, status: 'queued', progress: 0, stage: 'Queued' }
+            exportJobs.set(job.id, job)
+            res.statusCode = 202
+            res.end(JSON.stringify(job))
+
+            void exporters[format](body.path, body.settings && typeof body.settings === 'object' ? body.settings as Record<string, unknown> : {}, (update) => {
+              Object.assign(job, update, { status: 'running' as const })
+            }).then((result) => {
+              Object.assign(job, { status: 'complete' as const, progress: 100, stage: 'Export complete', output: result.output })
+            }).catch((error) => {
+              Object.assign(job, { status: 'failed' as const, stage: 'Export failed', error: error instanceof Error ? error.message : String(error) })
+            })
+          } catch (error) {
+            res.statusCode = 400
+            res.end(JSON.stringify({ error: error instanceof Error ? error.message : String(error) }))
+          }
+          return
+        }
+
+        const jobMatch = url.pathname.match(/^\/__3d\/exports\/([^/]+)$/)
+        if (jobMatch && req.method === 'GET') {
+          res.setHeader('content-type', 'application/json')
+          const job = exportJobs.get(jobMatch[1]!)
+          if (!job) {
+            res.statusCode = 404
+            res.end(JSON.stringify({ error: 'Export job not found' }))
+          } else res.end(JSON.stringify(job))
+          return
+        }
+        next()
+      })
 
       server.middlewares.use('/__3d/scenes', (_req, res) => {
         res.setHeader('content-type', 'application/json')

@@ -14,6 +14,8 @@
     "check": "tsc -p tsconfig.json --noEmit && tsc -p apps/studio/tsconfig.json --noEmit",
     "docs": "node scripts/gen-docs.ts",
     "docs:check": "node scripts/check-docs.ts",
+    "check:studio": "node scripts/check-studio.mjs",
+    "icon": "tsx scripts/export-icon.ts",
     "studio": "pnpm --filter @3d/studio dev",
     "test:blender": "BLENDER_TESTS=1 vitest run"
   },

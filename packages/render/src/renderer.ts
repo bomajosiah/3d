@@ -2,6 +2,9 @@ import sharp from 'sharp'
 import { chromium, type Browser, type Page } from 'playwright'
 import type { SceneDocument, View } from '@3d/schema'
 import { browserBundle } from './bundle.ts'
+import type { BrowserBridge } from './browser/entry.ts'
+
+type BridgeWindow = Window & { __3d: BrowserBridge }
 
 export type RenderOptions = {
   width?: number
@@ -81,7 +84,7 @@ export async function openSession(
   await page.addScriptTag({ content: await browserBundle() })
 
   const init = await page.evaluate(
-    (args) => window.__3d.init(args),
+    (args) => (window as BridgeWindow).__3d.init(args),
     { doc, width: width * ss, height: height * ss, transparent, background, toneMapping: options.toneMapping },
   )
   if (errors.length) {
@@ -92,12 +95,12 @@ export async function openSession(
   return {
     warnings: init.warnings,
     async stats() {
-      return (await page.evaluate(() => window.__3d.stats())) as SceneStats
+      return (await page.evaluate(() => (window as BridgeWindow).__3d.stats())) as SceneStats
     },
     async frames(requests) {
       const out: Frame[] = []
       for (const req of requests) {
-        const r = await page.evaluate((a) => window.__3d.frame(a), {
+        const r = await page.evaluate((a) => (window as BridgeWindow).__3d.frame(a), {
           time: req.time,
           view: req.view,
           clip: options.clip,

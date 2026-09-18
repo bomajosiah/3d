@@ -1,84 +1,108 @@
-"""Continuous product cutlery. Parameters: kind, width, bowl_depth, subdivision.
-Each utensil is one closed surface; no intersecting handle/head assemblies.
-"""
+"""Toy-like silver fork and butter knife with raised blue handle inlays."""
 import math
-from modeling import loft, mesh, subdivision
+from modeling import bevel, mesh, subdivision, loft
 
 
-def spoon(p):
-    # y, half width, edge height, top rise, bowl depth, lower thickness
-    sections = [
-      (.001,.002,0,.001,0,.001), (.003,.010,0,.003,0,.003),
-      (.008,.014,0,.004,0,.004), (.018,.0147,0,.0044,0,.0044),
-      (.035,.0135,0,.0044,0,.0044), (.060,.011,0,.004,0,.004),
-      (.090,.008,0,.0035,0,.0035), (.115,.0065,0,.003,0,.003),
-      (.132,.0065,.001,.0027,0,.0027), (.142,.008,.002,.0025,.001,.0025),
-      (.152,.016,.004,.003,.006,.003), (.166,.028,.006,.0035,.012,.003),
-      (.184,.032,.008,.004,.015,.003), (.200,.030,.010,.004,.013,.003),
-      (.214,.025,.012,.003,.008,.003), (.224,.019,.013,.002,.003,.002),
-      (.231,.011,.013,.001,.001,.001), (.234,.002,.013,.0004,0,.0004),
+def prism(name, outline, z, depth, material, bevel_width=0.0, segments=4):
+    count = len(outline)
+    vertices = [(x, y, z - depth / 2) for x, y in outline]
+    vertices += [(x, y, z + depth / 2) for x, y in outline]
+    faces = [tuple(reversed(range(count))), tuple(range(count, count * 2))]
+    for i in range(count):
+        j = (i + 1) % count
+        faces.append((i, j, j + count, i + count))
+    obj = mesh(name, vertices, faces, material)
+    return bevel(obj, bevel_width, segments) if bevel_width else obj
+
+
+def fork_surface():
+    # Shared top/bottom grids form one closed utensil. Removing three quad
+    # columns from the crown creates real open slots between four rounded tines.
+    xs = [-1, -.81, -.62, -.46, -.27, -.08, .08, .27, .46, .62, .81, 1]
+    rows = [
+        (.000, .002, .0010), (.003, .019, .0045), (.010, .024, .0070),
+        (.022, .025, .0080), (.050, .024, .0080), (.085, .021, .0070),
+        (.112, .017, .0058), (.122, .012, .0048), (.140, .012, .0048),
+        (.154, .017, .0055), (.166, .030, .0070), (.178, .037, .0080),
+        (.194, .038, .0070), (.205, .0375, .0062), (.241, .036, .0052),
+        (.266, .0345, .0048), (.271, .034, .0040), (.276, .034, .0015),
     ]
+    vertices = []
+    for side in (1, -1):
+        for row, (y, width, height) in enumerate(rows):
+            for col, x in enumerate(xs):
+                if row == len(rows) - 1:
+                    start = (col // 3) * 3
+                    center = xs[start + 1]
+                    x = center + (x - center) * .35
+                crown = .58 + .42 * math.sqrt(max(0, 1 - x * x))
+                vertices.append((x * width, y - .120, side * height * crown))
+
+    columns = len(xs)
+    offset = len(rows) * columns
+    faces = []
+    boundary = {}
+    for row in range(len(rows) - 1):
+        for col in range(columns - 1):
+            if row >= 12 and col in (2, 5, 8):
+                continue
+            a = row * columns + col
+            b, c, d = a + 1, a + 1 + columns, a + columns
+            faces.extend(((a, b, c, d), (a + offset, d + offset, c + offset, b + offset)))
+            for u, v in ((a, b), (b, c), (c, d), (d, a)):
+                key = tuple(sorted((u, v)))
+                if key in boundary:
+                    del boundary[key]
+                else:
+                    boundary[key] = (u, v)
+    for u, v in boundary.values():
+        faces.append((v, u, u + offset, v + offset))
+
+    used = sorted({index for face in faces for index in face})
+    remap = {old: new for new, old in enumerate(used)}
+    obj = mesh('silver-fork', [vertices[i] for i in used], [tuple(remap[i] for i in face) for face in faces], 'silver')
+    return subdivision(obj, 2)
+
+
+def rounded_sections(name, rows, material, z=0):
+    # Elliptical sections create a continuous convex face and soft perimeter.
     rings = []
-    for y,w,z,rise,depth,thickness in sections:
-        if y < .132: rise *= 1.65; thickness *= 1.65; w *= 1.18
-        if y >= .152: rise *= p.get('rim_strength',2)
-        ring=[]
-        for i in range(32):
-            t=math.tau*i/32
-            c,s=math.cos(t),math.sin(t)
-            surface = z + (rise*s if s>=0 else thickness*s) - depth*s*s*p.get('bowl_depth',1.2)
-            ring.append((w*c*p.get('width',1), y, surface))
-        rings.append(ring)
-    return loft('spoon',rings,levels=int(p.get('subdivision',2)))
+    for y, center, width, depth in rows:
+        rings.append([(center + width * math.cos(i * math.tau / 24),
+                       y - .120, z + depth * math.sin(i * math.tau / 24))
+                      for i in range(24)])
+    return loft(name, rings, levels=2, material=material)
 
 
-def fork(p):
-    # Quad top/bottom patches with shared edge vertices; branch four fingers
-    # from a single palm. Subdivision rounds the slots and transitions.
-    xs=[-1,-.84,-.68,-.44,-.28,-.12,.12,.28,.44,.68,.84,1]
-    rows=[(.001,.006,.002),(.004,.012,.003),(.010,.014,.004),(.023,.0147,.0044),
-          (.05,.012,.004),(.085,.0085,.0036),(.115,.0065,.003),(.132,.0065,.003),
-          (.143,.010,.0035),(.153,.020,.004),(.164,.023,.0042),(.174,.024,.004),
-          (.180,.024,.0038),(.188,.0238,.0034),(.21,.0226,.0028),(.223,.0217,.0024),(.227,.0213,.0018),(.229,.0213,.0009)]
-    vertices=[]
-    for side in [1,-1]:
-        for row,(y,w,h) in enumerate(rows):
-            w *= 1.18 if y < .132 else 1.08
-            for col,x in enumerate(xs):
-                if row == len(rows)-1:
-                    start = (col // 3)*3
-                    center = xs[start+1]
-                    x = center + (x-center)*.35
+def handle_insert(name):
+    return rounded_sections(name, [
+        (.012, 0, .002, .0007), (.014, 0, .012, .0020),
+        (.020, 0, .018, .0033), (.030, 0, .019, .0038),
+        (.055, 0, .018, .0040), (.084, 0, .0155, .0038),
+        (.108, 0, .012, .0030), (.119, 0, .009, .0020),
+        (.121, 0, .002, .0006),
+    ], 'blue', .007)
 
-                # Rounded across the palm; thickness varies into the neck.
-                z=side*h*(1.65 if y < .132 else 1)*(.55+.45*math.sqrt(max(0,1-x*x)))
-                vertices.append((x*w*p.get('width',1),y,z))
-    n=len(xs); offset=len(rows)*n
-    faces=[]
-    edges={}
-    # Gap intervals: 2,5,8. Removing top quads creates three slots.
-    for row in range(len(rows)-1):
-        for col in range(n-1):
-            if row>=11 and col in [2,5,8]: continue
-            a=row*n+col; b=a+1; c=b+n; d=a+n
-            faces.append((a,b,c,d)); faces.append((a+offset,d+offset,c+offset,b+offset))
-            for u,v in [(a,b),(b,c),(c,d),(d,a)]:
-                key=tuple(sorted((u,v)))
-                if key in edges: del edges[key]
-                else: edges[key]=(u,v)
-    for u,v in edges.values(): faces.append((v,u,u+offset,v+offset))
-    # Remove unused grid vertices inside slots.
-    used=sorted({v for face in faces for v in face}); remap={v:i for i,v in enumerate(used)}
-    obj=mesh('fork',[vertices[i] for i in used],[tuple(remap[i] for i in f) for f in faces])
-    return subdivision(obj,int(p.get('subdivision',3)))
+
+def knife_surface():
+    return rounded_sections('silver-knife', [
+        (.000, 0, .002, .0010), (.003, 0, .019, .0045),
+        (.010, 0, .024, .0070), (.022, 0, .025, .0080),
+        (.050, 0, .024, .0080), (.085, 0, .021, .0070),
+        (.112, 0, .017, .0058), (.122, 0, .012, .0048),
+        (.130, 0, .012, .0048), (.137, -.002, .017, .0055),
+        (.143, -.004, .024, .0065), (.152, -.004, .027, .0070),
+        (.185, -.004, .027, .0072), (.213, -.002, .025, .0070),
+        (.239, .003, .020, .0064), (.258, .008, .015, .0055),
+        (.272, .014, .009, .0045), (.281, .019, .004, .0030),
+        (.282, .020, .001, .0010),
+    ], 'silver')
 
 
 def build(parameters):
-    kind=parameters.get('kind','spoon')
-    if kind not in ['spoon','fork']: raise ValueError('kind must be spoon or fork')
-    obj = spoon(parameters) if kind=='spoon' else fork(parameters)
-    # Move mesh coordinates to a central animation pivot, in Blender Z (scene Y).
-    for v in obj.data.vertices:
-        if kind == 'spoon': v.co.z *= .978
-        v.co.z -= .115
-    return [obj]
+    kind = parameters.get('kind', 'fork')
+    if kind == 'fork':
+        return [fork_surface(), handle_insert('fork-blue-inlay')]
+    if kind == 'knife':
+        return [knife_surface(), handle_insert('knife-blue-inlay')]
+    raise ValueError('kind must be fork or knife')
