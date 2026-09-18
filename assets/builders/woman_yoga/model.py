@@ -5,6 +5,21 @@ from modeling import mesh, loft, sweep, bevel, subdivision
 
 TAU=math.tau
 
+# The reference head is a size larger than the skull the body was built around.
+# Growing it about the base of the skull keeps the neck join welded.
+HEAD=1.11
+NECK=.243
+HEAD_AT=(0,NECK+(.306-NECK)*HEAD,.004*HEAD)
+HEAD_R=(.056*HEAD,.063*HEAD,.047*HEAD)
+
+
+def grow_head(objects):
+    """Uniform scale about the base of the skull, so hair stays registered to the face."""
+    for obj in objects:
+        for v in obj.data.vertices:
+            v.co.x*=HEAD;v.co.y*=HEAD;v.co.z=NECK+(v.co.z-NECK)*HEAD
+    return objects
+
 
 def ellipsoid(name,center,radii,material,lon=48,lat=24):
     cx,cy,cz=center;rx,ry,rz=radii
@@ -78,43 +93,81 @@ def body_loft(name,rows,material,levels=2):
 
 def torso():
     body=body_loft('torso-and-neck',[(.076,.035,.021,-.006),(.092,.049,.027,-.007),(.133,.041,.026,-.005),(.178,.046,.029,-.003),(.202,.058,.026,-.002),(.219,.049,.023,-.001),(.227,.027,.018,0),(.239,.017,.017,0),(.258,.018,.017,0)],'skin')
-    head=ellipsoid('soft-oval-face',(0,.306,.004),(.056,.063,.047),'skin')
+    head=ellipsoid('soft-oval-face',HEAD_AT,HEAD_R,'skin')
     return [merge_skin('continuous-face-neck-and-torso',[body,head])]
 
 
 def shirt():
-    # Open scoop neckline: shoulder straps rise above the low curved front.
-    rows=[(.086,.059,.034),(.090,.058,.034),(.110,.050,.031),(.138,.046,.031),(.163,.049,.034),(.180,.054,.034),(.196,.051,.030),(.219,.047,.025)]
+    """Racer tank: one hem, and a rim that dips at the chest and climbs the shoulders."""
+    profile=[(.078,.066,.037),(.090,.065,.037),(.110,.057,.034),(.138,.052,.034),
+             (.163,.055,.037),(.180,.060,.037),(.196,.057,.033),(.219,.052,.027),(.244,.049,.026)]
+
+    def section(y):
+        for (y0,rx0,rz0),(y1,rx1,rz1) in zip(profile,profile[1:]):
+            if y<=y1 or (y1,rx1,rz1)==profile[-1]:
+                t=0 if y1==y0 else max(0,min(1,(y-y0)/(y1-y0)))
+                return rx0+(rx1-rx0)*t,rz0+(rz1-rz0)*t
+        return profile[-1][1],profile[-1][2]
+
+    hem=profile[0][0]
+
+    def rim(a):
+        """Top edge: a scoop across the chest, a little higher round the back."""
+        lift=math.cos(a)**2
+        return .182+.014*lift+.028*max(0,-math.sin(a))*(1-lift)
+
+    count=72
+    steps=[i/12 for i in range(13)]
     rings=[]
-    count=64
     for layer in (0,1):
-        ordered=rows if layer==0 else list(reversed(rows))
-        for row,(y,rx,rz) in enumerate(ordered):
-            top=(layer==0 and row==len(rows)-1) or (layer==1 and row==0)
-            near=(layer==0 and row==len(rows)-2) or (layer==1 and row==1)
+        for t in (steps if layer==0 else list(reversed(steps))):
             ring=[]
             for i in range(count):
-                a=i*TAU/count;front=max(0,math.sin(a))
-                yy=y-(.033 if top else .010 if near else 0)*front**2
-                ring.append(((rx-layer*.0015)*math.cos(a),yy,-.002+(rz-layer*.0015)*math.sin(a)))
+                a=i*TAU/count
+                y=hem+t*(rim(a)-hem)
+                rx,rz=section(y)
+                ring.append(((rx-layer*.0016)*math.cos(a),y,-.002+(rz-layer*.0016)*math.sin(a)))
             rings.append(ring)
-    rings.append(rings[0])
-    # Close the annulus explicitly rather than duplicating coincident end rings.
-    vertices=[p for ring in rings[:-1] for p in ring];faces=[];nr=len(rings)-1
+    vertices=[p for ring in rings for p in ring];faces=[];nr=len(rings)
     for row in range(nr):
         nxt=(row+1)%nr
         for i in range(count):
             j=(i+1)%count;faces.append((row*count+i,row*count+j,nxt*count+j,nxt*count+i))
-    from modeling import subdivision
-    return [subdivision(mesh('pink-scoop-neck-tank',vertices,faces,'pink'),1)]
+    body=subdivision(mesh('pink-scoop-neck-tank',vertices,faces,'pink'),1)
+
+    # Straps ride the slope of the shoulder; a tube rim alone can only spike upward.
+    straps=[]
+    for side in (-1,1):
+        tag='left' if side<0 else 'right'
+        path=[(side*.030,.166,.031),(side*.034,.194,.030),(side*.037,.220,.010),
+              (side*.036,.204,-.020),(side*.033,.184,-.034)]
+        strap=sweep(tag+'-tank-strap',path,[.010,.011,.011,.010,.009],segments=18,levels=2)
+        strap['material_key']='pink'
+        straps.append(strap)
+    return [body]+straps
+
 
 
 def legs():
-    back=sweep('left-folded-leg',[(-.027,.075,-.012),(-.070,.065,-.005),(-.117,.040,.005),(-.124,.022,.028),(-.100,.016,.054),(-.056,.025,.072),(.003,.045,.073),(.048,.064,.065),(.077,.077,.051),(.089,.076,.044)],[.025,.029,.029,.028,.026,.025,.021,.017,.014,.004],segments=24,levels=2)
-    front=sweep('right-folded-leg',[(.028,.075,-.013),(.070,.064,-.002),(.120,.041,.009),(.129,.023,.038),(.111,.016,.070),(.067,.020,.088),(.015,.038,.091),(-.023,.062,.084),(-.061,.079,.063),(-.086,.078,.046),(-.092,.073,.042)],[.025,.029,.030,.029,.027,.026,.023,.020,.016,.013,.003],segments=24,levels=2)
+    """Lotus: each thigh sweeps out to the knee, the shin folds back across the
+    centre, and the foot rests on the opposite thigh. Sections are fat enough
+    that thigh and shin fuse into one mass instead of leaving a loop of daylight."""
+    back=sweep('left-folded-leg',
+        [(-.030,.078,-.010),(-.072,.068,-.002),(-.108,.050,.006),(-.127,.034,.026),
+         (-.126,.022,.052),(-.092,.018,.074),(-.044,.022,.086),(.008,.032,.084),
+         (.050,.044,.072),(.076,.052,.058)],
+        [.028,.030,.030,.029,.028,.027,.026,.024,.022,.016],segments=28,levels=2)
+    front=sweep('right-folded-leg',
+        [(.031,.078,-.011),(.073,.067,-.001),(.111,.050,.010),(.130,.034,.034),
+         (.129,.022,.062),(.094,.018,.086),(.046,.022,.098),(-.006,.034,.096),
+         (-.050,.046,.084),(-.078,.054,.070)],
+        [.028,.030,.030,.029,.028,.027,.026,.024,.022,.016],segments=28,levels=2)
     back['material_key']=front['material_key']='skin'
-    shorts=ellipsoid('blue-yoga-shorts',(0,.073,-.010),(.061,.030,.039),'blue')
-    return [shorts,back,front]
+    # Soles turned up in the lap; without them each shin tapers away to nothing.
+    left_foot=ellipsoid('left-sole-on-thigh',(.082,.054,.052),(.019,.013,.018),'skin',32,16)
+    right_foot=ellipsoid('right-sole-on-thigh',(-.084,.056,.064),(.019,.013,.018),'skin',32,16)
+    shorts=ellipsoid('blue-yoga-shorts',(0,.072,-.006),(.068,.031,.044),'blue')
+    return [shorts,merge_skin('crossed-legs-and-feet',[back,front,left_foot,right_foot],.0016)]
 
 
 def arms():
@@ -122,7 +175,7 @@ def arms():
     for side in (-1,1):
         tag='left' if side<0 else 'right'
         points=[(side*x,y,z) for x,y,z in [(.047,.208,-.002),(.064,.205,-.003),(.074,.182,-.001),(.084,.149,.004),(.090,.132,.010),(.107,.112,.020),(.131,.091,.026),(.148,.086,.026)]]
-        arm=sweep(tag+'-arm',points,[.019,.021,.020,.017,.016,.015,.014,.012],segments=20,levels=2)
+        arm=sweep(tag+'-arm',points,[.021,.023,.022,.019,.018,.017,.016,.013],segments=20,levels=2)
         palm=ellipsoid(tag+'-palm',(side*.153,.084,.026),(.018,.012,.014),'skin',32,16)
         # Joined index-and-thumb loop; its central hole remains open.
         centers=[]
@@ -137,7 +190,7 @@ def arms():
 
 def feature(name,outline,material):
     # Every feature follows the face curvature and sits just above the skin.
-    def surface(x,y):return .004+.047*math.sqrt(max(.05,1-(x/.056)**2-((y-.306)/.063)**2))
+    def surface(x,y):return HEAD_AT[2]+HEAD_R[2]*math.sqrt(max(.05,1-(x/HEAD_R[0])**2-((y-HEAD_AT[1])/HEAD_R[1])**2))
     n=len(outline);vertices=[]
     for h in (.0003,.0020):vertices.extend((x,y,surface(x,y)+h) for x,y in outline)
     faces=[tuple(reversed(range(n))),tuple(range(n,2*n))]
@@ -148,7 +201,7 @@ def feature(name,outline,material):
 def face():
     result=[]
     for side in (-1,1):
-        center=side*.025
+        center=side*.0294
         outline=curve((center-.015,.304),[
             ((center-.009,.299),(center+.005,.297),(center+.015,.304)),
             ((center+.019,.304),(center+.012,.293),(center+.002,.293)),
@@ -162,7 +215,7 @@ def face():
 
 
 def hair():
-    result=[ellipsoid('back-of-blonde-hair',(0,.317,-.013),(.062,.071,.045),'hair')]
+    result=[ellipsoid('back-of-blonde-hair',(0,.320,-.013),(.065,.074,.047),'hair')]
     right=curve((-.026,.368),[
         ((-.012,.391),(.045,.379),(.062,.351)),
         ((.078,.328),(.066,.299),(.052,.286)),
@@ -173,17 +226,18 @@ def hair():
         ((-.060,.310),(-.055,.306),(-.050,.303)),
         ((-.055,.322),(-.021,.334),(-.020,.357)),
         ((-.020,.365),(-.022,.368),(-.024,.369))])
-    tail=curve((-.048,.309),[
-        ((-.051,.285),(-.056,.274),(-.080,.270)),
-        ((-.081,.266),(-.075,.263),(-.069,.263)),
-        ((-.073,.260),(-.078,.260),(-.081,.259)),
-        ((-.071,.245),(-.039,.248),(-.026,.263)),
-        ((-.026,.281),(-.035,.302),(-.048,.309))])
-    pony=curve((-.028,.372),[
-        ((-.069,.367),(-.081,.392),(-.064,.417)),
-        ((-.052,.442),(-.022,.436),(-.013,.422)),
-        ((-.004,.406),(-.010,.389),(-.028,.372))])
-    result.extend([cushion('left-flowing-hair-tail',tail,-.004,.015,'hair'),cushion('high-blonde-ponytail',pony,-.019,.020,'hair'),ellipsoid('pink-ponytail-band',(-.023,.391,-.004),(.018,.010,.014),'pink'),cushion('large-side-swept-lock',right,.035,.015,'hair'),cushion('small-left-swept-lock',left,.032,.012,'hair')])
+    tail=curve((-.052,.318),[
+        ((-.058,.290),(-.064,.276),(-.090,.271)),
+        ((-.092,.266),(-.085,.262),(-.078,.262)),
+        ((-.083,.258),(-.089,.258),(-.093,.256)),
+        ((-.080,.238),(-.040,.243),(-.025,.262)),
+        ((-.025,.285),(-.037,.308),(-.052,.318))])
+    pony=curve((-.070,.368),[
+        ((-.076,.392),(-.072,.412),(-.052,.420)),
+        ((-.036,.426),(-.018,.418),(-.016,.404)),
+        ((-.014,.391),(-.016,.376),(-.026,.370)),
+        ((-.040,.363),(-.058,.361),(-.070,.368))])
+    result.extend([cushion('left-flowing-hair-tail',tail,-.004,.018,'hair'),cushion('high-blonde-ponytail',pony,-.016,.023,'hair'),ellipsoid('pink-ponytail-band',(-.021,.389,-.004),(.016,.0105,.015),'pink'),cushion('large-side-swept-lock',right,.034,.019,'hair'),cushion('small-left-swept-lock',left,.031,.016,'hair')])
     return result
 
 
@@ -191,6 +245,6 @@ def build(parameters):
     part=parameters.get('part','upper')
     if part=='upper':
         skin=merge_skin('continuous-shoulders-neck-face-and-arms',torso()+arms(),.0012)
-        return [skin]+shirt()+face()+hair()
+        return [skin]+shirt()+face()+grow_head(hair())
     if part=='legs':return legs()
     raise ValueError('part must be upper or legs')

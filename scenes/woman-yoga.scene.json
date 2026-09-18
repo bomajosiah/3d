@@ -2,14 +2,92 @@
   "version": 1,
   "name": "woman-yoga",
   "environment": {
-    "ao": 0.5,
-    "aoRadius": 0.008,
+    "ao": 0.9,
+    "aoRadius": 0.014,
     "background": "transparent",
+    "exposure": 0,
     "floor": {
       "mode": "none"
     },
-    "intensity": 1.05,
-    "preset": "product-white",
+    "intensity": 0.223,
+    "lights": [
+      {
+        "size": 0.28,
+        "color": "#ffffff",
+        "position": [
+          -0.36,
+          0.62,
+          0.52
+        ],
+        "power": 24.3,
+        "target": [
+          -0.02,
+          0.24,
+          0.02
+        ]
+      },
+      {
+        "size": 0.9,
+        "color": "#fffaf2",
+        "position": [
+          0.05,
+          0.3,
+          0.78
+        ],
+        "power": 10.5,
+        "target": [
+          0,
+          0.18,
+          0
+        ]
+      },
+      {
+        "size": 0.38,
+        "color": "#fff0dd",
+        "position": [
+          0.52,
+          0.34,
+          0.2
+        ],
+        "power": 5.1,
+        "target": [
+          0.06,
+          0.2,
+          0
+        ]
+      },
+      {
+        "size": 0.36,
+        "color": "#fff2e2",
+        "position": [
+          0.14,
+          0.5,
+          -0.6
+        ],
+        "power": 7.1,
+        "target": [
+          0.02,
+          0.28,
+          0
+        ]
+      },
+      {
+        "size": 0.5,
+        "color": "#ffe8cf",
+        "position": [
+          -0.2,
+          -0.22,
+          0.52
+        ],
+        "power": 8.4,
+        "target": [
+          -0.02,
+          0.06,
+          0
+        ]
+      }
+    ],
+    "preset": "studio-soft",
     "rotation": -18
   },
   "camera": {
@@ -30,58 +108,71 @@
   },
   "materials": {
     "blue": {
-      "color": "#269bd7",
-      "roughness": 0.38
+      "color": "#1d93d8",
+      "roughness": 0.36
     },
     "face": {
-      "color": "#593029",
+      "color": "#4a2620",
       "roughness": 0.4
     },
     "hair": {
-      "color": "#ffd23e",
-      "roughness": 0.32
+      "color": "#ffc21f",
+      "roughness": 0.28
     },
     "pink": {
-      "color": "#c74b9d",
-      "roughness": 0.38
+      "color": "#d24da2",
+      "roughness": 0.34
     },
     "skin": {
-      "color": "#ffc84b",
+      "color": "#ffc83a",
       "roughness": 0.36
     }
   },
   "nodes": [
     {
-      "name": "legs",
-      "type": "asset",
-      "id": "2gFOw5TS",
-      "builder": "../assets/builders/woman_yoga/model.py",
-      "parameters": {
-        "part": "legs"
-      },
-      "transform": {
-        "scale": [
-          1.08,
-          1,
-          1
-        ]
-      }
-    },
-    {
-      "name": "upper-body",
-      "type": "asset",
-      "id": "TmI3xNKl",
-      "builder": "../assets/builders/woman_yoga/model.py",
-      "parameters": {
-        "part": "upper"
-      },
-      "transform": {
-        "scale": [
-          1.08,
-          1,
-          1
-        ]
-      }
+      "name": "figure",
+      "type": "group",
+      "id": "HoiPMWXg",
+      "transform": {},
+      "children": [
+        {
+          "name": "legs",
+          "type": "asset",
+          "id": "2gFOw5TS",
+          "transform": {
+            "position": [
+              0,
+              0.002,
+              0
+            ],
+            "scale": [
+              1.08,
+              1,
+              1
+            ]
+          },
+          "builder": "../assets/builders/woman_yoga/model.py",
+          "parameters": {
+            "part": "legs"
+          }
+        },
+        {
+          "name": "upper-body",
+          "type": "asset",
+          "id": "TmI3xNKl",
+          "transform": {
+            "scale": [
+              1.08,
+              1,
+              1
+            ]
+          },
+          "builder": "../assets/builders/woman_yoga/model.py",
+          "parameters": {
+            "part": "upper"
+          }
+        }
+      ]
     }
   ],
   "animation": {
@@ -96,15 +187,42 @@
             "keys": [
               [
                 0,
+                0
+              ],
+              [
+                0.2,
+                0
+              ],
+              [
+                1.4,
+                0.006,
+                "inOutCubic"
+              ],
+              [
+                2.8,
+                0,
+                "inOutCubic"
+              ],
+              [
+                3,
+                0
+              ]
+            ],
+            "target": "figure.transform.position.y"
+          },
+          {
+            "keys": [
+              [
+                0,
                 1.08
               ],
               [
-                0.15,
+                0.2,
                 1.08
               ],
               [
                 1.4,
-                1.0929600000000002,
+                1.092,
                 "inOutCubic"
               ],
               [
@@ -126,39 +244,12 @@
                 1
               ],
               [
-                0.15,
+                0.2,
                 1
               ],
               [
                 1.4,
-                1.008,
-                "inOutCubic"
-              ],
-              [
-                2.8,
-                1,
-                "inOutCubic"
-              ],
-              [
-                3,
-                1
-              ]
-            ],
-            "target": "upper-body.transform.scale.y"
-          },
-          {
-            "keys": [
-              [
-                0,
-                1
-              ],
-              [
-                0.15,
-                1
-              ],
-              [
-                1.4,
-                1.018,
+                1.024,
                 "inOutCubic"
               ],
               [
@@ -177,15 +268,42 @@
             "keys": [
               [
                 0,
+                1
+              ],
+              [
+                0.2,
+                1
+              ],
+              [
+                1.4,
+                1.004,
+                "inOutCubic"
+              ],
+              [
+                2.8,
+                1,
+                "inOutCubic"
+              ],
+              [
+                3,
+                1
+              ]
+            ],
+            "target": "upper-body.transform.scale.y"
+          },
+          {
+            "keys": [
+              [
+                0,
                 0
               ],
               [
-                0.15,
+                0.2,
                 0
               ],
               [
                 1.4,
-                0.001,
+                0.002,
                 "inOutCubic"
               ],
               [

@@ -2,52 +2,175 @@
   "version": 1,
   "name": "palette",
   "environment": {
-    "preset": "studio-soft",
+    "ao": 0.8,
+    "aoRadius": 0.009,
     "background": "transparent",
-    "floor": { "mode": "none" },
-    "intensity": 0.9,
-    "rotation": -24,
-    "exposure": 0.1,
-    "ao": 0.55,
-    "aoRadius": 0.02,
+    "exposure": 0,
+    "floor": {
+      "mode": "none"
+    },
+    "intensity": 0.2,
     "lights": [
-      { "position": [-0.24, 0.5, 0.38], "target": [0, 0.02, 0], "size": 0.4, "power": 26, "color": "#ffffff" },
-      { "position": [0.34, 0.34, 0.32], "target": [0.04, 0.01, 0], "size": 0.3, "power": 8, "color": "#fff1e2" },
-      { "position": [-0.1, 0.24, -0.46], "target": [0, 0.01, 0], "size": 0.34, "power": 6, "color": "#ffd9b5" }
-    ]
+      {
+        "size": 0.22,
+        "color": "#ffffff",
+        "position": [
+          -0.26,
+          0.48,
+          0.36
+        ],
+        "power": 36,
+        "target": [
+          -0.01,
+          0.02,
+          0
+        ]
+      },
+      {
+        "size": 0.95,
+        "color": "#fff2e0",
+        "position": [
+          -0.02,
+          0.26,
+          0.62
+        ],
+        "power": 5.5,
+        "target": [
+          0,
+          0.02,
+          0
+        ]
+      },
+      {
+        "size": 0.24,
+        "color": "#ffd9ad",
+        "position": [
+          0.4,
+          0.12,
+          -0.34
+        ],
+        "power": 11,
+        "target": [
+          0.04,
+          0.02,
+          0
+        ]
+      },
+      {
+        "size": 0.5,
+        "color": "#ffd0a4",
+        "position": [
+          0.3,
+          -0.3,
+          0.4
+        ],
+        "power": 1.2,
+        "target": [
+          0.04,
+          0,
+          0
+        ]
+      },
+      {
+        "size": 0.4,
+        "color": "#ffd9b0",
+        "position": [
+          -0.34,
+          -0.16,
+          0.46
+        ],
+        "power": 7,
+        "target": [
+          -0.06,
+          0.03,
+          0
+        ]
+      }
+    ],
+    "preset": "studio-soft",
+    "rotation": -24
   },
   "camera": {
     "type": "orthographic",
-    "framing": { "view": "front", "fit": "all", "padding": 0.04, "region": { "center": [-0.00175, 0.00522, 0], "radius": 0.15758 } }
+    "framing": {
+      "view": "front",
+      "fit": "all",
+      "padding": 0.04,
+      "region": {
+        "radius": 0.1536,
+        "center": [
+          -0.0024,
+          0.0056,
+          0
+        ]
+      }
+    }
   },
   "materials": {
-    "board":  { "color": "#eeaa66", "roughness": 0.3 },
-    "blue":   { "color": "#2ba4f0", "roughness": 0.13 },
-    "green":  { "color": "#45c74a", "roughness": 0.13 },
-    "yellow": { "color": "#fbd42c", "roughness": 0.13 },
-    "purple": { "color": "#8f34ee", "roughness": 0.13 },
-    "red":    { "color": "#f53c56", "roughness": 0.13 }
+    "blue": {
+      "color": "#0f9cf2",
+      "roughness": 0.1
+    },
+    "board": {
+      "color": "#e7ad54",
+      "roughness": 0.28
+    },
+    "green": {
+      "color": "#57b657",
+      "roughness": 0.1
+    },
+    "purple": {
+      "color": "#8317ec",
+      "roughness": 0.1
+    },
+    "red": {
+      "color": "#ed0b31",
+      "roughness": 0.1
+    },
+    "yellow": {
+      "color": "#f6de00",
+      "roughness": 0.1
+    }
   },
   "nodes": [
     {
       "name": "stage",
       "type": "group",
+      "id": "Kyu7GV5h",
+      "transform": {},
       "children": [
         {
           "name": "tip",
           "type": "group",
-          "transform": { "rotation": [56, 0, 0] },
+          "id": "rJ3Dk6RB",
+          "transform": {
+            "rotation": [
+              56,
+              0,
+              0
+            ]
+          },
           "children": [
             {
               "name": "spin",
               "type": "group",
-              "transform": { "rotation": [0, -43.92, 0] },
+              "id": "yfBaJ1Ma",
+              "transform": {
+                "rotation": [
+                  0,
+                  -42.194,
+                  0
+                ]
+              },
               "children": [
                 {
                   "name": "palette",
                   "type": "asset",
+                  "id": "ugLqfkno",
                   "builder": "../assets/builders/palette.py",
-                  "parameters": { "board": "board" }
+                  "parameters": {
+                    "board": "board"
+                  }
                 }
               ]
             }
@@ -56,7 +179,144 @@
       ]
     }
   ],
+  "animation": {
+    "clips": [
+      {
+        "name": "sway",
+        "duration": 2.6,
+        "fps": 60,
+        "loop": "forever",
+        "tracks": [
+          {
+            "keys": [
+              [
+                0,
+                0,
+                "inOutQuad"
+              ],
+              [
+                0.65,
+                6,
+                "inOutQuad"
+              ],
+              [
+                1.3,
+                0,
+                "inOutQuad"
+              ],
+              [
+                1.95,
+                -6,
+                "inOutQuad"
+              ],
+              [
+                2.6,
+                0
+              ]
+            ],
+            "target": "stage.transform.rotation.y"
+          },
+          {
+            "keys": [
+              [
+                0,
+                0,
+                "inOutQuad"
+              ],
+              [
+                0.65,
+                -2.4,
+                "inOutQuad"
+              ],
+              [
+                1.3,
+                0,
+                "inOutQuad"
+              ],
+              [
+                1.95,
+                2.4,
+                "inOutQuad"
+              ],
+              [
+                2.6,
+                0
+              ]
+            ],
+            "target": "stage.transform.rotation.z"
+          },
+          {
+            "keys": [
+              [
+                0,
+                0,
+                "inOutQuad"
+              ],
+              [
+                0.65,
+                0.006,
+                "inOutQuad"
+              ],
+              [
+                1.3,
+                0,
+                "inOutQuad"
+              ],
+              [
+                1.95,
+                0.006,
+                "inOutQuad"
+              ],
+              [
+                2.6,
+                0
+              ]
+            ],
+            "target": "stage.transform.position.y"
+          }
+        ]
+      }
+    ]
+  },
   "meta": {
-    "reference": "00-tasks/task-1/palette.png"
+    "reference": "00-tasks/task-1/palette.png",
+    "inspection": [
+      {
+        "label": "thumb-hole",
+        "center": [
+          0.0405,
+          -0.0048,
+          0.0165
+        ],
+        "radius": 0.036
+      },
+      {
+        "label": "notch",
+        "center": [
+          0.0253,
+          -0.0348,
+          0.0368
+        ],
+        "radius": 0.05
+      },
+      {
+        "label": "blue-foot",
+        "center": [
+          -0.072,
+          0.0398,
+          -0.0135
+        ],
+        "radius": 0.05
+      },
+      {
+        "label": "rim-and-tongue",
+        "center": [
+          -0.0004,
+          -0.0775,
+          0.0656
+        ],
+        "radius": 0.05
+      }
+    ]
   }
 }

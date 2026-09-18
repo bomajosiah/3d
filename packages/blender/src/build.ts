@@ -26,8 +26,13 @@ const canonical = (v: unknown): string => {
   if (v && typeof v === 'object') return `{${Object.entries(v).sort(([a], [b]) => a.localeCompare(b)).map(([k, x]) => `${JSON.stringify(k)}:${canonical(x)}`).join(',')}}`
   return JSON.stringify(v)
 }
-export function cacheHash(parameters: unknown, version: string, sources: { path: string; content: string }[]): string {
-  return createHash('sha256').update(canonical({ parameters, version, sources: [...sources].sort((a, b) => a.path.localeCompare(b.path)) })).digest('hex')
+/**
+ * `sources` covers the whole builder directory, so two builders that sit side by
+ * side hash the same bytes. The entry point has to be in the key as well, or a
+ * parameterless asset silently collides with its neighbour and renders its mesh.
+ */
+export function cacheHash(builder: string, parameters: unknown, version: string, sources: { path: string; content: string }[]): string {
+  return createHash('sha256').update(canonical({ builder, parameters, version, sources: [...sources].sort((a, b) => a.path.localeCompare(b.path)) })).digest('hex')
 }
 function sourceTree(dir: string): string[] {
   return readdirSync(dir, { withFileTypes: true }).flatMap(e =>
@@ -47,7 +52,8 @@ export async function prepareAssets(doc: SceneDocument, sceneFile: string): Prom
         ...node.dependencies.map(p => localFile(dirname(sceneFile), p, root))])]
       const sources = files.map(path => ({ path: relative(root, path), content: readFileSync(path).toString('base64') }))
       // A portable cached asset may be viewed without Blender. Its recorded version is part of the key.
-      const sourceKey = cacheHash(node.parameters, 'sources', sources)
+      const entry = relative(root, builder)
+      const sourceKey = cacheHash(entry, node.parameters, 'sources', sources)
       const index = join(root, '.3d/cache', `${sourceKey}.json`)
       let result: CompiledAsset | undefined
       try { info ??= await blenderInfo(root) } catch (e) {
@@ -59,7 +65,7 @@ export async function prepareAssets(doc: SceneDocument, sceneFile: string): Prom
       }
       if (!result) {
         info ??= await blenderInfo(root)
-        const hash = cacheHash(node.parameters, info.version, sources)
+        const hash = cacheHash(entry, node.parameters, info.version, sources)
         let work = pending.get(hash)
         if (!work) {
           work = (async () => {

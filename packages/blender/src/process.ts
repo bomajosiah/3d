@@ -5,8 +5,16 @@ import { resolve } from 'node:path'
 export function run(executable: string, args: string[], timeout = 300_000): Promise<string> {
   return new Promise((accept, reject) => {
     execFile(executable, args, { timeout, maxBuffer: 16 * 1024 * 1024, env: { ...process.env, PYTHONDONTWRITEBYTECODE: '1' } }, (error, stdout, stderr) => {
-      if (error) reject(new Error(`${executable}: ${error.message}\n${(stdout + stderr).slice(-6000)}`))
-      else accept(stdout)
+      if (error) {
+        // A timeout arrives as an ordinary "Command failed" with a SIGTERM, so
+        // without this the log tail looks like a crash mid-frame and says
+        // nothing about the budget that actually ended it.
+        const timedOut = (error as { killed?: boolean }).killed === true
+        const reason = timedOut
+          ? `timed out after ${timeout < 60_000 ? `${Math.round(timeout / 1000)}s` : `${Math.round(timeout / 60_000)} min`}. Raise BLENDER_RENDER_TIMEOUT_MS (final renders) or BLENDER_BUILD_TIMEOUT_MS (asset builds), or shorten the clip. A long-running dev server keeps the budget it started with — restart it after changing these.`
+          : error.message
+        reject(Object.assign(new Error(`${executable}: ${reason}\n${(stdout + stderr).slice(-6000)}`), { code: timedOut ? 'E_BLENDER_TIMEOUT' : undefined }))
+      } else accept(stdout)
     })
   })
 }

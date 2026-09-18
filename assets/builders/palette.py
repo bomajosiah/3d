@@ -11,56 +11,70 @@ Lengths are fractions of the board's semi-major axis until the final scale.
 import math
 import bpy
 import bmesh
-from modeling import mesh, bevel, loft, solidify
+from modeling import loft
 
 SPAN = 0.15          # board semi-major axis, metres
-WAIST = 0.682        # semi-minor / semi-major
-THICK = 0.157        # slab thickness
-RIM = 0.040          # rounding of every slab edge
-OUTLINE = 320        # samples around the board outline
+WAIST = 0.674        # semi-minor / semi-major
+ROUND = 2.049        # outline exponent; a touch past an ellipse, fuller at the ends
+THICK = 0.1471       # slab thickness
+RIM = 0.0313         # rounding of every slab edge
+OUTLINE = 340        # samples around the board outline
+RIM_STEPS = 7        # segments in the quarter round of the rim
 
-HOLE = (0.265, -0.141)   # thumb hole centre
-HOLE_R = (0.181, 0.166)  # thumb hole radii
-HOLE_TILT = 35           # degrees, ccw in the board plane
-HOLE_SEGMENTS = 88
+HOLE = (0.2591, -0.1163)   # thumb hole centre
+HOLE_R = (0.1694, 0.0998)  # thumb hole radii
+HOLE_TILT = 10.64          # degrees, ccw in the board plane
+HOLE_SEGMENTS = 96
 
 # The notch is a wedge of void driven in from the lower right: a rounded apex
 # just under the thumb hole, one arm sweeping out along the rim and the other
 # cutting back to leave the thumb rest. Apex point, bisector, half angle.
-NOTCH_APEX = (0.340, 0.164)
-NOTCH_AIM = 11.5         # degrees, direction the wedge opens
-NOTCH_FLARE = 26.3       # half angle of the wedge
-NOTCH_NOSE = 0.030       # rounding of the apex
+NOTCH_APEX = (0.3460, 0.1309)
+NOTCH_AIM = 18.44        # degrees, direction the wedge opens
+NOTCH_FLARE = 21.96      # half angle of the wedge
+NOTCH_NOSE = 0.0364      # rounding of the apex
 NOTCH_REACH = 1.30       # how far past the apex the wedge runs
-JOIN = 0.060             # rounding where the notch breaks out through the rim
+JOIN = 0.2537            # rounding where the notch breaks out through the rim
 
-# Paint blobs. `shape` lists (harmonic, amplitude, phase) so no two read alike.
+# Paint blobs. `cos`/`sin` are the harmonics of the outline radius about `at`,
+# so each one keeps the lobed, spilled silhouette of a real squeeze of paint.
 BLOBS = [
-    {'name': 'blue', 'at': (-0.505, 0.175), 'radii': (0.320, 0.228), 'turn': 10,
-     'rise': 0.150, 'shape': [(1, 0.075, 152), (2, 0.130, 26), (3, 0.070, -44), (4, 0.030, 12)]},
-    {'name': 'green', 'at': (-0.379, -0.268), 'radii': (0.268, 0.210), 'turn': 4,
-     'rise': 0.142, 'shape': [(1, 0.095, -108), (2, 0.110, -6), (3, 0.058, 128), (4, 0.026, 58)]},
-    {'name': 'yellow', 'at': (0.156, -0.450), 'radii': (0.278, 0.178), 'turn': -13,
-     'rise': 0.128, 'shape': [(1, 0.085, 18), (2, 0.098, 64), (3, 0.052, -20), (4, 0.022, 98)]},
-    {'name': 'purple', 'at': (0.118, 0.382), 'radii': (0.310, 0.224), 'turn': -2,
-     'rise': 0.148, 'shape': [(1, 0.070, -158), (2, 0.124, 42), (3, 0.066, 94), (4, 0.028, -42)]},
-    {'name': 'red', 'at': (0.740, -0.230), 'radii': (0.276, 0.188), 'turn': 11,
-     'rise': 0.136, 'shape': [(1, 0.105, 94), (2, 0.108, -28), (3, 0.060, 38), (4, 0.024, 138)]},
+    {'name': 'blue', 'at': (-0.5372, 0.1223), 'rise': 0.1437,
+     'cos': [0.2009, -0.0096, 0.0426, -0.0041, 0.0007, 0.0005, 0.0002, -0.0023, 0.0017],
+     'sin': [0.0, -0.0164, 0.0111, -0.0174, 0.0148, -0.0043, 0.0057, -0.0023, 0.0035]},
+    {'name': 'green', 'at': (-0.3956, -0.3121), 'rise': 0.1106,
+     'cos': [0.1705, -0.0107, 0.0192, -0.0123, 0.005, -0.0015, 0.0037, -0.0035, 0.002],
+     'sin': [0.0, -0.0169, 0.0008, -0.0145, 0.0135, -0.0066, 0.0029, -0.0037, 0.0018]},
+    {'name': 'yellow', 'at': (0.1423, -0.4397), 'rise': 0.0950,
+     'cos': [0.148, -0.0109, 0.03, -0.0048, 0.0032, -0.0043, 0.0043, -0.0032, 0.0007],
+     'sin': [0.0, -0.0494, -0.0005, -0.0293, 0.0072, -0.0082, 0.0043, -0.0072, 0.0012]},
+    {'name': 'purple', 'at': (0.0794, 0.3542), 'rise': 0.1480,
+     'cos': [0.1977, -0.0129, 0.0369, -0.0031, 0.0098, 0.0009, 0.0071, -0.0021, 0.0035],
+     'sin': [0.0, -0.0164, -0.0071, -0.02, 0.0018, -0.0031, -0.0009, 0.0015, -0.0008]},
+    {'name': 'red', 'at': (0.7053, -0.2431), 'rise': 0.0860,
+     'cos': [0.1574, -0.0073, 0.0386, -0.0069, 0.0049, 0.0009, -0.0001, 0.0012, -0.0005],
+     'sin': [0.0, -0.0189, 0.0111, -0.0165, 0.0144, -0.009, 0.0072, -0.0052, 0.0033]},
 ]
-BLOB_RINGS = 26
-BLOB_SEGMENTS = 76
+BLOB_RINGS = 30
+BLOB_SEGMENTS = 88
 BLOB_SINK = 0.010    # how far the foot sits inside the board
+BLOB_CALM = 0.42     # how much of the outline's lobing survives at the apex
 
 
 # --- signed distance field -------------------------------------------------
 
-def sd_ellipse(p, a, b):
-    """Gradient-normalised ellipse field; exact at the boundary, smooth nearby."""
-    k1 = math.hypot(p[0] / a, p[1] / b)
-    if k1 < 1e-9:
+def sd_super(p, a, b, n=2.0):
+    """Gradient-normalised superellipse field; exact at the boundary, smooth nearby."""
+    ax, az = abs(p[0] / a), abs(p[1] / b)
+    if ax < 1e-9 and az < 1e-9:
         return -min(a, b)
-    k2 = math.hypot(p[0] / (a * a), p[1] / (b * b))
-    return (k1 - 1.0) * k1 / k2
+    power = ax ** n + az ** n
+    value = power ** (1 / n) - 1
+    scale = power ** (1 / n - 1)
+    gx = scale * ax ** (n - 1) * (1 if p[0] >= 0 else -1) / a
+    gz = scale * az ** (n - 1) * (1 if p[1] >= 0 else -1) / b
+    gradient = math.hypot(gx, gz)
+    return value / gradient if gradient > 1e-12 else value
 
 
 def _wedge():
@@ -104,7 +118,7 @@ def smax(a, b, k):
 
 
 def sd_board(p):
-    return smax(sd_ellipse(p, 1.0, WAIST), -sd_notch(p), JOIN)
+    return smax(sd_super(p, 1.0, WAIST, ROUND), -sd_notch(p), JOIN)
 
 
 def _gradient(p, h=2e-5):
@@ -112,9 +126,9 @@ def _gradient(p, h=2e-5):
             (sd_board((p[0], p[1] + h)) - sd_board((p[0], p[1] - h))) / (2 * h))
 
 
-def _settle(p):
+def _settle(p, level=0.0):
     for _ in range(6):
-        d = sd_board(p)
+        d = sd_board(p) - level
         g = _gradient(p)
         n = g[0] * g[0] + g[1] * g[1]
         if n < 1e-12:
@@ -162,32 +176,77 @@ def _resample(points, count):
     return out
 
 
-def hole_outline(count):
+def hole_outline(count, grow=0.0):
+    """The bore, optionally pushed out along its own normal for the rounded lip."""
     cos, sin = math.cos(math.radians(HOLE_TILT)), math.sin(math.radians(HOLE_TILT))
     ring = []
     for i in range(count):
         a = i * math.tau / count
         x, z = HOLE_R[0] * math.cos(a), HOLE_R[1] * math.sin(a)
+        nx, nz = HOLE_R[1] * math.cos(a), HOLE_R[0] * math.sin(a)
+        n = math.hypot(nx, nz) or 1.0
+        x, z = x + nx / n * grow, z + nz / n * grow
         ring.append((HOLE[0] + x * cos - z * sin, HOLE[1] + x * sin + z * cos))
     return ring
 
 
+def erode(points, distance):
+    """Pull a traced outline in along the field's own normal, then re-settle on it."""
+    if distance <= 1e-9:
+        return list(points)
+    out = []
+    for p in points:
+        g = _gradient(p)
+        length = math.hypot(*g) or 1.0
+        out.append(_settle((p[0] - g[0] / length * distance, p[1] - g[1] / length * distance), -distance))
+    return out
+
+
 # --- board -----------------------------------------------------------------
 
+def rim_profile():
+    """Half the slab section: a quarter round from the flat face out to the wall.
+
+    Each entry is (how far the outline is eaten back, height). Index 0 is where
+    the round meets the vertical wall, the last is the flat face itself.
+    """
+    return [(RIM * (1 - math.cos(a)), THICK / 2 - RIM + RIM * math.sin(a))
+            for a in (i * math.pi / 2 / RIM_STEPS for i in range(RIM_STEPS + 1))]
+
+
 def build_board(material):
-    top = THICK / 2
+    section = rim_profile()
+    outer = board_outline(OUTLINE)
+    rings = [erode(outer, cut) for cut, _ in section]
+    bores = [hole_outline(HOLE_SEGMENTS, cut) for cut, _ in section]
+    # top face, down the rounded rim, straight across the wall, and back out
+    # underneath: one continuous skin, so the highlight never breaks at a seam.
+    levels = list(reversed(range(len(section)))) + list(range(len(section)))
+    heights = [section[i][1] for i in reversed(range(len(section)))]
+    heights += [-section[i][1] for i in range(len(section))]
+
     bm = bmesh.new()
-    loops, edges = [], []
-    for ring in (board_outline(OUTLINE), hole_outline(HOLE_SEGMENTS)):
-        verts = [bm.verts.new((x * SPAN, -z * SPAN, top * SPAN)) for x, z in ring]
-        loops.append(verts)
-        edges.extend(bm.edges.new((verts[i], verts[(i + 1) % len(verts)])) for i in range(len(verts)))
-    bmesh.ops.triangle_fill(bm, use_beauty=True, use_dissolve=False, edges=edges, normal=(0, 0, 1))
-    if not bm.faces:
-        raise ValueError('Board cap did not fill; the outline probably self-intersects')
-    for face in bm.faces:
-        if face.normal.z < 0:
-            face.normal_flip()
+    def band(source):
+        loops = []
+        for level, y in zip(levels, heights):
+            ring = source[level]
+            loops.append([bm.verts.new((x * SPAN, -z * SPAN, y * SPAN)) for x, z in ring])
+        for a, b in zip(loops, loops[1:]):
+            for i in range(len(a)):
+                j = (i + 1) % len(a)
+                bm.faces.new((a[i], a[j], b[j], b[i]))
+        return loops[0], loops[-1]
+
+    top_outer, bottom_outer = band(rings)
+    top_bore, bottom_bore = band(bores)
+    for face, bore in ((top_outer, top_bore), (bottom_outer, bottom_bore)):
+        edges = [e for loop in (face, bore) for e in
+                 (bm.edges.get((loop[i], loop[(i + 1) % len(loop)])) for i in range(len(loop))) if e]
+        filled = bmesh.ops.triangle_fill(bm, use_beauty=True, use_dissolve=False,
+                                         edges=edges, normal=(0, 0, 1))
+        if not filled['geom']:
+            raise ValueError('Board face did not fill; the outline probably self-intersects')
+    bmesh.ops.recalc_face_normals(bm, faces=list(bm.faces))
     data = bpy.data.meshes.new('palette-board')
     bm.to_mesh(data)
     bm.free()
@@ -197,18 +256,16 @@ def build_board(material):
     board = bpy.data.objects.new('palette-board', data)
     bpy.context.collection.objects.link(board)
     board['material_key'] = material
-    solidify(board, THICK * SPAN)
-    bevel(board, RIM * SPAN, 10)
-    board.modifiers[-1].angle_limit = math.radians(22)
     return board
 
 
 # --- paint blobs -----------------------------------------------------------
 
 def blob_radius(blob, angle):
-    r = 1.0
-    for harmonic, amplitude, phase in blob['shape']:
-        r += amplitude * math.cos(harmonic * angle + math.radians(phase))
+    """Outline radius in the board plane. Harmonics, so the curve cannot kink."""
+    r = 0.0
+    for k, (cosine, sine) in enumerate(zip(blob['cos'], blob['sin'])):
+        r += cosine * math.cos(k * angle) + sine * math.sin(k * angle)
     return r
 
 
@@ -217,13 +274,13 @@ FULL, DOME = 2.9, 2.15     # superellipse section: |t|^FULL + |width|^DOME = 1
 
 def blob_sections():
     """Heights and widths of the lofted rings: tight at the foot, even over the dome."""
-    def flare(t):              # the foot spreads a little where the paint wets the board
-        return 0.020 * (1.0 - t / 0.22) ** 2 if t < 0.22 else 0.0
+    def flare(t):              # the foot spreads into a meniscus where the paint wets the board
+        return 0.022 * (1.0 - t / 0.12) ** 1.8 if t < 0.12 else 0.0
 
     sections = []
-    for t in (0.0, 0.010, 0.026, 0.050):
+    for t in (0.0, 0.006, 0.016, 0.032, 0.056):
         sections.append(((1.0 - t ** FULL) ** (1 / DOME) + flare(t), t))
-    start = math.asin(0.050 ** (FULL / 2))
+    start = math.asin(0.056 ** (FULL / 2))
     steps = BLOB_RINGS - len(sections)
     for i in range(1, steps + 1):
         angle = start + (math.pi / 2 - start) * i / (steps + 0.55)
@@ -233,19 +290,24 @@ def blob_sections():
 
 
 def build_blob(blob):
-    cos, sin = math.cos(math.radians(blob['turn'])), math.sin(math.radians(blob['turn']))
+    cx, cz = blob['at']
+    mean = blob['cos'][0]
     base = []
     for i in range(BLOB_SEGMENTS):
         a = i * math.tau / BLOB_SEGMENTS
         r = blob_radius(blob, a)
-        x, z = blob['radii'][0] * r * math.cos(a), blob['radii'][1] * r * math.sin(a)
-        base.append((blob['at'][0] + x * cos - z * sin, blob['at'][1] + x * sin + z * cos))
-    cx, cz = blob['at']
+        if r <= 0:
+            raise ValueError('Blob %s has a non-positive radius' % blob['name'])
+        base.append((math.cos(a), math.sin(a), r))
     rings = []
     for width, lift in blob_sections():
         y = THICK / 2 - BLOB_SINK + lift * blob['rise']
-        rings.append([((cx + (x - cx) * width) * SPAN, y * SPAN, (cz + (z - cz) * width) * SPAN)
-                      for x, z in base])
+        # Surface tension pulls the top of a drop round: the lobes live at the
+        # foot and fade out as the dome closes, so the crown carries one highlight.
+        calm = BLOB_CALM + (1 - BLOB_CALM) * (1 - lift) ** 1.3
+        rings.append([((cx + dx * (mean + (r - mean) * calm) * width) * SPAN, y * SPAN,
+                       (cz + dz * (mean + (r - mean) * calm) * width) * SPAN)
+                      for dx, dz, r in base])
     obj = loft('paint-%s' % blob['name'], rings, cap=True, levels=1, material=blob['name'])
     return obj
 
